@@ -18,6 +18,8 @@ After reading, please tell me:
 - A brief 1-2 sentence summary of each milestone's key achievements
 
 This will ensure you have the condensed project context without consuming unnecessary tokens.
+
+Next, read the README.md and [insert custom instructions here]
 ```
 
 ## Purpose

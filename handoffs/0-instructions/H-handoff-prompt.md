@@ -7,11 +7,36 @@ When transitioning to a new LLM session during ongoing work, use this prompt to 
 ```
 Before we begin, please:
 
+1. Review all milestone directories in the handoffs/ folder
+2. Read ONLY the 0-prefixed documents (such as 0-milestone-summary.md and 0-lessons-learned.md) in each milestone directory
+3. DO NOT read any documents with numeric prefixes higher than 0 (such as 1-*, 2-*, etc.)
+4. Read these milestone summaries in sequential order from earliest to most recent
+
+After reading, please tell me:
+- The exact number of 0-prefixed documents you've read
+- The milestone directories you found
+- A brief 1-2 sentence summary of each milestone's key achievements
+
+This will ensure you have the condensed project context without consuming unnecessary tokens.
+
+Next, 
+
 1. Review the handoffs/ directory for all numbered handoff documents
 2. Read ALL handoff documents in chronological order (from lowest number to highest)
    For example: 1-setup.md, 2-implementation.md, 3-fixes.md, etc.
 3. Pay attention to all sections to understand the project history and current state
 
+Finally, read the README.md and [insert custom instructions here]
+ ```
+ If you want advice, add something like: 
+ 
+ ```
+And help me determine the next step.
+```
+
+If you know what you're doing you can add something like this to speed it up:
+
+```
 After reading, please:
 - Tell me the number and filenames of handoff documents you've read
 - Confirm with: "I have reviewed all handoff documents and am ready for your instructions."
