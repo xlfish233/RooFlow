@@ -27,10 +27,10 @@ During extended debugging sessions, it may feel frustrating to start over with a
 **Compatibility Note:** Optimized for Claude 3.7 Sonnet with thinking enabled (minimum 2k reasoning, optimal at 8k)
 
 ### [Large File Handling Cheatsheet](llm-large-file-cheatsheet.md)
-A practical cheatsheet of one-liners and code snippets in Python, Bash, Node.js, and PowerShell for handling large files that would normally exceed LLM context windows. Extract exactly what you need without overwhelming your LLM.
+A practical cheatsheet of one-liners and code snippets in Python, Bash, Node.js, and PowerShell for handling large files that would normally exceed LLM context windows. Extract exactly what you need without overwhelming your LLM. This file is designed to be given to the LLM as a reference and to remind it how to do some things.
 
 ### [Custom Modes LLM Instructions](custom-modes-llm-instruction.md)
-Unlock the full potential of Roo Code's custom modes system with this detailed guide covering data structures, tool groups, file restrictions, and best practices with practical examples.
+Unlock the full potential of Roo Code's custom modes system with this detailed guide covering data structures, tool groups, file restrictions, and best practices with practical examples. This file is designed to be given to the LLM to create your own specific custom modes.
 
 ## Getting Started
 
