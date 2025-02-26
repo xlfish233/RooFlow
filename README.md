@@ -8,7 +8,7 @@ These productivity-enhancing templates can be added to your projects to modify h
 
 ## Available Resources
 
-### [Handoffs System](handoffs/0-instructions/0-intro.md)
+### [Handoffs System](handoff-system.md)
 **Solve the context window overload problem once and for all.**
 
 The Handoffs System provides a streamlined approach to manage LLM context across extended development sessions. This innovative system tackles a fundamental issue in extended LLM interactions - as sessions progress, LLMs accumulate context that becomes increasingly bloated with irrelevant information, consuming valuable tokens and degrading performance.
@@ -36,7 +36,7 @@ Unlock the full potential of Roo Code's custom modes system with this detailed g
 
 Each resource includes detailed implementation instructions within its files. Simply clone this repository, copy the desired files into your project, and follow the specific setup instructions within each resource.
 
-For the Handoffs System, start by reading the [introduction document](handoffs/0-instructions/0-intro.md) to understand the system architecture.
+For the Handoffs System, start by reading the [comprehensive guide](handoff-system.md) to understand the system architecture.
 
 ## License
 
