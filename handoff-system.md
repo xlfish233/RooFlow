@@ -155,7 +155,7 @@ The system excels in scenarios like:
 
 ## Inspiration
 
-This system draws inspiration from knowledge transfer protocols used in intelligence analysis, where information continuity between shifts is essential. These practical handoff techniques have been adapted to address the specific challenges that arise during extended LLM development sessions.
+This system draws inspiration from knowledge transfer protocols used in military intelligence operations, where information continuity between shifts is essential. These practical handoff techniques have been adapted to address the specific challenges that arise during extended LLM development sessions.
 
 ## Getting Started
 
