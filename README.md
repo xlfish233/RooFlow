@@ -14,7 +14,7 @@ These techniques work best with Claude 3.7 Sonnet when the thinking feature is e
 
 ## Available Resources
 
-### [Handoffs System](handoffs/)
+### [Handoffs System](handoffs/0-instructions/0-intro.md)
 **Solve the context window overload problem once and for all.**
 
 The Handoffs System provides a streamlined approach to manage LLM context across extended development sessions. Instead of watching your LLM gradually become confused or hitting token limits, this system enables smooth transitions between fresh LLM sessions without losing critical project knowledge.
@@ -38,7 +38,7 @@ Unlock the full potential of Roo Code's custom modes system with this detailed g
 
 Each resource includes detailed implementation instructions within its files. Simply clone this repository, copy the desired files into your project, and follow the specific setup instructions within each resource.
 
-For the Handoffs System, start by exploring the [instructions](handoffs/0-instructions/) directory to understand the system architecture.
+For the Handoffs System, start by reading the [introduction document](handoffs/0-instructions/0-intro.md) to understand the system architecture.
 
 ## License
 
