@@ -6,27 +6,24 @@ A collection of files designed to supercharge your Roo Code experience and maxim
 
 These productivity-enhancing templates can be added to your projects to modify how Roo Code's LLM behaves, creating a more efficient and effective development workflow.
 
-## Compatibility Note
-
-**Optimized for Claude 3.7 Sonnet with thinking enabled**
-
-These techniques work best with Claude 3.7 Sonnet when the thinking feature is enabled. We recommend a minimum of 2k reasoning, but the system performs optimally with 8k thinking capacity, allowing for more comprehensive context assessment and handoff preparation.
-
 ## Available Resources
 
 ### [Handoffs System](handoffs/0-instructions/0-intro.md)
 **Solve the context window overload problem once and for all.**
 
-The Handoffs System provides a streamlined approach to manage LLM context across extended development sessions. Instead of watching your LLM gradually become confused or hitting token limits, this system enables smooth transitions between fresh LLM sessions without losing critical project knowledge.
+The Handoffs System provides a streamlined approach to manage LLM context across extended development sessions. This innovative system tackles a fundamental issue in extended LLM interactions - as sessions progress, LLMs accumulate context that becomes increasingly bloated with irrelevant information, consuming valuable tokens and degrading performance.
 
 **Key Benefits:**
-- Maintain peak LLM performance throughout long projects
-- Reduce token usage and associated costs
-- Preserve focus on what matters most
-- Break through stubborn debugging challenges with "fresh eyes"
-- Document project progress automatically
+- **Maintain peak LLM performance** throughout long projects by starting fresh when needed
+- **Reduce token consumption and costs** by eliminating redundant context
+- **Preserve focus on what matters most** with clean, relevant context windows
+- **Break through stubborn debugging challenges** with "fresh eyes" - sometimes a clean perspective solves problems that an overloaded context window cannot
+- **Document project progress automatically** as a natural side-effect of the system
+- **More streamlined than memory banks** while achieving similar benefits with less complexity
 
-The system includes ready-to-use templates, sample handoff documents, and comprehensive instructions for implementation.
+During extended debugging sessions, it may feel frustrating to start over with a fresh LLM, but it's often better than continuing down a deteriorating path. The "fresh eyes" of a new session with focused context can break through obstacles that an overloaded session might struggle with.
+
+**Compatibility Note:** Optimized for Claude 3.7 Sonnet with thinking enabled (minimum 2k reasoning, optimal at 8k)
 
 ### [Large File Handling Cheatsheet](llm-large-file-cheatsheet.md)
 A practical cheatsheet of one-liners and code snippets in Python, Bash, Node.js, and PowerShell for handling large files that would normally exceed LLM context windows. Extract exactly what you need without overwhelming your LLM.
