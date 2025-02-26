@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Handoff System is a structured knowledge management approach designed to optimize LLM performance across extended development sessions. By creating a seamless transition mechanism between LLM sessions, this system solves the fundamental problem of context window degradation while creating valuable project documentation as a natural side effect.
+The Handoff System is a structured knowledge management approach designed to optimize LLM performance across extended development sessions. By creating a seamless transition mechanism between LLM sessions, this system solves the fundamental problem of context window degradation while creating project development timeline documentation as a natural side effect.
 
 ## The Challenge
 
@@ -13,7 +13,7 @@ As LLMs work on projects, they encounter several limitations:
 3. **Token Consumption**: Larger contexts consume more tokens and increase costs
 4. **Knowledge Continuity**: Starting fresh loses critical project understanding
 
-Traditional solutions either accept these limitations or implement complex memory banks. The Handoff System offers a more elegant approach.
+Traditional solutions either accept these limitations or implement complex memory banks. These traditional solutions dont maintain historical project context and are usually pretty token heavy. The Handoff System offers a more elegant approach.
 
 ## System Architecture
 
