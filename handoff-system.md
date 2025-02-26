@@ -169,7 +169,7 @@ By implementing this lightweight yet powerful system, you'll maintain optimal LL
 
 ## Future Improvements
 
-While the two-tier structure of handoffs and milestones works effectively for most development projects, the system is inherently extensible for more complex scenarios. For particularly large or long-running projects that span many months or involve multiple major phases, a third hierarchical level could provide additional organizational benefits.
+The Handoff System has been designed with extensibility in mind. As development needs grow and projects become more complex, the architecture can naturally evolve to accommodate larger scales and longer timeframes.
 
 ### Epochs: A Third Tier for Complex Projects
 
