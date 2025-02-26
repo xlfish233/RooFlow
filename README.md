@@ -20,7 +20,7 @@ The Handoffs System provides a streamlined approach to manage LLM context across
 - **Break through stubborn debugging challenges** with "fresh eyes" - sometimes a clean perspective solves problems that an overloaded context window cannot
 - **Document project progress automatically** as a natural side-effect of the system
 - **More streamlined than memory banks** while achieving similar benefits with less complexity
-- **Modeled after tried and true shift change processes** that I used while an intelligence analyst working 12 hour shifts
+- **Inspired by battle-tested knowledge handoff techniques** refined during intelligence operations where 24/7 situational awareness is mission-critical
 
 During extended debugging sessions, it may feel frustrating to start over with a fresh LLM, but it's often better than continuing down a deteriorating path. The "fresh eyes" of a new session with focused context can break through obstacles that an overloaded session might struggle with.
 
