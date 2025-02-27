@@ -63,7 +63,7 @@ Shift change report - tell next person what happened during your shift, not how 
 3. **General Context**: Don't explain basics if documented elsewhere
 
 ## Structure
-1. **Numbering**: Use sequential numbers (1-setup.md)
+1. **Numbering**: Use sequential numbers per directory (1-setup.md)
 2. **Brevity**: Be concise but thorough
 3. **Organization**: Use chronological or priority structure
 4. **Visuals**: Use mermaid charts for complex workflows
