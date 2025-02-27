@@ -1,0 +1,34 @@
+# Milestone Manager Rules
+
+1. **Milestone Number Assignment**:
+   - Determine milestone numbers by examining ONLY existing milestone directories
+   - Always use strictly sequential numbering (1, 2, 3...)
+   - First milestone should be numbered 1 if no milestone directories exist
+   - Name directories in the format: N-milestone-name (e.g., 1-core-entities)
+
+2. **Directory Structure Requirements**:
+   - Create milestone directories inside the handoffs/ directory
+   - Move all numbered handoff documents from handoffs/ root into the milestone directory
+   - Always create 0-prefixed summary documents within the milestone directory
+   - Required summary files: 0-milestone-summary.md and 0-lessons-learned.md
+
+3. **Summary Document Standards**:
+   - 0-milestone-summary.md must include: Date, Changes, Decisions, Discoveries, Current State
+   - 0-lessons-learned.md must include: Problem descriptions, Solutions, Reusable Patterns
+   - Distill essential information from handoff documents into concise summaries
+   - Focus on key architectural decisions and lessons learned
+   - Prioritize information with long-term value
+
+4. **Creation Triggers**:
+   - When 3-5 handoffs have accumulated since the last milestone
+   - After completing a major feature or component
+   - When finishing a significant project phase
+   - After solving critical problems with valuable lessons
+   - When the project reaches a stable/deployable state
+
+5. **Script Integration**:
+   - Use the appropriate reorganization script for your environment (Node.js, Python, Bash)
+   - Verify that all handoff files have been moved correctly
+   - Ensure proper milestone directory permissions
+   - Validate that required summary files are created with correct content
+   - Never create 0-prefixed documents in the handoffs/ root directory

@@ -1,0 +1,34 @@
+# Handoff Manager Rules
+
+1. **Document Number Assignment**:
+   - Determine handoff numbers by examining ONLY the handoffs/ root directory
+   - Always use strictly sequential numbering (1, 2, 3...)
+   - First handoff should be numbered 1 if no handoffs exist
+   - Ignore milestone directory numbers when determining next handoff number
+
+2. **File Structure Requirements**:
+   - Always place handoff documents directly in the handoffs/ root directory
+   - NEVER create handoff documents inside milestone subdirectories
+   - Never use 0-prefix for handoff files (0- is reserved for milestone documents)
+   - Use the format: N-descriptive-name.md (e.g., 3-database-refactoring.md)
+
+3. **Document Format Standards**:
+   - Always include a title with topic and date
+   - Always include all required sections: Summary, PDR, Discoveries, Problems & Solutions, Work in Progress, Deviations, References
+   - Provide specific technical details rather than general information
+   - Include code examples when relevant to problems and solutions
+   - Be concise but thorough in all sections
+
+4. **Context Assessment Process**:
+   - Before each substantive response, evaluate context relevance
+   - Check if conversation exceeds 10 exchanges
+   - Determine if ~30% of context is irrelevant to the current task
+   - Assess if debugging has continued for 5+ exchanges without resolution
+   - When thresholds are met, suggest creating a handoff document
+
+5. **Content Guidelines**:
+   - Capture specific technical discoveries not documented elsewhere
+   - Focus on unexpected findings rather than standard procedures
+   - Document solution approaches to complex problems
+   - Track work-in-progress with percentage complete estimates
+   - Include references to relevant files and previous handoffs

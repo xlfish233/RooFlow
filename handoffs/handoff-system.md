@@ -4,6 +4,8 @@
 
 The Handoff System is a structured knowledge management approach designed to optimize LLM performance across extended development sessions. By creating a seamless transition mechanism between LLM sessions, this system solves the fundamental problem of context window degradation while creating project development timeline documentation as a natural side effect.
 
+*For hands-on implementation instructions, see the [Quick Start Guide](handoff-system-guide.md).*
+
 ## The Challenge
 
 As LLMs work on projects, they encounter several limitations:
@@ -13,6 +15,27 @@ As LLMs work on projects, they encounter several limitations:
 3. **Token Consumption**: Larger contexts consume more tokens and increase costs
 4. **Knowledge Continuity**: Starting fresh loses critical project understanding
 
+```mermaid
+graph TD
+    subgraph "Context Degradation"
+        A[Initial Context] --> B[Growing Context]
+        B --> C[Saturated Context]
+        C -->|Performance Degrades| D[Hallucinations & Errors]
+    end
+    
+    subgraph "Handoff System Solution"
+        E[Create Handoff] -->|Document State| F[Fresh Session]
+        F -->|Targeted Context| G[Optimal Performance]
+    end
+    
+    C --> E
+    
+    style C fill:#f99,stroke:#333,stroke-width:2px
+    style D fill:#f66,stroke:#333,stroke-width:2px
+    style E fill:#9cf,stroke:#333,stroke-width:2px
+    style G fill:#9f9,stroke:#333,stroke-width:2px
+```
+
 Developers typically address these LLM limitations through memory bank solutions, which maintain project context in continuously updated files. This approach provides a current snapshot of the project state and recent decisions, which is valuable for ongoing development. However, as projects evolve, these systems face certain limitations: they actively condense information into fixed files, deliberately summarizing or removing details to maintain manageable file sizes; they focus primarily on current state rather than preserving the full developmental journey; and they have no guard rails to help prevent the LLM from repeating the same mistakes over and over. This active summarization often results in lost nuance and context that could be valuable later.
 
 The Handoff System takes a different approach through chronological documentation. By creating discrete, sequential handoff documents and milestone summaries, it provides four main benefits: 1) it reduces token usage by creating write-once documents rather than requiring regeneration of entire context files, 2) it preserves development insights and lessons learned in their original, detailed form, 3) it enables selective loading of only the most relevant context based on current needs, and 4) it allows for rapidly spinning up fresh LLM sessions with precisely targeted context. Rather than actively condensing information, the system preserves everything but allows users to control which parts are loaded into context - effectively letting older information remain available but not consume tokens unless specifically needed.
@@ -20,6 +43,31 @@ The Handoff System takes a different approach through chronological documentatio
 ## System Architecture
 
 The Handoff System consists of two primary document types operating in a continuous cycle:
+
+```mermaid
+classDiagram
+    class HandoffDocument {
+        +int number
+        +String title
+        +Date date
+        +String summary
+        +String discoveries
+        +String problems_solutions
+        +String wip
+        +String deviations
+        +String references
+    }
+    
+    class MilestoneDocument {
+        +int number
+        +String name
+        +Collection<HandoffDocument> handoffs
+        +String milestone_summary
+        +String lessons_learned
+    }
+    
+    HandoffDocument "3-5" --> "1" MilestoneDocument : Consolidated into
+```
 
 ### 1. Handoff Documents
 
@@ -31,6 +79,8 @@ Sequential, numbered reports capturing development progress, stored in the proje
 - Flag work-in-progress items and priorities
 - Provide chronological project history
 
+*For details on handoff document format and structure, see [1-handoff-instructions.md](0-instructions/1-handoff-instructions.md) in your project after setup.*
+
 ### 2. Milestone Documents
 
 Consolidated knowledge from multiple handoffs, created when significant project phases complete.
@@ -41,11 +91,17 @@ Consolidated knowledge from multiple handoffs, created when significant project 
 - Document lessons learned and best practices
 - Store reusable patterns and solutions
 
+*For details on milestone document format and structure, see [2-milestone-instructions.md](0-instructions/2-milestone-instructions.md) in your project after setup.*
+
 ### Directory Structure
 
 ```
 project/
 ├── handoffs/                   # Main handoff directory
+│   ├── .clinerules             # Main handoff system rules
+│   ├── .clinerules-handoff-manager # Handoff-specific rules
+│   ├── .clinerules-milestone-manager # Milestone-specific rules
+│   ├── .roomodes               # Custom mode definitions
 │   ├── 0-instructions/         # System documentation (folders sort first)
 │   │   ├── 0-intro.md
 │   │   ├── 1-handoff-instructions.md
@@ -70,6 +126,8 @@ project/
 │   └── 5-refactoring.md
 ```
 
+*For step-by-step instructions on setting up this structure in your project, follow the [Quick Start Guide](handoff-system-guide.md).*
+
 ## Workflow Visualization
 
 The system operates as a continuous cycle:
@@ -91,6 +149,10 @@ graph TD
     HD2
     Milestone
     end
+    
+    style HD1 fill:#f9f,stroke:#333,stroke-width:2px
+    style HD2 fill:#f9f,stroke:#333,stroke-width:2px
+    style Milestone fill:#9cf,stroke:#333,stroke-width:2px
 ```
 
 ## Implementation Process
@@ -114,6 +176,29 @@ Create milestone documents when:
 
 ### Knowledge Transfer Mechanism
 
+```mermaid
+sequenceDiagram
+    participant User
+    participant LLM
+    participant Docs as Documentation
+    
+    User->>LLM: Start fresh session
+    
+    alt After handoffs
+        User->>LLM: Copy H-handoff-prompt.md
+        LLM->>Docs: Read all handoff documents
+        Docs->>LLM: Detailed context
+        LLM->>User: Verification of understanding
+    else After milestone
+        User->>LLM: Copy M-milestone-prompt.md
+        LLM->>Docs: Read milestone summaries
+        Docs->>LLM: Condensed context
+        LLM->>User: Verification of understanding
+    end
+    
+    User->>LLM: Continue work with fresh context
+```
+
 When starting a new LLM session, use the prompt templates provided in the system:
 
 - **For general continuation**: Use the `H-handoff-prompt.md` template to direct the LLM to read all handoff documents. This prompt ensures the LLM reads through the documents in the correct chronological order and reports back to verify understanding.
@@ -126,10 +211,12 @@ These prompt templates serve as starting points that you can customize for your 
 - API specifications
 - Architecture diagrams
 - Database schemas
-- MCP server useage
+- MCP server usage
 - Other project-specific resources that provide important context
 
 The key is to balance providing enough context for the LLM to be effective while avoiding unnecessary token consumption. The prompts have verification mechanisms built in to ensure the LLM properly processes the handoff/milestone documents.
+
+*For implementation details and simplified prompts, refer to the [Quick Start Guide](handoff-system-guide.md).*
 
 ## Benefits
 
@@ -160,18 +247,73 @@ This system draws inspiration from knowledge transfer protocols used in military
 ## Getting Started
 
 1. Create a `handoffs/` directory in your project
-2. Copy the instruction templates from this repository
-3. Begin documenting your development with handoff documents
-4. Create milestone summaries at significant completion points
-5. Use the provided prompts when switching to fresh LLM sessions
+2. Copy the rule files (`.clinerules`, `.clinerules-handoff-manager`, `.clinerules-milestone-manager`, `.roomodes`) to your project's `handoffs/` directory
+3. Copy the instruction templates from the `0-instructions/` directory
+4. Begin documenting your development with handoff documents
+5. Create milestone summaries at significant completion points
+6. Use the provided prompts when switching to fresh LLM sessions
+
+*For detailed, step-by-step implementation instructions, follow the [Quick Start Guide](handoff-system-guide.md).*
+
+*For custom mode integration with handoff and milestone management, see the [Custom Modes documentation](../cheatsheets/custom-modes-llm-instruction.md).*
 
 By implementing this lightweight yet powerful system, you'll maintain optimal LLM performance throughout your project's lifecycle while generating valuable documentation that enhances collaboration and knowledge retention.
+
+## Configuration Files
+
+The Handoff System uses the following configuration files, all located in the `handoffs/` directory:
+
+- **`.clinerules`**: Main rules file that provides general guidance for creating handoffs and milestones
+- **`.clinerules-handoff-manager`**: Specialized rules for the handoff manager mode
+- **`.clinerules-milestone-manager`**: Specialized rules for the milestone manager mode
+- **`.roomodes`**: Custom mode definitions for handoff and milestone management
+
+## Advanced Integration Options
+
+For users interested in deeper integration with Roo-Code, consider these options:
+
+- **Lightweight Integration**: For a minimally invasive approach with UI components, see the [lightweight integration proposal](../cheatsheets/roo-code-lightweight-integration.md).
+
+- **Comprehensive Integration**: For a theoretical architecture of full native integration, see the [integration architecture](../cheatsheets/roo-code-handoff-integration-theory.md).
 
 ## Future Improvements
 
 The Handoff System has been designed with extensibility in mind. As development needs grow and projects become more complex, the architecture can naturally evolve to accommodate larger scales and longer timeframes.
 
 ### Epochs: A Third Tier for Complex Projects
+
+```mermaid
+graph TD
+    H1[Handoff 1] --> H2[Handoff 2]
+    H2 --> H3[Handoff 3]
+    H3 --> M1[Milestone 1]
+    
+    H4[Handoff 4] --> H5[Handoff 5]
+    H5 --> H6[Handoff 6]
+    H6 --> M2[Milestone 2]
+    
+    H7[Handoff 7] --> H8[Handoff 8]
+    H8 --> H9[Handoff 9]
+    H9 --> M3[Milestone 3]
+    
+    M1 --> E1[Epoch 1]
+    M2 --> E1
+    M3 --> E1
+    
+    style H1 fill:#f9f,stroke:#333,stroke-width:2px
+    style H2 fill:#f9f,stroke:#333,stroke-width:2px
+    style H3 fill:#f9f,stroke:#333,stroke-width:2px
+    style H4 fill:#f9f,stroke:#333,stroke-width:2px
+    style H5 fill:#f9f,stroke:#333,stroke-width:2px
+    style H6 fill:#f9f,stroke:#333,stroke-width:2px
+    style H7 fill:#f9f,stroke:#333,stroke-width:2px
+    style H8 fill:#f9f,stroke:#333,stroke-width:2px
+    style H9 fill:#f9f,stroke:#333,stroke-width:2px
+    style M1 fill:#9cf,stroke:#333,stroke-width:2px
+    style M2 fill:#9cf,stroke:#333,stroke-width:2px
+    style M3 fill:#9cf,stroke:#333,stroke-width:2px
+    style E1 fill:#fc9,stroke:#333,stroke-width:2px
+```
 
 For exceptionally complex projects, introducing "Epochs" as a third tier could further enhance the system's scalability. Epochs would represent major project eras - perhaps spanning multiple feature sets, version releases, or architectural paradigms. 
 
@@ -185,6 +327,42 @@ The hierarchical structure would then flow naturally:
 This progression allows the knowledge management approach to scale infinitely with project complexity while maintaining the core principle of selective context loading that makes the Handoff System so efficient.
 
 ### Graph Database Integration
+
+```mermaid
+graph TD
+    subgraph "Graph Database"
+        H1[Handoff Node] -->|Implements| F1[Feature Node]
+        H2[Handoff Node] -->|Fixes| B1[Bug Node]
+        H3[Handoff Node] -->|Relates to| H1
+        
+        H1 --> M1[Milestone Node]
+        H2 --> M1
+        H3 --> M1
+        
+        M1 --> E1[Epoch Node]
+        
+        H4[Handoff Node] -->|References| C1[Code Entity]
+        H5[Handoff Node] -->|Defines| P1[Problem Pattern]
+        H6[Handoff Node] -->|Implements| S1[Solution Pattern]
+        
+        M2[Milestone Node] -->|Summarizes| P1
+        M2 -->|Summarizes| S1
+        
+        E1 -->|Contains| M2
+    end
+    
+    subgraph "Search Capabilities"
+        Q1[Query Problems] -->|Retrieves| P1
+        Q2[Query Solutions] -->|Retrieves| S1
+        Q3[Query Feature History] -->|Retrieves| F1
+    end
+    
+    style H1 fill:#f9f,stroke:#333,stroke-width:2px
+    style M1 fill:#9cf,stroke:#333,stroke-width:2px
+    style E1 fill:#fc9,stroke:#333,stroke-width:2px
+    style P1 fill:#fd7,stroke:#333,stroke-width:2px
+    style S1 fill:#7df,stroke:#333,stroke-width:2px
+```
 
 The hierarchical structure of the Handoff System naturally lends itself to graph database representation. While the current file-based approach is lightweight and effective, integrating with an embedded graph database like [Kùzu](https://github.com/kuzudb/kuzu) could significantly enhance knowledge retrieval capabilities.
 
@@ -205,3 +383,10 @@ This structure would enable powerful queries like "show all decisions related to
 For older documents in past milestones, Kùzu's integrated vector embeddings could provide additional intelligence. By embedding the content of handoff and milestone documents, the system could quickly identify similar problems or solutions that occurred in the past, preventing teams from "reinventing the wheel" or repeating past mistakes. When a developer encounters an issue, semantic search against embedded historical documents could surface relevant precedents, even when terminology differs.
 
 The combination of graph structure for relationship traversal and vector embeddings for semantic similarity would create a significantly smarter knowledge management system, enabling deeper insights and more intelligent connections between related concepts across the project timeline.
+
+## Related Resources
+
+- [Handoff System Quick Start Guide](handoff-system-guide.md) - Step-by-step implementation instructions
+- [Custom Modes Documentation](../cheatsheets/custom-modes-llm-instruction.md) - For setting up specialized handoff and milestone management modes
+- [Large File Handling](../cheatsheets/llm-large-file-cheatsheet.md) - Complementary techniques for large files
+- [Main Documentation](../README.md) - Overview of all Roo Code Tips & Tricks

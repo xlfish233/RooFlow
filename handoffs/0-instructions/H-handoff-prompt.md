@@ -14,7 +14,7 @@ Before we begin, please:
 
 After reading, please tell me:
 - The exact number of 0-prefixed documents you've read
-- The milestone directories you found
+- The milestone directories you found (list them with their numbers and names)
 - A brief 1-2 sentence summary of each milestone's key achievements
 
 This will ensure you have the condensed project context without consuming unnecessary tokens.
@@ -27,10 +27,11 @@ Next,
 3. Pay attention to all sections to understand the project history and current state
 
 Finally, read the README.md and [insert custom instructions here]
- ```
- If you want advice, add something like: 
- 
- ```
+```
+
+If you want advice, add something like: 
+
+```
 And help me determine the next step.
 ```
 
@@ -39,6 +40,7 @@ If you know what you're doing you can add something like this to speed it up:
 ```
 After reading, please:
 - Tell me the number and filenames of handoff documents you've read
+- List them in numerical order (e.g., "1-setup.md, 2-implementation.md, 3-fixes.md")
 - Confirm with: "I have reviewed all handoff documents and am ready for your instructions."
 
 Please refrain from providing analysis or suggestions until requested, as I'd prefer to guide our next steps together after you've absorbed the context.
@@ -46,13 +48,24 @@ Please refrain from providing analysis or suggestions until requested, as I'd pr
 I will provide specific instructions on how to proceed after you confirm reading the documents.
 ```
 
+## Introspection Reminder
+
+When continuing the project after reviewing handoffs, remember these guidelines for when to create new handoffs:
+
+- After 10+ conversation exchanges
+- When context becomes ~30% irrelevant to current task
+- After completing a significant project segment
+- During debugging sessions exceeding 5 exchanges without resolution
+
+For best results, switch to the "handoff-manager" custom mode when creating handoff documents, and "milestone-manager" custom mode when creating milestone summaries.
+
 ## Purpose
 
 This prompt ensures that:
 
 1. The LLM reads ALL handoff documents in proper chronological sequence
 2. The LLM gains full context of the project without jumping ahead
-3. The verification confirms proper reading
+3. The verification confirms proper reading through specific reporting requirements
 4. You maintain control over how the project proceeds
 
 ## Usage
