@@ -98,10 +98,6 @@ Consolidated knowledge from multiple handoffs, created when significant project 
 ```
 project/
 ├── handoffs/                   # Main handoff directory
-│   ├── .clinerules             # Main handoff system rules
-│   ├── .clinerules-handoff-manager # Handoff-specific rules
-│   ├── .clinerules-milestone-manager # Milestone-specific rules
-│   ├── .roomodes               # Custom mode definitions
 │   ├── 0-instructions/         # System documentation (folders sort first)
 │   │   ├── 0-intro.md
 │   │   ├── 1-handoff-instructions.md
@@ -124,6 +120,10 @@ project/
 │   ├── 3-bugfixes.md
 │   ├── 4-feature-x.md
 │   └── 5-refactoring.md
+├── .clinerules             # Main handoff system rules
+├── .clinerules-handoff-manager # Handoff-specific rules
+├── .clinerules-milestone-manager # Milestone-specific rules
+├── .roomodes               # Custom mode definitions
 ```
 
 *For step-by-step instructions on setting up this structure in your project, follow the [Quick Start Guide](handoff-system-guide.md).*
@@ -247,8 +247,8 @@ This system draws inspiration from knowledge transfer protocols used in military
 ## Getting Started
 
 1. Create a `handoffs/` directory in your project
-2. Copy the rule files (`.clinerules`, `.clinerules-handoff-manager`, `.clinerules-milestone-manager`, `.roomodes`) to your project's `handoffs/` directory
-3. Copy the instruction templates from the `0-instructions/` directory
+2. Copy the rule files (`.clinerules`, `.clinerules-handoff-manager`, `.clinerules-milestone-manager`, `.roomodes`) to your project's root directory
+3. Copy the instruction templates from the `0-instructions/` directory into your project's `handoffs/` directory
 4. Begin documenting your development with handoff documents
 5. Create milestone summaries at significant completion points
 6. Use the provided prompts when switching to fresh LLM sessions
