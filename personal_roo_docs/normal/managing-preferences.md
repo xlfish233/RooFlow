@@ -2,11 +2,9 @@
 
 ## Overview
 
-Roo-Code offers many ways to customize how the assistant works. This guide explains the different settings and preferences you can adjust to make Roo-Code work best for you.
+Roo-Code offers many ways to customize how the assistant works. This guide explains the different settings you can adjust to make Roo-Code work best for you.
 
 ## Types of Settings
-
-Roo-Code has several types of settings that control different aspects of the assistant:
 
 ### 1. General Settings
 
@@ -37,8 +35,6 @@ These are cutting-edge features you can try:
 
 ## How to Change Settings
 
-You can adjust Roo-Code settings in several ways:
-
 ### Through the Settings Interface
 
 The easiest way to change settings:
@@ -56,42 +52,53 @@ For more advanced configuration:
 2. Search for "Roo-Code" or "roo-cline"
 3. Adjust settings through the VSCode interface
 
-## Setting Categories
+### Through Settings JSON
+
+For precise control and project-specific settings:
+
+```json
+// User settings.json or .vscode/settings.json
+{
+  "roo-cline.setting.name": value
+}
+```
+
+## Key Setting Categories
 
 ### Appearance Settings
 
-Control how Roo-Code looks:
-
-- **Theme**: Match VSCode theme or choose a custom one
-- **Font**: Change the font used in the Roo interface
-- **Font Size**: Adjust text size
-- **Show Line Numbers**: Display line numbers in code blocks
+| Setting | Purpose |
+|---------|---------|
+| Theme | Interface appearance (VSCode, Light, Dark) |
+| Font | Text display font |
+| Font Size | Text display size |
+| Show Line Numbers | Display line numbers in code blocks |
 
 ### Behavior Settings
 
-Control how Roo-Code behaves:
-
-- **Auto-approve Operations**: Skip confirmation for certain actions
-- **Ask Before Applying Changes**: Show changes before making them
-- **Confirm Dangerous Operations**: Extra confirmation for risky actions
-- **Show Diffs**: Preview changes before applying them
+| Setting | Purpose |
+|---------|---------|
+| Auto-approve Operations | Skip confirmation for certain actions |
+| Ask Before Applying Changes | Preview changes before making them |
+| Confirm Dangerous Operations | Extra confirmation for risky actions |
+| Show Diffs | Preview changes before applying them |
 
 ### Performance Settings
 
-Optimize Roo-Code's performance:
-
-- **Cache Results**: Store results to improve speed
-- **Optimize for Large Files**: Better handling of large files
-- **Prefetch Resources**: Load resources ahead of time
+| Setting | Purpose |
+|---------|---------|
+| Cache Results | Store results to improve speed |
+| Optimize for Large Files | Better handling of large files |
+| Prefetch Resources | Load resources ahead of time |
 
 ### API and Model Settings
 
-Configure which AI models Roo uses:
-
-- **API Provider**: Choose your preferred AI provider
-- **Model**: Select which model to use
-- **Temperature**: Control randomness in responses
-- **Max Tokens**: Limit response length
+| Setting | Purpose |
+|---------|---------|
+| API Provider | Choose your preferred AI provider |
+| Model | Select which model to use |
+| Temperature | Control randomness in responses (0.0-1.0) |
+| Max Tokens | Limit response length |
 
 ## Project-Specific Settings
 
@@ -112,27 +119,46 @@ Example for a project that needs TypeScript focus:
 }
 ```
 
-## Custom Settings Combinations
-
-Consider these combinations for specific workflows:
+## Recommended Settings for Specific Tasks
 
 ### For Code Review
 
-- Enable Power Steering for stricter adherence to rules
-- Turn on "Show Diffs" to preview all changes
-- Disable auto-approval of operations
+```json
+{
+  "roo-cline.experiments.powerSteering": true,
+  "roo-cline.showDiffs": true,
+  "roo-cline.autoApproveOperations": "none",
+  "roo-cline.confirmDangerousOperations": true
+}
+```
+
+This configuration ensures Roo follows guidelines strictly and shows you changes before making them.
 
 ### For Rapid Development
 
-- Enable experimental features for more powerful tools
-- Allow common commands to run without confirmation
-- Enable auto-approval for read-only operations
+```json
+{
+  "roo-cline.experiments.experimentalDiffStrategy": true,
+  "roo-cline.experiments.insertContent": true,
+  "roo-cline.allowedCommands": ["npm run dev", "npm test"],
+  "roo-cline.autoApproveOperations": "safe"
+}
+```
+
+This setup enables powerful tools and reduces interruptions for common tasks.
 
 ### For Learning
 
-- Enable rich markdown formatting
-- Show line numbers in code
-- Disable auto-approval to see explanations
+```json
+{
+  "roo-cline.markdownFormatting": true,
+  "roo-cline.showLineNumbers": true,
+  "roo-cline.autoApproveOperations": "none",
+  "roo-cline.verboseExplanations": true
+}
+```
+
+These settings optimize for clarity and explanation rather than speed.
 
 ## Tips for Managing Settings
 
@@ -151,4 +177,4 @@ If you encounter issues with settings:
 3. **Reset to Defaults**: Use the "Reset to Defaults" button in settings
 4. **Settings Location**: Check both global and project-specific settings files
 
-By customizing Roo-Code's settings to match your preferences and workflow, you can make the assistant more helpful and efficient for your specific needs.
+By customizing Roo-Code's settings to match your workflow, you can make the assistant more helpful and efficient for your specific needs.

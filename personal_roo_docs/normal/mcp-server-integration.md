@@ -6,7 +6,7 @@ The Model Context Protocol (MCP) is a way to extend Roo-Code with additional cap
 
 ## Understanding MCP Servers
 
-Think of MCP servers as helpful assistants that give Roo-Code new abilities. These servers can:
+MCP servers act as bridges between Roo-Code and external systems. These servers can:
 
 - Provide new tools for Roo to use
 - Give access to additional data sources
@@ -46,7 +46,9 @@ MCP servers can also provide data resources:
 Can you analyze the data from the analytics-server's monthly-report resource?
 ```
 
-## MCP Server Status
+Resources represent data sources that Roo can access and work with.
+
+## Server Status Indicators
 
 MCP servers can have different statuses:
 
@@ -90,7 +92,7 @@ These provide domain-specific capabilities:
 - Machine learning models
 - Custom calculators
 
-## Privacy and Security
+## Privacy and Security Considerations
 
 When using MCP servers:
 
@@ -99,24 +101,54 @@ When using MCP servers:
 - You can pre-approve trusted tools for convenience
 - Server connections are local to your computer unless configured otherwise
 
+## Configuration Options
+
+You can configure MCP servers in your settings:
+
+```json
+// settings.json
+{
+  "roo-cline.mcp.servers": [
+    {
+      "name": "weather-server",
+      "url": "http://localhost:3000",
+      "autoConnect": true,
+      "trusted": true
+    }
+  ]
+}
+```
+
+You can also pre-approve certain tools you trust:
+
+```json
+// settings.json
+{
+  "roo-cline.mcp.trustedTools": [
+    "weather-server.get_forecast",
+    "weather-server.get_current_conditions"
+  ]
+}
+```
+
 ## Troubleshooting
 
 If you experience issues with MCP servers:
 
-1. **Connection Problems**
-   - Check if the server program is running
-   - Verify the connection settings
-   - Look for error messages in the server status
+### Connection Problems
+- Check if the server program is running
+- Verify the connection settings
+- Look for error messages in the server status
 
-2. **Tool Execution Errors**
-   - Check if you provided the correct parameters
-   - Verify the server has access to necessary resources
-   - Look for error messages in the response
+### Tool Execution Errors
+- Check if you provided the correct parameters
+- Verify the server has access to necessary resources
+- Look for error messages in the response
 
-3. **Slow Performance**
-   - Some operations may take time to complete
-   - Complex data processing might be slower
-   - Consider setting longer timeout values for intensive operations
+### Slow Performance
+- Some operations may take time to complete
+- Complex data processing might be slower
+- Consider setting longer timeout values for intensive operations
 
 ## Getting Started with MCP
 
@@ -126,5 +158,31 @@ To begin using MCP servers:
 2. Configure them in Roo-Code's settings
 3. Connect to them through the Roo interface
 4. Ask Roo to use their tools or access their resources
+
+## Example Usage Scenarios
+
+### Weather Information
+
+```
+Can you use the weather-server to tell me if I need an umbrella today in New York?
+```
+
+### Database Query
+
+```
+Use the database-server to show me the top 5 customers by revenue from last month.
+```
+
+### Document Analysis
+
+```
+Can you use the document-server to extract the tables from this PDF report?
+```
+
+### Code Analysis
+
+```
+Use the code-analyzer server to check my codebase for security vulnerabilities.
+```
 
 MCP servers expand what Roo can do for you, connecting it to the specific tools and data sources that matter for your work.

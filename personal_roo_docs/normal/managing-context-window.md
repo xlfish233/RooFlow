@@ -86,13 +86,6 @@ Pay attention to the context usage indicator in Roo-Code:
 - Watch for warnings about context limitations
 - If Roo seems to "forget" earlier parts of your conversation, the context may be full
 
-### 6. Disable Unnecessary Features
-
-When you need maximum context space:
-- Disable Power Steering in experimental features
-- Turn off MCP if you're not using custom servers
-- Adjust other features that might be consuming space
-
 ## Example Configurations
 
 ### For Understanding Large Codebases
@@ -151,9 +144,5 @@ This balances file context with Power Steering's enhanced instruction adherence.
 2. Ask about project structure first
 3. Then focus on specific areas of interest
 4. Use directories first, then drill down to specific files
-
-## Conclusion
-
-Managing the context window effectively helps you get the most out of Roo-Code. By understanding how different features affect context usage and adopting smart strategies, you can have more productive, focused conversations with Roo.
 
 Remember that context management involves trade-offs - more space for code means less for conversation history, and vice versa. The best approach depends on your specific task and preferences.

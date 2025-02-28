@@ -11,6 +11,9 @@ These productivity-enhancing templates can be added to your projects to modify h
 ### [Handoff System](handoffs/handoff-system.md)
 **Solve the context window overload problem once and for all.**
 
+**This project is progressing rapidly based on feedback from users, check back often for updates**
+
+
 The Handoff System provides a streamlined approach to manage LLM context across extended development sessions. This innovative system tackles a fundamental issue in extended LLM interactions - as sessions progress, LLMs accumulate context that becomes increasingly bloated with irrelevant information, consuming valuable tokens and degrading performance.
 
 **Key Benefits:**

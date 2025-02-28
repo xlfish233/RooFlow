@@ -2,92 +2,132 @@
 
 ## What Are Experimental Features?
 
-Experimental features are new capabilities in Roo-Code that are still being refined. They give you early access to powerful tools, but may occasionally have unexpected behaviors. You can enable them individually to try them out before they become standard features.
+Experimental features are new capabilities in Roo-Code that are still being refined. They give you early access to powerful tools before they become standard features. You can enable them individually to try them out and see which ones improve your workflow.
 
 ## Available Experimental Features
 
 ### 1. Unified Diff Strategy
 
-**What it does**: Provides an alternative way for Roo to make changes to your code files.
+**What it does**: Provides a more sophisticated way for Roo to make changes to your code files. It uses context-aware matching to find the right places to make changes, even in complex files.
 
-**When to use it**: Try this feature if you notice Roo having trouble making changes to your files, especially larger or more complex ones.
+**When to use it**: Enable this feature when:
+- Roo has trouble making changes to complex files
+- You're working with large files that have similar sections
+- You need more detailed error messages when changes fail
 
-**Potential benefits**:
-- More reliable code changes
-- Better handling of complex edits
-- More detailed error messages when changes fail
+**Benefits**:
+- More reliable code changes, especially in complex files
+- Better handling of similar code sections
+- More helpful error messages that explain why a change failed
 
-**Considerations**:
-- May occasionally make unexpected edits
-- Slightly slower performance
+**Things to watch for**:
+- May take slightly longer to process changes
+- Occasionally behaves differently than the standard strategy
 
 ### 2. Search and Replace Tool
 
-**What it does**: Allows Roo to find and replace text across your files.
+**What it does**: Lets Roo find and replace text across your files using pattern matching. This makes systematic changes much easier.
 
-**When to use it**: Enable this when you need to make the same change in multiple places, like renaming a variable throughout your code.
+**When to use it**: Enable this feature when:
+- You need to rename variables or functions consistently
+- You're updating API calls throughout your code
+- You want to standardize coding patterns across files
 
-**Potential benefits**:
-- Make consistent changes across files
-- Rename elements throughout a codebase
-- Update formatting patterns
+**Benefits**:
+- Make consistent changes across multiple files
+- Replace complex patterns with new implementations
+- Maintain proper formatting during replacements
 
-**Considerations**:
-- Works best with specific search terms
-- Preview changes before applying them
+**Things to watch for**:
+- Always review the changes before committing them
+- Be specific with search terms to avoid unintended replacements
 
 ### 3. Insert Content Tool
 
-**What it does**: Lets Roo add new content at specific locations in your files without changing existing content.
+**What it does**: Allows Roo to add new content at specific line positions without changing existing code. This is perfect for adding new functions, imports, or documentation.
 
-**When to use it**: This is helpful when you want to add new functions, import statements, or documentation to existing files.
+**When to use it**: Enable this feature when:
+- Adding new functions or methods to existing files
+- Inserting import statements at the top of files
+- Adding documentation blocks to your code
+- Making multiple insertions in one operation
 
-**Potential benefits**:
-- Add new code without modifying existing code
-- Insert multiple blocks in different locations in one operation
-- Maintain proper code formatting automatically
+**Benefits**:
+- Adds code without modifying existing content
+- Preserves proper indentation automatically
+- Can insert at multiple positions in one operation
 
-**Considerations**:
-- Requires specifying precise insertion points
+**Things to watch for**:
+- Requires specifying the exact line numbers for insertion
+- May need adjustments for surrounding context
 
 ### 4. Power Steering Mode
 
-**What it does**: Makes Roo follow instructions more strictly.
+**What it does**: Makes Roo follow instructions and role definitions more strictly. This helps when precision and adherence to guidelines are important.
 
-**When to use it**: Enable this feature when you need Roo to adhere very closely to specific guidelines or instructions.
+**When to use it**: Enable this feature when:
+- Working with strict coding standards or guidelines
+- Performing tasks that require precise adherence to rules
+- Using detailed custom rules that need to be followed exactly
 
-**Potential benefits**:
-- More consistent adherence to instructions
+**Benefits**:
+- More consistent adherence to project rules
 - Better results for specialized tasks
-- Improved following of custom rules
+- Improved following of custom instructions
 
-**Considerations**:
+**Things to watch for**:
 - Uses more of your available context space
-- May result in slightly slower responses
+- May produce more detailed but slightly slower responses
 
 ## How to Enable Experimental Features
 
-You can enable experimental features through the Roo-Code settings:
+You can enable these features through the Roo-Code settings:
 
 1. Click the Settings gear icon in the Roo sidebar
-2. Go to the "Experimental Features" section
-3. Toggle the features you want to enable
-4. Try them out in your workflow
+2. Navigate to the "Experimental Features" section
+3. Toggle the features you want to try
+4. Start using them in your workflow
 
-## Best Practices
+## Effective Usage Strategies
 
-1. **Start small**: Enable one experimental feature at a time to understand its impact.
+### Testing New Features
 
-2. **Review changes carefully**: Always review changes made with experimental features before committing them.
+1. Start with non-critical files when trying experimental features
+2. Make sure you have your work committed to version control
+3. Review changes carefully before accepting them
+4. Try one feature at a time initially to understand its impact
 
-3. **Provide feedback**: If you encounter issues or have suggestions, report them to help improve the features.
+### Combining Features
 
-4. **Be cautious with important projects**: For critical work, stick with stable features or thoroughly test experimental ones first.
+Some features work particularly well together:
 
-5. **Disable when not needed**: Turn off experimental features when you don't need them to ensure the most stable experience.
+- Use Unified Diff Strategy with Power Steering for precise refactoring
+- Combine Search and Replace with Insert Content for comprehensive codebase updates
 
-## Compatibility Notes
+### Project-Specific Configuration
 
-- Some experimental features work better with certain file types or project structures.
-- Features may be updated or changed as they are refined.
-- Experimental features may eventually become standard features if they prove valuable and stable.
+You can configure experimental features per project by adding to your `.vscode/settings.json` file:
+
+```json
+{
+  "roo-cline.experiments": {
+    "experimentalDiffStrategy": true,
+    "insert_content": true,
+    "search_and_replace": false,
+    "powerSteering": false
+  }
+}
+```
+
+This way, you can enable different features for different projects based on their specific needs.
+
+## When to Disable Features
+
+Consider disabling experimental features when:
+
+- You encounter unexpected behavior
+- You're working on critical production code
+- Performance is a priority
+- You're about to update Roo-Code to a new version
+
+Remember that experimental features may change behavior between updates as they're refined based on user feedback.

@@ -8,6 +8,10 @@ The Handoff System is a structured knowledge management approach designed to opt
 - [Basic Guide](handoff-system-basic.md) - Simple implementation that works with minimal configuration
 - [Advanced Guide](handoff-system-advanced.md) - Enhanced implementation with Roo-Code custom modes
 
+
+**This project is progressing rapidly based on feedback from users, check back often for updates**
+
+
 ## The Challenge
 
 As LLMs work on projects, they encounter several limitations:

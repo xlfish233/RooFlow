@@ -1,48 +1,18 @@
 # Handoff System Rules
 
-Implement the handoff system to maintain optimal context window usage and create valuable project documentation.
+Create handoffs when context becomes stale and milestones when features complete. For implementation details, refer to handoffs/0-instructions/.
 
-## Context Management
+## When to Create Documents
 
-1. **Assess context relevance after each substantive exchange:**
-   - Evaluate how much of the current context is relevant to the immediate task
-   - Consider conversation length and debugging attempt counts
-   - Track percentage of irrelevant context accumulation
-
-2. **Enforce context window hygiene:**
-   - Keep focus on current task requirements
-   - Minimize repetition of information already in documentation
-   - Prioritize recent and task-relevant information
-
-## Document Creation Triggers
-
-1. **Create handoff documents** in the handoffs/ directory when:
-   - Context becomes diluted with ~30% irrelevant information
-   - After completing discrete project segments
+1. **Create handoffs when:**
+   - Context becomes ~30% irrelevant to current task
+   - After completing significant project segments
    - After 10+ conversation exchanges
    - During debugging sessions exceeding 5 exchanges without resolution
 
-2. **Create milestone documents** in handoffs/ subdirectories when:
+2. **Create milestones when:**
    - Completing major features or components
-   - After 3-5 related handoffs accumulate
+   - After 3-5 handoffs accumulate
    - A significant project phase concludes
-   - Critical problems with valuable lessons have been solved
-   - The project reaches a stable/deployable state
 
-## Implementation Guidelines
-
-1. **Use proper file organization:**
-   - Handoff documents: directly in handoffs/ with sequential numbers (1-setup.md, 2-implementation.md)
-   - Milestone directories: numbered folders (1-feature-name/) containing 0-prefixed summary files
-   - Follow strict numerical sequencing based on document type
-
-2. **Use custom modes for document creation:**
-   - Switch to "handoff-manager" mode when creating handoff documents
-   - Switch to "milestone-manager" mode when creating milestone documents
-
-3. **Session management:**
-   - A fresh LLM session with focused context often solves problems that an overloaded session cannot
-   - Use handoff and milestone prompts when starting new sessions
-   - Verify proper document reading through explicit checks
-
-Remember: The handoff system is not just for documentation but a strategic approach to maintain peak LLM performance throughout long projects.
+A fresh LLM session with focused context often solves problems that an overloaded session cannot.

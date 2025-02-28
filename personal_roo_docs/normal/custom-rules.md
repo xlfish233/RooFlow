@@ -2,13 +2,11 @@
 
 ## What Are Custom Rules?
 
-Custom rules are guidelines that tell Roo how to behave when helping you with your projects. They're like instructions you might give to a new team member about your project's standards and practices.
+Custom rules tell Roo how to behave when helping with your projects. They're similar to guidelines you might give to a team member about your project's standards and practices.
 
-With custom rules, you can ensure Roo follows your coding style, adheres to your project's requirements, and maintains consistency in all its suggestions.
+By creating rule files, you can ensure Roo follows your coding style, adheres to your project's requirements, and maintains consistency across all its suggestions.
 
-## Why Use Custom Rules?
-
-Custom rules help you:
+## Benefits of Custom Rules
 
 - Ensure consistent coding style across your project
 - Enforce important practices like security standards
@@ -28,7 +26,7 @@ Roo-Code supports several rule file formats that you can place in your project's
 
 ## How to Create Rule Files
 
-Rule files use a simple format that's easy to write:
+Rule files use a simple markdown format that's easy to write:
 
 ```
 # Category Title
@@ -61,12 +59,41 @@ For example, a basic code style rule file might look like:
 
 ## Global vs. Mode-Specific Rules
 
-Roo-Code allows you to create both global rules and mode-specific rules:
+You can create both global rules and mode-specific rules:
 
 - **Global Rules** (`.clinerules`) apply to all modes
 - **Mode-Specific Rules** (`.clinerules-[mode]`) only apply when using that specific mode
 
 When both exist, mode-specific rules take priority, but global rules still apply if they don't conflict.
+
+## NEW: Custom System Prompts
+
+### What Are Custom System Prompts?
+
+Custom system prompts are a new feature that gives you even more control than custom rules. While custom rules add guidelines to Roo's behavior, custom system prompts let you completely replace Roo's underlying instructions.
+
+### How to Create a Custom System Prompt
+
+1. Create a `.roo` folder in your project's root directory
+2. Create a file named `system-prompt-[mode]` inside that folder
+   - For example: `.roo/system-prompt-code` for Code mode
+3. Write your custom instructions in that file
+
+The folder and files will be created automatically when needed.
+
+### When to Use Rules vs. System Prompts
+
+**Use Custom Rules when you want to:**
+- Keep all of Roo's standard capabilities
+- Add specific guidelines for your project
+- Make simple adjustments to Roo's behavior
+
+**Use Custom System Prompts when you need:**
+- Complete control over how Roo behaves
+- Very specialized behavior for specific tasks
+- To override Roo's default capabilities
+
+You can use both together for maximum customization - the system prompt provides the foundation, and custom rules add specific guidelines.
 
 ## Example Rule Categories
 
@@ -101,47 +128,6 @@ When both exist, mode-specific rules take priority, but global rules still apply
    - Organize by feature or component
    - Test edge cases explicitly
 ```
-
-### Documentation Rules
-
-```
-# Documentation Standards
-
-1. Code Documentation:
-   - Document all public functions
-   - Explain complex algorithms
-   - Include examples for APIs
-
-2. Project Documentation:
-   - Keep README up-to-date
-   - Document setup steps
-   - Include troubleshooting guidance
-```
-
-## Using Rules with Different Modes
-
-Different modes in Roo-Code handle different types of tasks. You can create specialized rules for each:
-
-### Code Mode Rules (`.clinerules-code`)
-
-Focus on implementation details:
-- Coding standards
-- Testing requirements
-- Error handling practices
-
-### Architect Mode Rules (`.clinerules-architect`)
-
-Focus on design and structure:
-- Design patterns to follow
-- System organization principles
-- Interface design guidelines
-
-### Debug Mode Rules (`.clinerules-debug`)
-
-Focus on problem-solving:
-- Debugging approaches
-- Logging requirements
-- Test case creation
 
 ## Best Practices for Rule Files
 
@@ -181,25 +167,7 @@ Group related rules together under clear categories:
    - Log authentication attempts
 ```
 
-### 3. Prioritize Important Rules
-
-Put the most important rules first:
-
-```
-# Performance
-
-1. Critical Paths:
-   - Optimize database queries
-   - Cache frequently accessed data
-   - Minimize network requests
-
-2. General Optimizations:
-   - Use efficient algorithms
-   - Minimize DOM manipulations
-   - Implement lazy loading
-```
-
-### 4. Keep Rules Updated
+### 3. Keep Rules Updated
 
 Review and update your rules as your project evolves:
 
@@ -207,50 +175,12 @@ Review and update your rules as your project evolves:
 - Add rules for new technologies
 - Refine based on project learnings
 
-## Practical Examples
-
-### Web Development Project
-
-```
-# Web Project Rules
-
-1. Accessibility:
-   - Use semantic HTML elements
-   - Include alt text for images
-   - Ensure keyboard navigation works
-   - Maintain WCAG AA compliance
-
-2. Performance:
-   - Keep bundle size under 500KB
-   - Optimize images before adding
-   - Implement code splitting
-   - Lazy load non-critical resources
-```
-
-### Data Science Project
-
-```
-# Data Science Rules
-
-1. Data Management:
-   - Document data sources
-   - Version control datasets
-   - Include data cleaning steps
-   - Note missing value handling
-
-2. Models:
-   - Document training parameters
-   - Include accuracy metrics
-   - Validate against test data
-   - Explain feature importance
-```
-
 ## Combining Rules with Custom Modes
 
 For an even more tailored experience, you can:
 
 1. Create a custom mode with specific capabilities
 2. Create matching `.clinerules-[mode]` file
-3. Get specialized assistance that follows your guidelines
+3. Add a custom system prompt in `.roo/system-prompt-[mode]` if needed
 
-By using custom rules effectively, you can transform Roo into a team member who understands and follows your project's unique needs and standards.
+This combination gives you complete control over Roo's capabilities and behavior for specific tasks.

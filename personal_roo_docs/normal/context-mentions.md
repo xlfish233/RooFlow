@@ -2,9 +2,9 @@
 
 ## What Are Context Mentions?
 
-Context mentions are a simple but powerful way to reference specific resources when talking to Roo. By using the `@` symbol followed by a path or keyword, you can point Roo to important information it needs to help you.
+Context mentions are a powerful way to reference specific resources when talking to Roo. By using the `@` symbol followed by a path or keyword, you can point Roo to important information without having to copy and paste content.
 
-Think of mentions as a way to say "look at this" to Roo without having to copy and paste content.
+Think of mentions as a way to say "look at this" to Roo - they save time and help Roo understand exactly what you're talking about.
 
 ## Types of Mentions You Can Use
 
@@ -76,27 +76,28 @@ For example:
 What's wrong with this error in @terminal?
 ```
 
-## How Mentions Make Your Life Easier
+## How Mentions Make Your Work Easier
 
-### 1. Save Time and Effort
+### Save Time and Effort
 
-Instead of copying and pasting large blocks of code or error messages, you can simply use a mention.
+Instead of copying and pasting large blocks of code or error messages, you can simply use a mention. This is especially helpful for:
 
-### 2. Maintain Context
+- Long code files
+- Complex error messages
+- Directory structures
+- Git diffs
 
-Mentions help Roo understand the full context of your request, leading to better responses.
+### Provide Complete Context
 
-### 3. Work with Multiple Resources
+Mentions help Roo understand the full context of your request, leading to better responses. When you reference a file, Roo can see its content, structure, and relationship to other files.
 
-You can use multiple mentions in a single message:
+### Use Multiple Mentions Together
+
+You can use multiple mentions in a single message to provide comprehensive context:
 
 ```
 How are @/src/utils.js and @/src/helpers.js different?
 ```
-
-### 4. Get Targeted Help
-
-Mentions allow you to direct Roo's attention exactly where you need it:
 
 ```
 I'm getting an error with this function in @/src/auth.js when I run the tests. Can you look at @terminal and help me fix it?
@@ -109,8 +110,9 @@ I'm getting an error with this function in @/src/auth.js when I run the tests. C
 Reference exactly what you need:
 - Use specific file paths rather than entire directories when possible
 - For large files, mention specific line numbers when relevant
+- Clear your terminal before capturing output you want to reference
 
-### Combine Mention Types
+### Combine Different Mention Types
 
 Use different mention types together for comprehensive context:
 
@@ -119,25 +121,13 @@ I'm trying to fix the issues in @problems related to @/src/api/client.js.
 The error shows up in @terminal when I run the tests.
 ```
 
-### Use with Commands
-
-Pair mentions with clear requests:
-
-```
-Can you refactor @/src/utils/helpers.js to make it more efficient?
-```
-
-```
-Explain what changed in commit @a1b2c3d and why it matters.
-```
-
-### Consider Context Size
+### Watch Your Context Size
 
 Remember that each mention adds content to your conversation with Roo:
 - Be selective with large files or numerous mentions
 - For very large files, consider mentioning just the relevant sections
 
-## Common Use Cases
+## Practical Use Cases
 
 ### Code Review
 
@@ -145,11 +135,15 @@ Remember that each mention adds content to your conversation with Roo:
 Can you review the changes in @git-changes and suggest any improvements?
 ```
 
+This lets Roo see all your uncommitted changes without you having to paste them.
+
 ### Debugging
 
 ```
 I'm getting this error in @terminal when running the app. The code is in @/src/app.js. What's wrong?
 ```
+
+This gives Roo both the error message and the related code.
 
 ### Learning and Understanding
 
@@ -157,11 +151,15 @@ I'm getting this error in @terminal when running the app. The code is in @/src/a
 I'm new to this project. Can you explain how @/src/main.js works and what it does?
 ```
 
+This helps Roo provide a detailed explanation of the file's purpose and structure.
+
 ### Problem Solving
 
 ```
 I need to implement a new feature that works with @/src/api/users.js. Can you help me design it?
 ```
+
+This gives Roo the context of the existing code to suggest compatible features.
 
 ## Tips for Effective Mentions
 
@@ -170,5 +168,3 @@ I need to implement a new feature that works with @/src/api/users.js. Can you he
 3. **Mention related files**: Include all files relevant to your question
 4. **Use short commit hashes**: For git commits, the short hash (7-8 characters) is usually sufficient
 5. **Clear terminal when needed**: Clear your terminal before running commands if you only want to see new output when using `@terminal`
-
-Mentions are a simple way to give Roo the context it needs to help you more effectively, reducing back-and-forth and helping you get better answers faster.
