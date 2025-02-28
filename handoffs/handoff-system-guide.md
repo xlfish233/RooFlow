@@ -66,13 +66,13 @@ Copy all instruction files from `RooCode-Tips-Tricks/handoffs/0-instructions/` t
 
 ### 3. Add the Rules to Your Project
 
-Copy the following rules files to your project's `handoffs/` directory:
+Copy the following rules files to your project's root directory:
 
 - `.clinerules`: Basic handoff system rules
 - `.clinerules-handoff-manager`: Specialized rules for handoff creation
 - `.clinerules-milestone-manager`: Specialized rules for milestone creation
 
-Main rules file content (`handoffs/.clinerules`):
+Main rules file content (`.clinerules`):
 
 ```
 # Handoff System Rules
@@ -82,7 +82,7 @@ Assess context relevance after each substantive exchange. Create handoff documen
 
 ### 4. Set Up Custom Modes (Optional but Recommended)
 
-Copy the `.roomodes` file to your project's `handoffs/` directory from the RooCode-Tips-Tricks repository.
+Copy the `.roomodes` file to your project's root directory from the RooCode-Tips-Tricks repository.
 
 For detailed information on custom modes and how they work, see the [Custom Modes LLM Instructions](../cheatsheets/custom-modes-llm-instruction.md).
 
@@ -116,7 +116,7 @@ graph TD
 
 When you've completed a significant piece of work, hit a roadblock, or notice the LLM's context is getting cluttered:
 
-1. Switch to `handoff-manager` mode if using custom modes (defined in `handoffs/.roomodes`)
+1. Switch to `handoff-manager` mode if using custom modes (defined in `.roomodes`)
 2. Use the simple prompt:
 
 ```
@@ -138,7 +138,7 @@ For details on the handoff document format and content requirements, see `handof
 
 After completing 3-5 handoffs or finishing a significant project phase:
 
-1. Switch to `milestone-manager` mode if using custom modes (defined in `handoffs/.roomodes`)
+1. Switch to `milestone-manager` mode if using custom modes (defined in `.roomodes`)
 2. Use the simple prompt:
 
 ```
@@ -226,12 +226,12 @@ Create milestones when:
 
 For users who want to go deeper, consider these advanced options:
 
-- **Custom Mode Enhancement**: Modify the `handoffs/.roomodes` file to add project-specific restrictions or capabilities to the handoff-manager and milestone-manager modes. See the [Custom Modes documentation](../cheatsheets/custom-modes-llm-instruction.md) for details.
+- **Custom Mode Enhancement**: Modify the `.roomodes` file to add project-specific restrictions or capabilities to the handoff-manager and milestone-manager modes. See the [Custom Modes documentation](../cheatsheets/custom-modes-llm-instruction.md) for details.
 
-- **Rules Customization**: Adjust the rules files in the `handoffs/` directory to change handoff triggers or add project-specific requirements:
-  - `handoffs/.clinerules`: Main rules
-  - `handoffs/.clinerules-handoff-manager`: Handoff-specific rules
-  - `handoffs/.clinerules-milestone-manager`: Milestone-specific rules
+- **Rules Customization**: Adjust the rules files in your project's root directory to change handoff triggers or add project-specific requirements:
+  - `.clinerules`: Main rules
+  - `.clinerules-handoff-manager`: Handoff-specific rules
+  - `.clinerules-milestone-manager`: Milestone-specific rules
 
 - **Integration with Roo-Code**: For theoretically deeper integration with Roo-Code, see the [lightweight integration proposal](../cheatsheets/roo-code-lightweight-integration.md) or the [comprehensive integration architecture](../cheatsheets/roo-code-handoff-integration-theory.md).
 
