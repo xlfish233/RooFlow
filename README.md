@@ -40,8 +40,6 @@ A practical cheatsheet of one-liners and code snippets in Python, Bash, Node.js,
 ### [Custom Modes LLM Instructions](cheatsheets/custom-modes-llm-instruction.md)
 Unlock the full potential of Roo Code's custom modes system with this detailed guide covering data structures, tool groups, file restrictions, and best practices with practical examples. This file is designed to be given to the LLM to create your own specific custom modes.
 
-*This resource is used by the Handoff System for creating specialized handoff and milestone management modes. See the [Advanced Implementation Guide](handoffs/handoff-system-advanced.md) for integration details.*
-
 ### [Roo Code Documentation](personal_roo_docs/)
 A comprehensive collection of documentation resources for Roo Code, organized by technical depth and audience:
 
