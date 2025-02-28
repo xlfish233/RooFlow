@@ -43,15 +43,9 @@ Unlock the full potential of Roo Code's custom modes system with this detailed g
 ### [Roo Code Documentation](personal_roo_docs/)
 A comprehensive collection of documentation resources for Roo Code, organized by technical depth and audience:
 
-- **[User-Friendly Guides](personal_roo_docs/normal/)**: Practical guides for everyday Roo Code users covering features, customization, and best practices without technical complexity
-- **[Technical Documentation](personal_roo_docs/technical/)**: In-depth technical documentation for developers and advanced users who want to understand implementation details
+- **[User-Friendly Guides](personal_roo_docs/normal/)**: Practical guides for everyday Roo Code users covering features, customization, and best practices without technical complexity. Use these to udnerstand whats going on to decide if you need to feed a techincal doc into the llm for some purpose. 
+- **[Technical Documentation](personal_roo_docs/technical/)**: In-depth technical documentation for developers and advanced users who want to understand implementation details. The original goal of these were to create technical documents that could be fed back into Roo for it to understand subssytems. It works pretty well. 
 
-The documentation covers essential topics like:
-- Experimental features usage and implementation
-- MCP server integration at user and technical levels
-- Context window management strategies
-- Custom rules implementation
-- And much more!
 
 ## Getting Started
 
