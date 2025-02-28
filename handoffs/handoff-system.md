@@ -4,7 +4,9 @@
 
 The Handoff System is a structured knowledge management approach designed to optimize LLM performance across extended development sessions. By creating a seamless transition mechanism between LLM sessions, this system solves the fundamental problem of context window degradation while creating project development timeline documentation as a natural side effect.
 
-*For hands-on implementation instructions, see the [Quick Start Guide](handoff-system-guide.md).*
+**Implementation Guides:**
+- [Basic Guide](handoff-system-basic.md) - Simple implementation that works with any LLM
+- [Advanced Guide](handoff-system-advanced.md) - Enhanced implementation with Roo-Code custom modes
 
 ## The Challenge
 
@@ -30,10 +32,6 @@ graph TD
     
     C --> E
     
-    style C fill:#f99,stroke:#333,stroke-width:2px
-    style D fill:#f66,stroke:#333,stroke-width:2px
-    style E fill:#9cf,stroke:#333,stroke-width:2px
-    style G fill:#9f9,stroke:#333,stroke-width:2px
 ```
 
 Developers typically address these LLM limitations through memory bank solutions, which maintain project context in continuously updated files. This approach provides a current snapshot of the project state and recent decisions, which is valuable for ongoing development. However, as projects evolve, these systems face certain limitations: they actively condense information into fixed files, deliberately summarizing or removing details to maintain manageable file sizes; they focus primarily on current state rather than preserving the full developmental journey; and they have no guard rails to help prevent the LLM from repeating the same mistakes over and over. This active summarization often results in lost nuance and context that could be valuable later.
@@ -45,28 +43,10 @@ The Handoff System takes a different approach through chronological documentatio
 The Handoff System consists of two primary document types operating in a continuous cycle:
 
 ```mermaid
-classDiagram
-    class HandoffDocument {
-        +int number
-        +String title
-        +Date date
-        +String summary
-        +String discoveries
-        +String problems_solutions
-        +String wip
-        +String deviations
-        +String references
-    }
-    
-    class MilestoneDocument {
-        +int number
-        +String name
-        +Collection<HandoffDocument> handoffs
-        +String milestone_summary
-        +String lessons_learned
-    }
-    
-    HandoffDocument "3-5" --> "1" MilestoneDocument : Consolidated into
+graph TD
+    H[Handoff Documents] -->|"Consolidate 3-5"| M[Milestone Documents]
+    M -->|"Provide reference for"| N[New Project Phase]
+    N -->|"Generate new"| H
 ```
 
 ### 1. Handoff Documents
@@ -95,6 +75,8 @@ Consolidated knowledge from multiple handoffs, created when significant project 
 
 ### Directory Structure
 
+#### Basic Structure
+
 ```
 project/
 ├── handoffs/                   # Main handoff directory
@@ -102,9 +84,10 @@ project/
 │   │   ├── 0-intro.md
 │   │   ├── 1-handoff-instructions.md
 │   │   ├── 2-milestone-instructions.md
-│   │   ├── 3-milestone-scripts.md
 │   │   ├── H-handoff-prompt.md
-│   │   └── M-milestone-prompt.md
+│   │   ├── M-milestone-prompt.md
+│   │   ├── create-handoff-prompt.md
+│   │   └── create-milestone-prompt.md
 │   │
 │   ├── 1-feature-milestone/    # Milestone directory (numbered sequentially)
 │   │   ├── 0-milestone-summary.md  # Consolidated milestone information
@@ -120,13 +103,25 @@ project/
 │   ├── 3-bugfixes.md
 │   ├── 4-feature-x.md
 │   └── 5-refactoring.md
-├── .clinerules             # Main handoff system rules
-├── .clinerules-handoff-manager # Handoff-specific rules
-├── .clinerules-milestone-manager # Milestone-specific rules
-├── .roomodes               # Custom mode definitions
 ```
 
-*For step-by-step instructions on setting up this structure in your project, follow the [Quick Start Guide](handoff-system-guide.md).*
+#### Advanced Structure (with Custom Modes)
+
+```
+project/
+├── handoffs/                   # Main handoff directory
+│   ├── .clinerules             # Main handoff system rules
+│   ├── .clinerules-handoff-manager # Handoff-specific rules
+│   ├── .clinerules-milestone-manager # Milestone-specific rules
+│   ├── .roomodes               # Custom mode definitions
+│   ├── 0-instructions/         # System documentation (all instruction files)
+│   │   ├── 3-milestone-scripts.md  # Advanced scripting instructions
+│   │   └── ... (Same as basic structure)
+│   │
+│   └── ... (Same milestone and handoff structure as basic)
+```
+
+*For step-by-step instructions on setting up this structure in your project, follow the [Basic Guide](handoff-system-basic.md) or [Advanced Guide](handoff-system-advanced.md).*
 
 ## Workflow Visualization
 
@@ -149,10 +144,6 @@ graph TD
     HD2
     Milestone
     end
-    
-    style HD1 fill:#f9f,stroke:#333,stroke-width:2px
-    style HD2 fill:#f9f,stroke:#333,stroke-width:2px
-    style Milestone fill:#9cf,stroke:#333,stroke-width:2px
 ```
 
 ## Implementation Process
@@ -216,7 +207,7 @@ These prompt templates serve as starting points that you can customize for your 
 
 The key is to balance providing enough context for the LLM to be effective while avoiding unnecessary token consumption. The prompts have verification mechanisms built in to ensure the LLM properly processes the handoff/milestone documents.
 
-*For implementation details and simplified prompts, refer to the [Quick Start Guide](handoff-system-guide.md).*
+*For implementation details and simplified prompts, refer to the [Basic Guide](handoff-system-basic.md) or [Advanced Guide](handoff-system-advanced.md).*
 
 ## Benefits
 
@@ -246,35 +237,39 @@ This system draws inspiration from knowledge transfer protocols used in military
 
 ## Getting Started
 
+### Basic Implementation
+
+For a simple implementation that works with any LLM:
+
 1. Create a `handoffs/` directory in your project
-2. Copy the rule files (`.clinerules`, `.clinerules-handoff-manager`, `.clinerules-milestone-manager`, `.roomodes`) to your project's root directory
-3. Copy the instruction templates from the `0-instructions/` directory into your project's `handoffs/` directory
-4. Begin documenting your development with handoff documents
-5. Create milestone summaries at significant completion points
-6. Use the provided prompts when switching to fresh LLM sessions
+2. Copy the instruction templates from the `0-instructions/` directory
+3. Begin documenting your development with handoff documents
+4. Create milestone summaries at significant completion points
+5. Use the provided prompts when switching to fresh LLM sessions
 
-*For detailed, step-by-step implementation instructions, follow the [Quick Start Guide](handoff-system-guide.md).*
+This lightweight implementation requires no special configuration and works with any LLM.
 
-*For custom mode integration with handoff and milestone management, see the [Custom Modes documentation](../cheatsheets/custom-modes-llm-instruction.md).*
+### Advanced Implementation with Custom Modes
 
-By implementing this lightweight yet powerful system, you'll maintain optimal LLM performance throughout your project's lifecycle while generating valuable documentation that enhances collaboration and knowledge retention.
+For enhanced functionality, you can implement the handoff system with custom Roo-Code modes:
 
-## Configuration Files
+1. Complete the basic implementation steps
+2. Copy the rule files (`.clinerules`, `.clinerules-handoff-manager`, `.clinerules-milestone-manager`, `.roomodes`) to your project's `handoffs/` directory
+3. Use the specialized handoff-manager and milestone-manager modes when creating documentation
 
-The Handoff System uses the following configuration files, all located in the `handoffs/` directory:
+*For detailed, step-by-step implementation instructions, follow the [Basic Guide](handoff-system-basic.md) or [Advanced Guide](handoff-system-advanced.md).*
+
+By implementing this system, you'll maintain optimal LLM performance throughout your project's lifecycle while generating valuable documentation that enhances collaboration and knowledge retention.
+
+## Configuration Files (Advanced Implementation)
+
+When using the advanced implementation with custom modes, the Handoff System uses these configuration files in the `handoffs/` directory:
 
 - **`.clinerules`**: Main rules file that provides general guidance for creating handoffs and milestones
 - **`.clinerules-handoff-manager`**: Specialized rules for the handoff manager mode
 - **`.clinerules-milestone-manager`**: Specialized rules for the milestone manager mode
 - **`.roomodes`**: Custom mode definitions for handoff and milestone management
 
-## Advanced Integration Options
-
-For users interested in deeper integration with Roo-Code, consider these options:
-
-- **Lightweight Integration**: For a minimally invasive approach with UI components, see the [lightweight integration proposal](../cheatsheets/roo-code-lightweight-integration.md).
-
-- **Comprehensive Integration**: For a theoretical architecture of full native integration, see the [integration architecture](../cheatsheets/roo-code-handoff-integration-theory.md).
 
 ## Future Improvements
 
@@ -299,20 +294,6 @@ graph TD
     M1 --> E1[Epoch 1]
     M2 --> E1
     M3 --> E1
-    
-    style H1 fill:#f9f,stroke:#333,stroke-width:2px
-    style H2 fill:#f9f,stroke:#333,stroke-width:2px
-    style H3 fill:#f9f,stroke:#333,stroke-width:2px
-    style H4 fill:#f9f,stroke:#333,stroke-width:2px
-    style H5 fill:#f9f,stroke:#333,stroke-width:2px
-    style H6 fill:#f9f,stroke:#333,stroke-width:2px
-    style H7 fill:#f9f,stroke:#333,stroke-width:2px
-    style H8 fill:#f9f,stroke:#333,stroke-width:2px
-    style H9 fill:#f9f,stroke:#333,stroke-width:2px
-    style M1 fill:#9cf,stroke:#333,stroke-width:2px
-    style M2 fill:#9cf,stroke:#333,stroke-width:2px
-    style M3 fill:#9cf,stroke:#333,stroke-width:2px
-    style E1 fill:#fc9,stroke:#333,stroke-width:2px
 ```
 
 For exceptionally complex projects, introducing "Epochs" as a third tier could further enhance the system's scalability. Epochs would represent major project eras - perhaps spanning multiple feature sets, version releases, or architectural paradigms. 
@@ -356,12 +337,6 @@ graph TD
         Q2[Query Solutions] -->|Retrieves| S1
         Q3[Query Feature History] -->|Retrieves| F1
     end
-    
-    style H1 fill:#f9f,stroke:#333,stroke-width:2px
-    style M1 fill:#9cf,stroke:#333,stroke-width:2px
-    style E1 fill:#fc9,stroke:#333,stroke-width:2px
-    style P1 fill:#fd7,stroke:#333,stroke-width:2px
-    style S1 fill:#7df,stroke:#333,stroke-width:2px
 ```
 
 The hierarchical structure of the Handoff System naturally lends itself to graph database representation. While the current file-based approach is lightweight and effective, integrating with an embedded graph database like [Kùzu](https://github.com/kuzudb/kuzu) could significantly enhance knowledge retrieval capabilities.
@@ -386,7 +361,8 @@ The combination of graph structure for relationship traversal and vector embeddi
 
 ## Related Resources
 
-- [Handoff System Quick Start Guide](handoff-system-guide.md) - Step-by-step implementation instructions
+- [Basic Implementation Guide](handoff-system-basic.md) - Simple implementation that works with any LLM
+- [Advanced Implementation Guide](handoff-system-advanced.md) - Enhanced implementation with custom modes
 - [Custom Modes Documentation](../cheatsheets/custom-modes-llm-instruction.md) - For setting up specialized handoff and milestone management modes
 - [Large File Handling](../cheatsheets/llm-large-file-cheatsheet.md) - Complementary techniques for large files
 - [Main Documentation](../README.md) - Overview of all Roo Code Tips & Tricks

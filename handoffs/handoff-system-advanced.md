@@ -18,7 +18,9 @@ Follow the steps in the [Basic Guide](handoff-system-basic.md) to set up the dir
 
 ### 2. Add the Rules Files
 
-Copy these files to your project's `handoffs/` directory:
+According to the [Custom Modes documentation](../cheatsheets/custom-modes-llm-instruction.md), rule files must be placed in the project root directory:
+
+Copy these files to your project's root directory:
 
 - **`.clinerules`**: Main rules file with this content:
   ```
@@ -31,7 +33,7 @@ Copy these files to your project's `handoffs/` directory:
 
 ### 3. Set Up Custom Modes
 
-Copy the `.roomodes` file to your project's `handoffs/` directory from the RooCode-Tips-Tricks repository. This file defines two special-purpose modes:
+Copy the `.roomodes` file to your project's root directory (not in the handoffs folder) from the RooCode-Tips-Tricks repository, as custom mode definitions must be in the project root as specified in the [Custom Modes documentation](../cheatsheets/custom-modes-llm-instruction.md). This file defines two special-purpose modes:
 
 - **`handoff-manager`**: Specialized mode for creating properly formatted handoff documents
 - **`milestone-manager`**: Specialized mode for creating milestone summaries and organizing handoffs

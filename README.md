@@ -26,7 +26,9 @@ During extended debugging sessions, it may feel frustrating to start over with a
 
 **Getting Started with the Handoff System:**
 1. For a **comprehensive explanation** of the system architecture and concepts, read the [detailed guide](handoffs/handoff-system.md)
-2. For **quick implementation instructions**, follow the [step-by-step setup guide](handoffs/handoff-system-guide.md)
+2. Choose your implementation approach:
+   - For a **basic implementation** that works with any LLM, follow the [basic guide](handoffs/handoff-system-basic.md)
+   - For an **advanced implementation** with custom Roo-Code modes, follow the [advanced guide](handoffs/handoff-system-advanced.md)
 3. For **custom mode integration**, refer to [custom modes documentation](cheatsheets/custom-modes-llm-instruction.md)
 4. Find all configuration files (`.clinerules`, `.roomodes`) in the [handoffs directory](handoffs/)
 
@@ -38,7 +40,7 @@ A practical cheatsheet of one-liners and code snippets in Python, Bash, Node.js,
 ### [Custom Modes LLM Instructions](cheatsheets/custom-modes-llm-instruction.md)
 Unlock the full potential of Roo Code's custom modes system with this detailed guide covering data structures, tool groups, file restrictions, and best practices with practical examples. This file is designed to be given to the LLM to create your own specific custom modes.
 
-*This resource is used by the Handoff System for creating specialized handoff and milestone management modes. See the [Handoff System Setup Guide](handoffs/handoff-system-guide.md) for integration details.*
+*This resource is used by the Handoff System for creating specialized handoff and milestone management modes. See the [Advanced Implementation Guide](handoffs/handoff-system-advanced.md) for integration details.*
 
 ### [Roo Code Documentation](personal_roo_docs/)
 A comprehensive collection of documentation resources for Roo Code, organized by technical depth and audience:
@@ -59,7 +61,9 @@ Each resource includes detailed implementation instructions within its files. Si
 
 **Recommended Learning Path:**
 1. Start with the [Handoff System architecture overview](handoffs/handoff-system.md) to understand the concepts
-2. Follow the [step-by-step setup guide](handoffs/handoff-system-guide.md) to implement it in your project
+2. Choose your implementation path:
+   - For basic usage, follow the [basic implementation guide](handoffs/handoff-system-basic.md)
+   - For advanced features, follow the [advanced implementation guide](handoffs/handoff-system-advanced.md)
 3. Explore the [custom modes documentation](cheatsheets/custom-modes-llm-instruction.md) for advanced integration
 4. Reference the [Large File Handling Cheatsheet](cheatsheets/llm-large-file-cheatsheet.md) for complementary techniques
 5. Review the [Roo Code documentation](personal_roo_docs/) for general usage guidance
@@ -75,7 +79,8 @@ RooCode-Tips-Tricks/
 │   ├── .clinerules-milestone-manager         # Specialized milestone manager rules
 │   ├── .roomodes                             # Custom mode definitions
 │   ├── handoff-system.md                     # Comprehensive system documentation
-│   ├── handoff-system-guide.md               # Quick start implementation guide
+│   ├── handoff-system-basic.md               # Basic implementation guide
+│   ├── handoff-system-advanced.md            # Advanced implementation guide
 │   └── 0-instructions/                       # Templates and instructions for handoffs
 │       ├── 0-intro.md
 │       ├── 1-handoff-instructions.md

@@ -40,8 +40,6 @@ graph TD
     C --> D[4. Setup Custom Modes]
     D --> E[Ready to Use]
     
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style E fill:#9f9,stroke:#333,stroke-width:2px
 ```
 
 ### 1. Create the Directory Structure
@@ -107,9 +105,6 @@ graph TD
     
     Continue --> Start
     
-    style CreateHandoff fill:#f9f,stroke:#333,stroke-width:2px
-    style CreateMilestone fill:#99f,stroke:#333,stroke-width:2px
-    style NewSession fill:#9f9,stroke:#333,stroke-width:2px
 ```
 
 ### Creating a Handoff Document
