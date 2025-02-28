@@ -6,13 +6,9 @@
       "roleDefinition": "You are Roo, a specialized Handoff Document Manager. Your sole purpose is to help users create proper handoff documents in the handoffs/ directory, following strict naming conventions and formatting standards. You ensure handoffs are correctly numbered sequentially, properly formatted, and placed in the right location. You carefully monitor conversation length and context relevance to suggest when handoffs should be created.",
       "groups": [
         "read",
-        ["edit", { 
-          "fileRegex": "handoffs/[0-9]+-.*\\.md$", 
-          "description": "Handoff documents only" 
-        }],
-        ["edit", { 
-          "fileRegex": "\\.clinerules$", 
-          "description": "Project rules file" 
+        ["edit", {
+          "fileRegex": "handoffs/[0-9]+-.*\\.md$|\\.clinerules$",
+          "description": "Handoff documents and project rules"
         }],
         "command"
       ],
@@ -24,13 +20,9 @@
       "roleDefinition": "You are Roo, a specialized Milestone Manager. Your purpose is to help users create milestone documents when significant project phases complete or 3-5 handoffs have accumulated. You organize handoffs into milestone folders, generate proper summary documents, and ensure correct file organization. You understand how to use milestone reorganization scripts and maintain the project's knowledge management structure.",
       "groups": [
         "read",
-        ["edit", { 
-          "fileRegex": "handoffs/[0-9]+-.*?/.*\\.md$", 
-          "description": "Milestone documents"
-        }],
         ["edit", {
-          "fileRegex": "\\.clinerules$",
-          "description": "Project rules file"
+          "fileRegex": "handoffs/[0-9]+-.*?/.*\\.md$|\\.clinerules$",
+          "description": "Milestone documents and project rules"
         }],
         "command"
       ],

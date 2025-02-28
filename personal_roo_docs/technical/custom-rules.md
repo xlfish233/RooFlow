@@ -76,6 +76,107 @@ ${joinedSections}`
 
 This ensures that the rules are clearly delineated in the system prompt and presented as user-provided instructions that the LLM should follow.
 
+## Custom System Prompts (New Feature)
+
+### Overview
+
+Roo-Code now offers an additional layer of customization beyond custom rules: **custom system prompts**. This feature allows you to completely replace the default system prompt with your own custom content for specific modes.
+
+### Technical Implementation
+
+Custom system prompts are implemented in `src/core/prompts/sections/custom-system-prompt.ts`:
+
+```typescript
+/**
+ * Get the path to a system prompt file for a specific mode
+ */
+export function getSystemPromptFilePath(cwd: string, mode: Mode): string {
+  return path.join(cwd, ".roo", `system-prompt-${mode}`)
+}
+
+/**
+ * Loads custom system prompt from a file at .roo/system-prompt-[mode slug]
+ * If the file doesn't exist, returns an empty string
+ */
+export async function loadSystemPromptFile(cwd: string, mode: Mode): Promise<string> {
+  const filePath = getSystemPromptFilePath(cwd, mode)
+  return safeReadFile(filePath)
+}
+```
+
+The system prompt integration logic in `src/core/prompts/system.ts` checks for these custom prompt files:
+
+```typescript
+// Try to load custom system prompt from file
+const fileCustomSystemPrompt = await loadSystemPromptFile(cwd, mode)
+
+// If a file-based custom system prompt exists, use it
+if (fileCustomSystemPrompt) {
+  const roleDefinition = promptComponent?.roleDefinition || currentMode.roleDefinition
+  return `${roleDefinition}
+
+${fileCustomSystemPrompt}
+
+${await addCustomInstructions(promptComponent?.customInstructions || currentMode.customInstructions || "", globalCustomInstructions || "", cwd, mode, { preferredLanguage })}`
+}
+```
+
+### Key Aspects
+
+When a custom system prompt file exists:
+1. It completely replaces the default system prompt sections (TOOL USE, CAPABILITIES, MODES, etc.)
+2. Only the role definition and custom instructions are preserved
+3. The custom system prompt takes full precedence over standard formatting
+
+### File Structure and Location
+
+Custom system prompts are stored in:
+- Directory: `.roo` in the workspace root 
+- Filename: `system-prompt-[mode slug]` (e.g., `system-prompt-code` for code mode)
+
+The `.roo` directory is automatically created if it doesn't exist.
+
+## Comparing Custom Rules and Custom System Prompts
+
+### Custom Rules (`.clinerules`)
+- **Purpose**: Add specific guidelines while maintaining the standard system prompt structure
+- **Integration**: Added to the USER'S CUSTOM INSTRUCTIONS section
+- **Flexibility**: Work within the existing system prompt framework
+- **Default capabilities**: Preserves all standard tools and capabilities
+- **Best for**: Adding project-specific guidelines, coding standards, and workflow requirements
+
+### Custom System Prompts (`.roo/system-prompt-[mode]`)
+- **Purpose**: Completely replace the system prompt with your own custom instructions
+- **Integration**: Replaces the entire system prompt except role definition
+- **Flexibility**: Complete control over the AI's instructions
+- **Default capabilities**: Must explicitly re-specify any capabilities from the standard prompt
+- **Best for**: Advanced users who need complete control over the prompt, specialized use cases
+
+### When to Use Each Approach
+
+**Use Custom Rules When**:
+- You want to maintain all standard capabilities
+- You need to add specific guidelines or requirements
+- You want to ensure compatibility with future updates
+
+**Use Custom System Prompts When**:
+- You need complete control over the prompt
+- You have specialized requirements that conflict with standard capabilities
+- You're an advanced user who wants to craft a highly customized experience
+
+### Combining Both Features
+
+You can use both features together, creating a highly customized experience:
+
+1. **Custom System Prompt**: Sets the fundamental instructions and capabilities
+2. **Custom Rules**: Added to the USER'S CUSTOM INSTRUCTIONS section, providing additional guidelines
+
+Example workflow:
+1. Create a custom system prompt file: `.roo/system-prompt-specialized`
+2. Create custom rules: `.clinerules-specialized`
+3. Define a custom mode in `.roomodes` with the same slug
+4. The resulting prompt will use your custom system prompt with your custom rules appended
+
 ## Rule Format and Structure
 
 ### Markdown-Based Format
@@ -420,4 +521,4 @@ Rules can codify team-specific conventions:
 
 The custom rules system in Roo-Code provides a powerful and flexible way to tailor the AI's behavior to your specific project requirements and team conventions. By understanding the technical implementation and following best practices for rule creation, you can create a more effective and consistent development experience with Roo-Code.
 
-When combined with custom modes, rule files create a comprehensive system for defining both the capabilities and behavioral guidelines for AI-assisted development, ensuring that the assistance you receive aligns perfectly with your project's needs.
+When combined with custom modes and the new custom system prompts feature, Roo-Code offers a comprehensive system for defining both the capabilities and behavioral guidelines for AI-assisted development, ensuring that the assistance you receive aligns perfectly with your project's needs.
