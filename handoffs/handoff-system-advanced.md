@@ -90,9 +90,30 @@ I need to create a milestone for our completed [FEATURE/COMPONENT]. Please:
 5. Create the required 0-milestone-summary.md and 0-lessons-learned.md files
 ```
 
+### Resuming Sessions with session-restorer Mode
+
+1. Switch to `session-restorer` mode
+2. Use this prompt:
+
+```
+I need to resume work on this project. Please follow the instructions in handoffs/0-instructions/prompts/RS-restore-session.md
+```
+
+or for more control:
+
+```
+I need to resume work on this project. Please:
+
+1. Examine the handoffs/ directory structure
+2. Check if handoff documents exist in the root directory
+3. If handoffs exist, read milestone summaries first, then all handoff documents
+4. If no handoffs exist, read only milestone summaries
+5. Verify your understanding of the project state before proceeding
+```
+
 ## Configuration Structure
 
-The advanced implementation uses three layers of configuration:
+The advanced implementation uses these configuration layers:
 
 ### Global Rules (`.clinerules`)
 Applied to all modes; provides general handoff system guidelines
@@ -100,9 +121,13 @@ Applied to all modes; provides general handoff system guidelines
 ### Mode-Specific Rules
 - **`.clinerules-handoff-manager`**: Specialized rules for handoff creation
 - **`.clinerules-milestone-manager`**: Specialized rules for milestone organization
+- **`.clinerules-session-restorer`**: Specialized rules for session restoration
 
 ### Custom Mode Definitions (`.roomodes`)
-Defines specialized modes with specific permissions and behaviors
+Defines specialized modes with specific permissions and behaviors:
+- **handoff-manager**: Creates and manages handoff documents
+- **milestone-manager**: Creates and manages milestone documents
+- **session-restorer**: Restores context from existing handoffs and milestones
 
 ## Best Practices
 
