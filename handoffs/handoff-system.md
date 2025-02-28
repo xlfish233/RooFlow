@@ -5,7 +5,7 @@
 The Handoff System is a structured knowledge management approach designed to optimize LLM performance across extended development sessions. By creating a seamless transition mechanism between LLM sessions, this system solves the fundamental problem of context window degradation while creating project development timeline documentation as a natural side effect.
 
 **Implementation Guides:**
-- [Basic Guide](handoff-system-basic.md) - Simple implementation that works with any LLM
+- [Basic Guide](handoff-system-basic.md) - Simple implementation that works with minimal configuration
 - [Advanced Guide](handoff-system-advanced.md) - Enhanced implementation with Roo-Code custom modes
 
 ## The Challenge
