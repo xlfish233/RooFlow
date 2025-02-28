@@ -8,6 +8,7 @@ The advanced implementation adds:
 - Custom modes for specialized handoff and milestone management
 - Rule files to guide LLM behavior
 - Automation scripts for organization
+- Intelligent directory location detection
 
 
 ## Setup Steps
@@ -43,10 +44,11 @@ After completing the basic setup, add these components to enhance your handoff s
 
 ### 2. Add Custom Modes Definition
 
-Copy the `.roomodes` file to your project's root directory. This defines two specialized modes:
+Copy the `.roomodes` file to your project's root directory. This defines three specialized modes:
 
 - **`handoff-manager`**: For creating properly formatted handoff documents
 - **`milestone-manager`**: For creating milestone summaries and organizing handoffs
+- **`session-restorer`**: For intelligently restoring context from handoffs and milestones
 
 ## Using Custom Modes
 
@@ -110,6 +112,27 @@ I need to resume work on this project. Please:
 4. If no handoffs exist, read only milestone summaries
 5. Verify your understanding of the project state before proceeding
 ```
+
+## Directory Location Detection
+
+The custom modes now intelligently search for existing handoff directories rather than assuming they are in a fixed location:
+
+1. **Search Priority**:
+   - First checks for handoffs/ in the project root
+   - Then searches common locations: docs/, documentation/, notes/, wiki/
+   - Also checks for naming variations like handoff/ (singular) or hand-offs/
+
+2. **Creation Logic**:
+   - If no handoff directory exists, suggests creating one
+   - Creates in the root by default, or in docs/ if that directory exists
+   - Ensures all modes operate on the same directory structure
+
+3. **File Pattern Matching**:
+   - Edit permissions are set with flexible regex patterns
+   - Allows operation regardless of where the handoffs directory is found
+   - Maintains consistent structure within the discovered directory
+
+This flexibility makes the handoff system work seamlessly in projects with different organizational structures without requiring modification.
 
 ## Configuration Structure
 

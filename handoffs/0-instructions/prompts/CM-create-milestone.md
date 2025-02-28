@@ -6,12 +6,12 @@ Use this prompt when you need to create a new milestone to consolidate accumulat
 
 ```
 I need to create a milestone for our completed [FEATURE/COMPONENT]. Please:
-
+(The handoff directory may not be at the project root)
 1. Check if there are handoff documents in the handoffs/ root directory:
    - If no handoffs exist, suggest creating a handoff first before proceeding
    - If handoffs exist but seem outdated (based on dates/content), suggest creating a final handoff
 
-2. Read the docs/handoffs/0-instructions/2-milestone-instructions.md
+2. Read the handoffs/0-instructions/2-milestone-instructions.md
 3. Determine the next sequential milestone number by examining existing milestone directories
 4. Create the milestone directory with that number
 5. Move all numbered handoff documents from the handoffs/ root into this milestone directory
