@@ -80,55 +80,6 @@ Consolidated knowledge from multiple handoffs, created when significant project 
 
 *For details on milestone document format and structure, see [2-milestone-instructions.md](0-instructions/2-milestone-instructions.md) in your project after setup.*
 
-### Directory Structure
-
-#### Basic Structure
-
-```
-project/
-├── handoffs/                   # Main handoff directory
-│   ├── 0-instructions/         # System documentation (folders sort first)
-│   │   ├── 0-intro.md
-│   │   ├── 1-handoff-instructions.md
-│   │   ├── 2-milestone-instructions.md
-│   │   ├── H-handoff-prompt.md
-│   │   ├── M-milestone-prompt.md
-│   │   ├── create-handoff-prompt.md
-│   │   └── create-milestone-prompt.md
-│   │
-│   ├── 1-feature-milestone/    # Milestone directory (numbered sequentially)
-│   │   ├── 0-milestone-summary.md  # Consolidated milestone information
-│   │   ├── 0-lessons-learned.md    # Key learnings
-│   │   └── ...                 # Copies of related handoff documents
-│   │
-│   ├── 2-refactor-milestone/   # Next sequential milestone
-│   │   ├── 0-milestone-summary.md
-│   │   └── 0-lessons-learned.md
-│   │
-│   ├── 1-setup.md              # Sequential handoff documents
-│   ├── 2-implementation.md     # Files are sorted after folders
-│   ├── 3-bugfixes.md
-│   ├── 4-feature-x.md
-│   └── 5-refactoring.md
-```
-
-#### Advanced Structure (with Custom Modes)
-
-```
-project/
-├── .clinerules                 # Main handoff system rules
-├── .clinerules-handoff-manager # Handoff-specific rules
-├── .clinerules-milestone-manager # Milestone-specific rules
-├── .roomodes                   # Custom mode definitions
-├── handoffs/                   # Main handoff directory
-│   ├── 0-instructions/         # System documentation (all instruction files)
-│   │   ├── 3-milestone-scripts.md  # Advanced scripting instructions
-│   │   └── ... (Same as basic structure)
-│   │
-│   └── ... (Same milestone and handoff structure as basic)
-```
-
-*For step-by-step instructions on setting up this structure in your project, follow the [Basic Guide](handoff-system-basic.md) or [Advanced Guide](handoff-system-advanced.md).*
 
 ## Workflow Visualization
 
@@ -153,7 +104,7 @@ graph TD
     end
 ```
 
-## Implementation
+## Getting Started
 
 Choose the appropriate implementation guide based on your needs:
 
@@ -192,17 +143,57 @@ The system excels in scenarios like:
 - **Project Resumption**: Return to projects after extended breaks with minimal context loss
 - **Token Optimization**: Reduce costs on projects with extensive context requirements
 
+## Directory Structure
+
+### Basic Structure
+
+```
+project/
+├── handoffs/                   # Main handoff directory
+│   ├── 0-instructions/         # System documentation (folders sort first)
+│   │   ├── 0-intro.md
+│   │   ├── 1-handoff-instructions.md
+│   │   ├── 2-milestone-instructions.md
+│   │   ├── H-handoff-prompt.md
+│   │   ├── M-milestone-prompt.md
+│   │   ├── create-handoff-prompt.md
+│   │   └── create-milestone-prompt.md
+│   │
+│   ├── 1-feature-milestone/    # Milestone directory (numbered sequentially)
+│   │   ├── 0-milestone-summary.md  # Consolidated milestone information
+│   │   ├── 0-lessons-learned.md    # Key learnings
+│   │   └── ...                 # Copies of related handoff documents
+│   │
+│   ├── 2-refactor-milestone/   # Next sequential milestone
+│   │   ├── 0-milestone-summary.md
+│   │   └── 0-lessons-learned.md
+│   │
+│   ├── 1-setup.md              # Sequential handoff documents
+│   ├── 2-implementation.md     # Files are sorted after folders
+│   ├── 3-bugfixes.md
+│   ├── 4-feature-x.md
+│   └── 5-refactoring.md
+```
+
+### Advanced Structure (with Custom Modes)
+
+```
+project/
+├── .clinerules                 # Main handoff system rules
+├── .clinerules-handoff-manager # Handoff-specific rules
+├── .clinerules-milestone-manager # Milestone-specific rules
+├── .roomodes                   # Custom mode definitions
+├── handoffs/                   # Main handoff directory
+│   ├── 0-instructions/         # System documentation (all instruction files)
+│   │   ├── 3-milestone-scripts.md  # Advanced scripting instructions
+│   │   └── ... (Same as basic structure)
+│   │
+│   └── ... (Same milestone and handoff structure as basic)
+```
+
 ## Inspiration
 
 This system draws inspiration from knowledge transfer protocols used in military intelligence operations, where information continuity between shifts is essential. These practical handoff techniques have been adapted to address the specific challenges that arise during extended LLM development sessions.
-
-## Getting Started
-
-To implement the Handoff System in your project, choose the appropriate guide based on your needs:
-
-- [**Basic Guide**](handoff-system-basic.md): For a simple implementation that works with any LLM
-- [**Advanced Guide**](handoff-system-advanced.md): For an enhanced implementation with custom Roo-Code modes
-
 
 
 ## Future Improvements
