@@ -12,10 +12,6 @@ I need to create a handoff document for our current work. Please:
 3. Create a properly structured handoff file with that number
 ```
 
-That's it! The LLM will:
-- Examine the handoffs/ directory to find the next number
-- Create a properly formatted handoff document following all guidelines
-- Include all required sections with appropriate content based on your conversation history
 
 ## Optional Context
 
@@ -25,12 +21,8 @@ If you want to provide specific guidance, you can add:
 Use today's date and focus on [SPECIFIC TOPIC].
 ```
 
-## Purpose
+## Important Workflow Note
 
-This minimal prompt allows the LLM to handle all the details of:
-- Finding the correct sequential number
-- Creating the file in the correct location
-- Following the proper format
-- Filling in appropriate content based on context
+The LLM gets the numbers correct about 50% of the time. It's easy enough to manually fix the numbers. Trying to foce the LLM to get the right number each time hasnt been worth the extra tokens to add guardrails.  
 
-The goal is to make creating handoffs as simple as possible while letting the LLM do the work.
+The goal is to make creating handoffs as simple as possible while letting the LLM do the hard work.

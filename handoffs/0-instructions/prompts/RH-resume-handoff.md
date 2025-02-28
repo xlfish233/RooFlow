@@ -1,6 +1,9 @@
 # Handoff Review Prompt Template
 
-When transitioning to a new LLM session during ongoing work, use this prompt to efficiently transfer all project progress through the handoff documents.
+When transitioning to a new LLM session during ongoing work, use this prompt to efficiently transfer all project progress through the handoff documents. 
+
+**For best results, you need to customize this prompt!**
+
 
 ## Template
 
@@ -26,7 +29,7 @@ Next,
    For example: 1-setup.md, 2-implementation.md, 3-fixes.md, etc.
 3. Pay attention to all sections to understand the project history and current state
 
-Finally, read the README.md and [insert custom instructions here]
+Finally, read the README.md and .clinerules
 ```
 
 If you want advice, add something like: 
@@ -48,36 +51,10 @@ Please refrain from providing analysis or suggestions until requested, as I'd pr
 I will provide specific instructions on how to proceed after you confirm reading the documents.
 ```
 
-## Introspection Reminder
+## Prompt Customization
 
-When continuing the project after reviewing handoffs, remember these guidelines for when to create new handoffs:
-
-- After 10+ conversation exchanges
-- When context becomes ~30% irrelevant to current task
-- After completing a significant project segment
-- During debugging sessions exceeding 5 exchanges without resolution
-
-For best results, switch to the "handoff-manager" custom mode when creating handoff documents, and "milestone-manager" custom mode when creating milestone summaries.
-
-## Purpose
-
-This prompt ensures that:
-
-1. The LLM reads ALL handoff documents in proper chronological sequence
-2. The LLM gains full context of the project without jumping ahead
-3. The verification confirms proper reading through specific reporting requirements
-4. You maintain control over how the project proceeds
-
-## Usage
-
-Paste this prompt at the beginning of a new LLM session when you need to continue work on a project. This gives the new LLM instance the full project context through the handoff documents while keeping the focus on your guidance for next steps.
-
-After the LLM confirms reading the documents, you can then direct it with specific instructions on how to proceed.
-
-## When To Use
-
-Use this prompt when:
-- You need to switch to a fresh LLM session to continue project work
-- You want the LLM to understand the complete project evolution
-- You haven't created milestone documents yet, or need more detailed context than milestones provide
-- You want to maintain control over project direction after the knowledge transfer
+- If you have a docs/ folder, tell it what to read
+- If you have an important class or funciton, tell it to review that
+- If you have any project specific package documents, tell it to review those
+- If you're using this in conjunction with a memory bank implementation, have it review those files
+- Have a plan on what you are going to do this session and tailor your prompt to it. 

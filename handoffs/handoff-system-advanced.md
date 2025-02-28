@@ -42,8 +42,11 @@ Copy the `.roomodes` file to your project's root directory (not in the handoffs 
 
 Copy these additional files to your `handoffs/0-instructions/` directory:
 - `3-milestone-scripts.md`: Scripts for managing milestone organization
-- `create-handoff-prompt.md`: Templates for handoff creation
-- `create-milestone-prompt.md`: Templates for milestone creation
+- Create the `prompts` subdirectory with these files:
+  - `CH-create-handoff.md`: Templates for handoff creation
+  - `CM-create-milestone.md`: Templates for milestone creation
+  - `RH-resume-handoff.md`: Templates for resuming from handoffs
+  - `RM-resume-milestone.md`: Templates for resuming from milestones
 
 ## Using Custom Modes
 
@@ -74,11 +77,15 @@ Benefits of using handoff-manager mode:
 ```
 I need to create a milestone for our completed [FEATURE/COMPONENT]. Please:
 
-1. Read the handoffs/0-instructions/2-milestone-instructions.md
-2. Determine the next sequential milestone number by examining existing milestone directories
-3. Create the milestone directory with that number
-4. Move all numbered handoff documents from the handoffs/ root into this milestone directory
-5. Create the required 0-milestone-summary.md and 0-lessons-learned.md files
+1. First, check if there are recent handoff documents in the handoffs/ root directory:
+   - If no handoffs exist, suggest creating a handoff first before proceeding
+   - If handoffs exist but appear outdated, suggest creating a final handoff to capture latest work
+
+2. Read the handoffs/0-instructions/2-milestone-instructions.md
+3. Determine the next sequential milestone number by examining existing milestone directories
+4. Create the milestone directory with that number
+5. Move all numbered handoff documents from the handoffs/ root into this milestone directory
+6. Create the required 0-milestone-summary.md and 0-lessons-learned.md files
 ```
 
 Benefits of using milestone-manager mode:

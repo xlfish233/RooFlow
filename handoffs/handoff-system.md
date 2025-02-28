@@ -143,6 +143,15 @@ The system excels in scenarios like:
 - **Project Resumption**: Return to projects after extended breaks with minimal context loss
 - **Token Optimization**: Reduce costs on projects with extensive context requirements
 
+## Best Practices
+
+To get the most out of the Handoff System, follow these proven practices:
+
+- **Create Handoff Before Milestone**: Always create a final handoff document before creating a milestone. This ensures that your most recent work is captured in the milestone summary, maintaining the logical progression of work → handoff → milestone.
+- **Use Sequential Numbering**: Keep handoff and milestone numbering sequential to maintain chronological clarity.
+- **Regular Small Handoffs**: Create smaller, more frequent handoffs rather than infrequent large ones.
+- **Milestone at Natural Boundaries**: Create milestones at the completion of logical project phases or features.
+
 ## Directory Structure
 
 ### Basic Structure
@@ -154,10 +163,11 @@ project/
 │   │   ├── 0-intro.md
 │   │   ├── 1-handoff-instructions.md
 │   │   ├── 2-milestone-instructions.md
-│   │   ├── H-handoff-prompt.md
-│   │   ├── M-milestone-prompt.md
-│   │   ├── create-handoff-prompt.md
-│   │   └── create-milestone-prompt.md
+│   │   ├── prompts/                  # Prompt templates
+│   │   │   ├── RH-resume-handoff.md  # Resume from handoff
+│   │   │   ├── RM-resume-milestone.md # Resume from milestone
+│   │   │   ├── CH-create-handoff.md  # Create handoff
+│   │   │   └── CM-create-milestone.md # Create milestone
 │   │
 │   ├── 1-feature-milestone/    # Milestone directory (numbered sequentially)
 │   │   ├── 0-milestone-summary.md  # Consolidated milestone information
