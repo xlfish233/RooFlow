@@ -113,7 +113,7 @@ graph TD
 Choose the appropriate implementation guide based on your needs:
 
 ### [Basic Guide](handoff-system-basic.md)
-A simplified implementation that works with any LLM and requires minimal setup:
+A simplified implementation that requires minimal setup:
 - When to create handoffs and milestones
 - How to use prompt templates for knowledge transfer
 - Basic directory structure setup
