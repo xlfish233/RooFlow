@@ -116,11 +116,11 @@ project/
 
 ```
 project/
+├── .clinerules                 # Main handoff system rules
+├── .clinerules-handoff-manager # Handoff-specific rules
+├── .clinerules-milestone-manager # Milestone-specific rules
+├── .roomodes                   # Custom mode definitions
 ├── handoffs/                   # Main handoff directory
-│   ├── .clinerules             # Main handoff system rules
-│   ├── .clinerules-handoff-manager # Handoff-specific rules
-│   ├── .clinerules-milestone-manager # Milestone-specific rules
-│   ├── .roomodes               # Custom mode definitions
 │   ├── 0-instructions/         # System documentation (all instruction files)
 │   │   ├── 3-milestone-scripts.md  # Advanced scripting instructions
 │   │   └── ... (Same as basic structure)
@@ -153,68 +153,22 @@ graph TD
     end
 ```
 
-## Implementation Process
+## Implementation
 
-### When to Create Handoffs
+Choose the appropriate implementation guide based on your needs:
 
-Create handoff documents when:
-- Completing a significant project segment
-- Context becomes ~30% irrelevant to current task
-- After 10+ conversation exchanges
-- During debugging sessions exceeding 5 exchanges without resolution
+### [Basic Guide](handoff-system-basic.md)
+A simplified implementation that works with any LLM and requires minimal setup:
+- When to create handoffs and milestones
+- How to use prompt templates for knowledge transfer
+- Basic directory structure setup
 
-### When to Create Milestones
-
-Create milestone documents when:
-- A major feature/component is fully implemented
-- A significant project phase is completed
-- 3-5 handoffs have accumulated
-- Critical problems with valuable lessons have been solved
-- The project reaches a stable/deployable state
-
-### Knowledge Transfer Mechanism
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant LLM
-    participant Docs as Documentation
-    
-    User->>LLM: Start fresh session
-    
-    alt After handoffs
-        User->>LLM: Copy H-handoff-prompt.md
-        LLM->>Docs: Read all handoff documents
-        Docs->>LLM: Detailed context
-        LLM->>User: Verification of understanding
-    else After milestone
-        User->>LLM: Copy M-milestone-prompt.md
-        LLM->>Docs: Read milestone summaries
-        Docs->>LLM: Condensed context
-        LLM->>User: Verification of understanding
-    end
-    
-    User->>LLM: Continue work with fresh context
-```
-
-When starting a new LLM session, use the prompt templates provided in the system:
-
-- **For general continuation**: Use the `H-handoff-prompt.md` template to direct the LLM to read all handoff documents. This prompt ensures the LLM reads through the documents in the correct chronological order and reports back to verify understanding.
-
-- **After milestone creation**: Use the `M-milestone-prompt.md` template to direct the LLM to read only the milestone summary documents (0-prefixed files in milestone directories).
-
-These prompt templates serve as starting points that you can customize for your specific project needs. Consider modifying them to include:
-- Project README files
-- Documentation in docs/ directories
-- API specifications
-- Architecture diagrams
-- Database schemas
-- MCP server usage
-- Other project-specific resources that provide important context
-
-The key is to balance providing enough context for the LLM to be effective while avoiding unnecessary token consumption. The prompts have verification mechanisms built in to ensure the LLM properly processes the handoff/milestone documents.
-
-*For implementation details and simplified prompts, refer to the [Basic Guide](handoff-system-basic.md) or [Advanced Guide](handoff-system-advanced.md).*
+### [Advanced Guide](handoff-system-advanced.md)
+An enhanced implementation with Roo-Code custom modes for more structured workflows:
+- Custom modes for specialized handoff and milestone creation
+- Rule files for consistent documentation
+- Automation scripts for organizing documentation
+- Proper configuration of custom mode files
 
 ## Benefits
 
@@ -244,38 +198,11 @@ This system draws inspiration from knowledge transfer protocols used in military
 
 ## Getting Started
 
-### Basic Implementation
+To implement the Handoff System in your project, choose the appropriate guide based on your needs:
 
-For a simple implementation that works with any LLM:
+- [**Basic Guide**](handoff-system-basic.md): For a simple implementation that works with any LLM
+- [**Advanced Guide**](handoff-system-advanced.md): For an enhanced implementation with custom Roo-Code modes
 
-1. Create a `handoffs/` directory in your project
-2. Copy the instruction templates from the `0-instructions/` directory
-3. Begin documenting your development with handoff documents
-4. Create milestone summaries at significant completion points
-5. Use the provided prompts when switching to fresh LLM sessions
-
-This lightweight implementation requires no special configuration and works with any LLM.
-
-### Advanced Implementation with Custom Modes
-
-For enhanced functionality, you can implement the handoff system with custom Roo-Code modes:
-
-1. Complete the basic implementation steps
-2. Copy the rule files (`.clinerules`, `.clinerules-handoff-manager`, `.clinerules-milestone-manager`, `.roomodes`) to your project's `handoffs/` directory
-3. Use the specialized handoff-manager and milestone-manager modes when creating documentation
-
-*For detailed, step-by-step implementation instructions, follow the [Basic Guide](handoff-system-basic.md) or [Advanced Guide](handoff-system-advanced.md).*
-
-By implementing this system, you'll maintain optimal LLM performance throughout your project's lifecycle while generating valuable documentation that enhances collaboration and knowledge retention.
-
-## Configuration Files (Advanced Implementation)
-
-When using the advanced implementation with custom modes, the Handoff System uses these configuration files in the `handoffs/` directory:
-
-- **`.clinerules`**: Main rules file that provides general guidance for creating handoffs and milestones
-- **`.clinerules-handoff-manager`**: Specialized rules for the handoff manager mode
-- **`.clinerules-milestone-manager`**: Specialized rules for the milestone manager mode
-- **`.roomodes`**: Custom mode definitions for handoff and milestone management
 
 
 ## Future Improvements
