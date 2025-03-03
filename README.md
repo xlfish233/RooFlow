@@ -1,5 +1,5 @@
 <div align="center">
-☢️☢️☢️ Foot Gun in Use ☢️☢️☢️
+☢️☢️☢️ Footgun in Use ☢️☢️☢️
 
 # 🚀 RooFlow 🌊
 
