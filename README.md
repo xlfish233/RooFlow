@@ -1,159 +1,160 @@
-# RooFlow: Streamlined AI-Assisted Development with Persistent Context
-
-[![VS Code Extension](https://img.shields.io/badge/VS%20Code-Extension-blue.svg?logo=visualstudiocode)]([VSCODE_EXTENSION_LINK]) <!-- Replace with actual link -->
-[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)]([LICENSE_LINK]) <!-- Replace with actual link -->
-[![GitHub Issues](https://img.shields.io/badge/Issues-GitHub-red.svg)]([ISSUES_LINK]) <!-- Replace with actual link -->
-[![GitHub Stars](https://img.shields.io/github/stars/[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]?style=social)]([REPO_LINK]) <!-- Replace with your repo details -->
-
+```markdown
 <div align="center">
-<img src="[LOGO_URL]" alt="RooFlow Logo" width="200">  <!-- Replace with your logo URL -->
+
+# 🧠 RooFlow
+
+**Persistent Project Context and Streamlined AI-Assisted Development**
+
+[![VS Code Extension](https://img.shields.io/badge/VS%20Code-Extension-blue.svg)](https://github.com/RooVetGit/Roo-Code)
+[![GitHub](https://img.shields.io/badge/View%20on-GitHub-lightgrey.svg)]([INSERT_YOUR_ROOFLOW_REPO_LINK_HERE])
+
 </div>
 
-## Introduction
+## 🎯 Overview
 
-RooFlow is a powerful extension for VS Code that transforms the way you interact with AI coding assistants. It combines a **structured handoff system** for persistent project context with **streamlined, mode-specific prompts** for optimal LLM performance and token efficiency.  RooFlow addresses the common challenges of context degradation, knowledge loss, and inefficient LLM interactions, enabling a more focused, productive, and collaborative development workflow.
+RooFlow enhances AI-assisted development in VS Code by providing **persistent project context** and **optimized mode interactions**, resulting in **reduced token consumption** and a more efficient workflow.  It builds upon the concepts of the Roo Code Memory Bank, but streamlines the process and introduces a more integrated system of modes. RooFlow ensures your AI assistant maintains a deep understanding of your project across sessions, even after interruptions.
 
-## The Problem: Traditional LLM Limitations
+### Key Improvements over Roo Code Memory Bank:
 
-Working with LLMs in extended development sessions often leads to:
+*   **Reduced Token Consumption:** Optimized prompts and instructions minimize token usage.
+*   **Five Integrated Modes:**  Architect, Code, Test, Debug, and Ask modes work together seamlessly.
+*   **Simplified Setup:**  Easier installation and configuration.
+*   **Streamlined Real-time Updates:**  More efficient and targeted Memory Bank updates.
+*   **Clearer Instructions:**  Improved YAML-based rule files for better readability and maintainability.
 
-*   **Context Window Saturation:**  Irrelevant information accumulates, hindering the LLM's ability to focus on the current task.
-*   **Performance Degradation:**  Long sessions can lead to reduced reasoning quality and increased hallucinations.
-*   **Token Consumption:**  Large, unfocused contexts consume more tokens, increasing costs.
-*   **Knowledge Loss:**  Starting fresh sessions means losing valuable project understanding and having to re-explain context.
+### Key Components
 
-## The RooFlow Solution: Handoffs, Milestones, and Optimized Modes
+```mermaid
+graph LR
+    A[RooFlow] --> B[Memory Bank]
+    A --> C[Mode Rules]
+    A --> D[VS Code UI]
+    B --> E[Project Context]
+    B --> F[Decisions]
+    B --> G[Progress]
+    C --> H[Architect]
+    C --> I[Code]
+    C --> J[Ask]
+    C --> K[Debug]
+    C --> L[Test]
+    M[Real-time Updates] --> B
+```
 
-RooFlow tackles these challenges with a three-pronged approach:
+- 🧠 **Memory Bank**: Persistent storage for project knowledge (automatically managed).
+- 📋 **Mode Rules**: YAML-based configuration for each mode's behavior (`.clinerules-[mode].txt`).
+- 💻 **System Prompts**: YAML-based core instructions for each mode (`.roo/system-prompt-[mode].txt`).
+- 🔧 **VS Code Integration**: Seamless development experience within VS Code.
+- ⚡ **Real-time Updates**:  Automatic Memory Bank updates triggered by significant events.
 
-1.  **The Handoff System:**  A structured approach to capturing project knowledge and progress *chronologically*.  It uses two key document types:
-    *   **Handoff Documents:**  Fine-grained records of individual work sessions, capturing what was done, learned, and planned.  These are *append-only*, preserving a complete history.
-    *   **Milestone Documents:**  Periodic consolidations of multiple handoffs, providing higher-level summaries of completed features or project phases.
+## 🚀 Quick Start
 
-2.  **Custom Modes:**  Specialized modes for each stage of the development workflow, each with a *focused and optimized system prompt*.  This minimizes token usage and maximizes LLM performance for each specific task.
+### 1. Installation
 
-3. **Streamlined Prompts:** All prompts are written in YAML, a concise format that is both human and machine-readable, leading to better token economy.
+1.  **Install Roo Code Extension:** Ensure you have the Roo Code extension installed in VS Code.
+2.  **Download RooFlow Files:** Download the following files from this repository:
+    *   `.clinerules-architect`
+    *   `.clinerules-code`
+    *   `.clinerules-debug`
+    *   `.clinerules-ask`
+    *   `.clinerules-test`
+    *   `system-prompt-architect`
+    *   `system-prompt-code`
+    *   `system-prompt-debug`
+    *   `system-prompt-ask`
+    *  `system-prompt-test`
+    *   `.roomodes`
+3.  **Place Files in Project:**
+    *   Place the `.clinerules-[mode]` files in your project's **root** directory.
+    *   Create a directory named `.roo` in your project's root directory.
+    *   Place the `system-prompt-[mode]` files inside the `.roo` directory.
+    * Place the `.roomodes` file in the project's root directory.
 
-## Key Features
+Your project structure should look like this:
 
-*   **Seamless Context Switching:** Effortlessly resume work from where you left off, even after interruptions or across multiple sessions.
-*   **Chronological Project History:** Automatically generated, detailed documentation of your entire development process, including decisions, problems, and solutions.
-*   **Targeted Context Loading:**  Load only the *relevant* handoff and milestone documents, minimizing token consumption and maximizing LLM focus.
-*   **Reduced Hallucinations:** Fresh LLM sessions with clean, targeted context improve reasoning quality and reduce errors.
-*   **Optimized Token Usage:**  Streamlined prompts and selective context loading minimize token consumption, saving costs.
-*   **Improved Collaboration:**  Clear documentation and a structured workflow make it easier for teams to work together.
-*   **Easy Migration:** Includes a built-in mechanism to convert existing Roo Code Memory Banks to the Handoff System.
-*   **Flexible and Extensible:** Designed to adapt to various project sizes and workflows.
-*   **Intelligent Directory Detection:** Automatically finds your `handoffs` directory.
-
-## RooFlow Modes
-
-RooFlow provides a set of built-in and custom modes to support the entire development lifecycle:
-
-| Mode                | Description                                                                                                  |
-| :------------------ | :----------------------------------------------------------------------------------------------------------- |
-| **Architect**       | High-level system design, project planning, and documentation structure. Creates initial project handoffs. |
-| **Code**            | Code implementation, modification, and concurrent documentation updates.                                  |
-| **Test**            | *Dedicated mode for test-driven development.* Creates tests *before* code implementation.                   |
-| **Debug**           | Troubleshooting, bug fixing, and root cause analysis.  Operates in a read-only manner to ensure integrity. |
-| **Ask**             | General knowledge assistant for project-specific and general programming questions.                          |
-| **Handoff Manager** | *Custom mode* for creating and numbering handoff documents.                                                  |
-| **Milestone Manager** | *Custom mode* for creating milestone summaries and organizing handoff documents.                           |
-| **Session Restorer** | *Custom mode* for loading the appropriate context from handoffs and milestones to resume work.            |
-
-## Getting Started
-
-1.  **Install Roo Code:** Make sure you have the latest version of the Roo Code extension for VS Code installed. ([VSCODE_EXTENSION_LINK] - Replace with link)
-
-2.  **Create a Project:** Start a new project or open an existing one in VS Code.
-
-3.  **Initialize the Handoff System:**
-    *   Open the Roo Code chat panel.
-    *   Switch to the **Architect** mode.
-    *   Send a message like "Initialize the Handoff System."
-    *   Roo will guide you through the process of creating the `handoffs/` directory and the initial instruction files.
-
-4.  **(Optional) Create a `projectBrief.md`:** In your project's root directory, create a file named `projectBrief.md` to provide initial project context to Roo.
-
-5.  **Start Coding!** Use the different modes (Architect, Code, Test, Debug, Ask) to work on your project.
-
-6.  **Create Handoffs:** At the end of each work session (or more frequently!), switch to the **Handoff Manager** mode and create a handoff document. Roo will guide you through the process.
-
-7.  **Create Milestones:** When you complete a significant feature or project phase, use the **Milestone Manager** mode to create a milestone summary.
-
-8.  **Resume Sessions:** When you return to your project, use the **Session Restorer** mode to load the relevant context.
-
-## File Structure
-
-The Handoff System uses the following directory structure within your project:
-Use code with caution.
-```markdown
-project/
-├── handoffs/ # Main handoff directory (created by RooFlow)
-│ ├── 0-instructions/ # System documentation
-│ │ ├── 1-handoff-instructions.md # Instructions for creating handoffs
-│ │ ├── 2-milestone-instructions.md # Instructions for creating milestones
-│ │ └── 3-milestone-scripts.md # (Optional) Scripts for milestone management
-│ │
-│ ├── 1-feature-milestone/ # Milestone directory (numbered sequentially)
-│ │ ├── 0-milestone-summary.md # Consolidated milestone information
-│ │ ├── 0-lessons-learned.md # Key learnings
-│ │ └── ... # Copies of related handoff documents
-│ │
-│ ├── 2-refactor-milestone/ # Next sequential milestone
-│ │ ├── 0-milestone-summary.md
-│ │ └── 0-lessons-learned.md
-│ │
-│ ├── 1-setup.md # Sequential handoff documents
-│ ├── 2-implementation.md # Files are sorted after folders
-│ ├── 3-bugfixes.md
-│ ├── 4-feature-x.md
-│ └── 5-refactoring.md
-├── .clinerules # Global rules (optional, for advanced configuration)
-├── .clinerules-architect # Mode-specific rules (no extensions)
+```
+project-root/
+├── .clinerules-architect
 ├── .clinerules-code
-├── .clinerules-test
 ├── .clinerules-debug
 ├── .clinerules-ask
-├── .clinerules-handoff-manager
-├── .clinerules-milestone-manager
-├── .clinerules-session-restorer
-└── .roomodes # Custom mode definitions (JSON format)
-.roo/ #This directory is created and maintained by the extension.
-├── system-prompt-architect # Mode-specific rules (no extensions)
-├── system-prompt-code
-├── system-prompt-test
-├── system-prompt-debug
-├── system-prompt-ask
-├── system-prompt-handoff-manager
-├── system-prompt-milestone-manager
-└── system-prompt-session-restorer
+├── .clinerules-test
+├── .roomodes
+├── .roo/
+│   ├── system-prompt-architect
+│   ├── system-prompt-code
+│   ├── system-prompt-debug
+│   ├── system-prompt-ask
+│   └── system-prompt-test
+└── memory-bank/  (This directory will be created automatically)
+    ├── activeContext.md
+    ├── productContext.md
+    ├── progress.md
+    └── decisionLog.md
 ```
-**Note:** The `system-prompt-[mode]` files are part of the Roo Code extension itself and are not directly modified by the user.  They are included in the list above for completeness, to show all the files involved in the system.
 
-## Advanced Configuration (Optional)
+4. **Configure VS Code Settings:**
+   *  Leave the "Custom Instructions" text boxes **empty** in the Roo Code Prompts section of your VS Code settings. RooFlow uses file-based configuration.
 
-For advanced users, you can further customize RooFlow:
+### 2. Using RooFlow
 
-*   **`.clinerules`:** Add global rules that apply to all modes.
-*   **`.clinerules-[mode]`:** Add mode-specific rules to fine-tune the behavior of individual modes.  These files contain YAML.
-*   **`.roomodes`:** Modify the custom mode definitions (e.g., change file restrictions for the Test, Handoff Manager, Milestone Manager, and Session Restorer modes).  *Be very careful when modifying this file.* This is a JSON file.
-* **`handoffs/0-instructions/`:** Modify the instructions within these files to customize the handoff and milestone creation process.
+1.  **Start a Chat:** Open a new Roo Code chat in your project.
+2.  **Select a Mode:** Choose the appropriate mode (Architect, Code, Test, Debug, Ask) for your task.
+3.  **Interact with Roo:**  Give Roo instructions and ask questions. Roo will automatically use the Memory Bank to maintain context.
+4.  **Memory Bank Initialization:**  If you start a chat in a project *without* a `memory-bank/` directory, Roo (in Architect mode) will guide you through the initialization process.
+5. **"Update Memory Bank" Command:** At any time, you can type "Update Memory Bank" or "UMB" to force a synchronization of the chat session's information into the Memory Bank. This is useful for ensuring continuity across sessions if you need to end the chat abruptly.
 
-**Important:**  The `roomodes.txt` file, along with all the `system-prompt-*` and `.clinerules-*` files, are provided in this repository. You should *not* need to modify them unless you are making advanced customizations. The system prompt files and clinerules files *do not* have file extensions.
+## 📚 Memory Bank Structure
+
+The Memory Bank is a directory named `memory-bank` located in your project's root. It contains several Markdown files that store different aspects of your project's knowledge:
+
+| File                 | Purpose                                                                                                                               |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `activeContext.md`   | Tracks the current session's context: recent changes, current goals, and open questions/issues.                                       |
+| `decisionLog.md`     | Records architectural and implementation decisions, including the context, decision, rationale, and implementation details.        |
+| `productContext.md`  | Provides a high-level overview of the project, including its goals, features, and overall architecture.                             |
+| `progress.md`        | Tracks the progress of the project, including completed work, current tasks, and next steps.  Uses a task list format.               |
+| `systemPatterns.md` | (Optional) Documents recurring patterns and standards used in the project (coding patterns, architectural patterns, testing patterns). |
+
+RooFlow automatically manages these files. You generally don't need to edit them directly, although you can review them to understand the AI's knowledge.
+
+## ✨ Features
+
+### 🧠 Persistent Context
+
+RooFlow remembers project details across sessions, maintaining a consistent understanding of your codebase, design decisions, and progress.
+
+### ⚡ Real-time Updates
+
+The Memory Bank is updated automatically based on significant events within each mode, ensuring that the context is always up-to-date.
+
+### 🤝 Mode Collaboration
+
+The five modes (Architect, Code, Test, Debug, Ask) are designed to work together seamlessly.  They can switch between each other as needed, and they share information through the Memory Bank.
+
+### 🛠️ Customizable Behavior
+
+The `.clinerules-[mode]` files allow you to customize the behavior of each mode, tailoring it to your specific project needs and workflow.
+
+### ⬇️ Reduced Token Consumption
+
+RooFlow is designed to use fewer tokens than previous systems, making it more efficient and cost-effective.
+
+## 📝 UMB Command
+The command "Update Memory Bank" or "UMB" can be given at any time to update the memory bank with information from the current chat session.
+
+## ℹ️ Troubleshooting
+
+*   **Memory Bank Not Found:** If Roo doesn't seem to be using the Memory Bank, make sure the `memory-bank/` directory exists in your project root and that the core files are present. You can try switching to Architect mode and saying "hello" to trigger the initialization process.
+*   **Unexpected Behavior:** If Roo is behaving unexpectedly, check the `.clinerules-[mode]` files for any errors or unintended instructions.
+* **First Tool Call Display**: The system is set up to show the first tool use, this cannot be prevented.
 
 ## Contributing
 
-Contributions are welcome! Please see the [CONTRIBUTING.md]([CONTRIBUTING_LINK]) file for details. <!-- Replace with actual link -->
+Contributions to RooFlow are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file (you'll need to create this) for guidelines.
 
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE]([LICENSE_LINK]) file for details. <!-- Replace with actual link -->
+[Choose a License - e.g., MIT, Apache 2.0, GPL] (Add a LICENSE file to your repository)
 
 ---
-
-<div align="center">
-
-**[View on GitHub]([REPO_LINK]) • [Report Issues]([ISSUES_LINK]) • [Get Roo Code]([VSCODE_EXTENSION_LINK])**
-
-</div>
+```
