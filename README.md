@@ -1,6 +1,7 @@
 <div align="center">
+☢️☢️☢️ Foot Gun in Use ☢️☢️☢️
 
-# 🧠 RooFlow
+# 🚀 RooFlow 🌊
 
 **Persistent Project Context and Streamlined AI-Assisted Development**
 
