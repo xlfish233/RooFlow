@@ -45,17 +45,17 @@ flowchart LR
 
 1.  **Install Roo Code Extension:** Ensure you have the Roo Code extension installed in VS Code.
 2.  **Download RooFlow Files:** Download the following files from this repository:
-    *   `.clinerules-architect`
-    *   `.clinerules-code`
-    *   `.clinerules-debug`
-    *   `.clinerules-ask`
-    *   `.clinerules-test`
-    *   `system-prompt-architect`
-    *   `system-prompt-code`
-    *   `system-prompt-debug`
-    *   `system-prompt-ask`
-    *  `system-prompt-test`
-    *   `.roomodes`
+    *   [`.clinerules-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-architect)
+    *   [`.clinerules-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-code)
+    *   [`.clinerules-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-debug)
+    *   [`.clinerules-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-ask)
+    *   [`.clinerules-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-test)
+    *   [`system-prompt-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-architect)
+    *   [`system-prompt-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-code)
+    *   [`system-prompt-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-debug)
+    *   [`system-prompt-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-ask)
+    *   [`system-prompt-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-test)
+    *   [`.roomodes`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roomodes)
 3.  **Place Files in Project:**
     *   Place the `.clinerules-[mode]` files in your project's **root** directory.
     *   Create a directory named `.roo` in your project's root directory.
