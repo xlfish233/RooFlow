@@ -5,7 +5,7 @@
 **Persistent Project Context and Streamlined AI-Assisted Development**
 
 [![VS Code Extension](https://img.shields.io/badge/VS%20Code-Extension-blue.svg)](https://github.com/RooVetGit/Roo-Code)
-[![GitHub](https://img.shields.io/badge/View%20on-GitHub-lightgrey.svg)]([INSERT_YOUR_ROOFLOW_REPO_LINK_HERE])
+[![GitHub](https://img.shields.io/badge/View%20on-GitHub-lightgrey.svg)](https://github.com/GreatScottyMac/RooFlow)
 
 </div>
 
@@ -151,6 +151,6 @@ Contributions to RooFlow are welcome! Please see the [CONTRIBUTING.md](CONTRIBUT
 
 ## License
 
-[Choose a License - e.g., MIT, Apache 2.0, GPL] (Add a LICENSE file to your repository)
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ---
