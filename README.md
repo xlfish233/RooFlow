@@ -1,4 +1,8 @@
 <div align="center">
+## In Progress: 
+* **Refining system-prompt-[mode] files
+* **Addressing the frequency of real-time memory bank updates
+
 ☢️☢️☢️ Footgun in Use ☢️☢️☢️
 
 # 🚀 RooFlow 🌊
