@@ -1,3 +1,4 @@
+```markdown
 <div align="center">
 
 # 🧠 RooFlow
@@ -5,7 +6,7 @@
 **Persistent Project Context and Streamlined AI-Assisted Development**
 
 [![VS Code Extension](https://img.shields.io/badge/VS%20Code-Extension-blue.svg)](https://github.com/RooVetGit/Roo-Code)
-[![GitHub](https://img.shields.io/badge/View%20on-GitHub-lightgrey.svg)](https://github.com/GreatScottyMac/RooFlow)
+[![GitHub](https://img.shields.io/badge/View%20on-GitHub-lightgrey.svg)]([INSERT_YOUR_ROOFLOW_REPO_LINK_HERE])
 
 </div>
 
@@ -51,44 +52,46 @@ graph LR
 
 1.  **Install Roo Code Extension:** Ensure you have the Roo Code extension installed in VS Code.
 2.  **Download RooFlow Files:** Download the following files from this repository:
-    *   `.clinerules-architect`
-    *   `.clinerules-code`
-    *   `.clinerules-debug`
-    *   `.clinerules-ask`
-    *   `.clinerules-test`
-    *   `system-prompt-architect`
-    *   `system-prompt-code`
-    *   `system-prompt-debug`
-    *   `system-prompt-ask`
-    *  `system-prompt-test`
-    *   `.roomodes`
+    *   `.clinerules-architect.txt`
+    *   `.clinerules-code.txt`
+    *   `.clinerules-debug.txt`
+    *   `.clinerules-ask.txt`
+    *   `.clinerules-test.txt`
+    *   `system-prompt-architect.txt`
+    *   `system-prompt-code.txt`
+    *   `system-prompt-debug.txt`
+    *   `system-prompt-ask.txt`
+    *  `system-prompt-test.txt`
+    *   `.roomodes.txt`
 3.  **Place Files in Project:**
-    *   Place the `.clinerules-[mode]` files in your project's **root** directory.
+    *   Place the `.clinerules-[mode].txt` files in your project's **root** directory.
     *   Create a directory named `.roo` in your project's root directory.
-    *   Place the `system-prompt-[mode]` files inside the `.roo` directory.
-    * Place the `.roomodes` file in the project's root directory.
+    *   Place the `system-prompt-[mode].txt` files inside the `.roo` directory.
+    * Place the `.roomodes.txt` file in the project's root directory.
 
 Your project structure should look like this:
+
 ```
 project-root/
-├── .clinerules-architect
-├── .clinerules-code
-├── .clinerules-debug
-├── .clinerules-ask
-├── .clinerules-test
-├── .roomodes
+├── .clinerules-architect.txt
+├── .clinerules-code.txt
+├── .clinerules-debug.txt
+├── .clinerules-ask.txt
+├── .clinerules-test.txt
+├── .roomodes.txt
 ├── .roo/
-│   ├── system-prompt-architect
-│   ├── system-prompt-code
-│   ├── system-prompt-debug
-│   ├── system-prompt-ask
-│   └── system-prompt-test
+│   ├── system-prompt-architect.txt
+│   ├── system-prompt-code.txt
+│   ├── system-prompt-debug.txt
+│   ├── system-prompt-ask.txt
+│   └── system-prompt-test.txt
 └── memory-bank/  (This directory will be created automatically)
     ├── activeContext.md
     ├── productContext.md
     ├── progress.md
     └── decisionLog.md
 ```
+
 4. **Configure VS Code Settings:**
    *  Leave the "Custom Instructions" text boxes **empty** in the Roo Code Prompts section of your VS Code settings. RooFlow uses file-based configuration.
 
@@ -97,8 +100,8 @@ project-root/
 1.  **Start a Chat:** Open a new Roo Code chat in your project.
 2.  **Select a Mode:** Choose the appropriate mode (Architect, Code, Test, Debug, Ask) for your task.
 3.  **Interact with Roo:**  Give Roo instructions and ask questions. Roo will automatically use the Memory Bank to maintain context.
-4.  **Memory Bank Initialization:**  If you start a chat in a project *without* a `memory-bank/` directory, Roo (in Architect mode) will guide you through the initialization process.
-5. **"Update Memory Bank" Command:** At any time, you can type "Update Memory Bank" or "UMB" to force a synchronization of the chat session's information into the Memory Bank. This is useful for ensuring continuity across sessions if you need to end the chat abruptly.
+4.  **Memory Bank Initialization:**  If you start a chat in a project *without* a `memory-bank/` directory, Roo (in Architect or Code mode) will guide you through the initialization process.
+5. **"Update Memory Bank" Command:** At any time, you can type "Update Memory Bank" or "UMB" to force a synchronization of the chat session's information into the Memory Bank. This is useful for ensuring continuity across sessions or before switching modes.
 
 ## 📚 Memory Bank Structure
 
@@ -130,7 +133,7 @@ The five modes (Architect, Code, Test, Debug, Ask) are designed to work together
 
 ### 🛠️ Customizable Behavior
 
-The `.clinerules-[mode]` files allow you to customize the behavior of each mode, tailoring it to your specific project needs and workflow.
+The `.clinerules-[mode].txt` files allow you to customize the behavior of each mode, tailoring it to your specific project needs and workflow.
 
 ### ⬇️ Reduced Token Consumption
 
@@ -142,7 +145,7 @@ The command "Update Memory Bank" or "UMB" can be given at any time to update the
 ## ℹ️ Troubleshooting
 
 *   **Memory Bank Not Found:** If Roo doesn't seem to be using the Memory Bank, make sure the `memory-bank/` directory exists in your project root and that the core files are present. You can try switching to Architect mode and saying "hello" to trigger the initialization process.
-*   **Unexpected Behavior:** If Roo is behaving unexpectedly, check the `.clinerules-[mode]` files for any errors or unintended instructions.
+*   **Unexpected Behavior:** If Roo is behaving unexpectedly, check the `.clinerules-[mode].txt` files for any errors or unintended instructions.
 * **First Tool Call Display**: The system is set up to show the first tool use, this cannot be prevented.
 
 ## Contributing
@@ -151,6 +154,7 @@ Contributions to RooFlow are welcome! Please see the [CONTRIBUTING.md](CONTRIBUT
 
 ## License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+[Choose a License - e.g., MIT, Apache 2.0, GPL] (Add a LICENSE file to your repository)
 
 ---
+```
