@@ -1,4 +1,3 @@
-```markdown
 <div align="center">
 
 # 🧠 RooFlow
@@ -70,7 +69,6 @@ graph LR
     * Place the `.roomodes` file in the project's root directory.
 
 Your project structure should look like this:
-
 ```
 project-root/
 ├── .clinerules-architect
@@ -91,7 +89,6 @@ project-root/
     ├── progress.md
     └── decisionLog.md
 ```
-
 4. **Configure VS Code Settings:**
    *  Leave the "Custom Instructions" text boxes **empty** in the Roo Code Prompts section of your VS Code settings. RooFlow uses file-based configuration.
 
@@ -157,4 +154,3 @@ Contributions to RooFlow are welcome! Please see the [CONTRIBUTING.md](CONTRIBUT
 [Choose a License - e.g., MIT, Apache 2.0, GPL] (Add a LICENSE file to your repository)
 
 ---
-```
