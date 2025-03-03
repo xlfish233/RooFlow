@@ -1,7 +1,7 @@
-```markdown
 <div align="center">
+☢️☢️☢️ Foot Gun in Use ☢️☢️☢️
 
-# 🧠 RooFlow
+# 🚀 RooFlow 🌊
 
 **Persistent Project Context and Streamlined AI-Assisted Development**
 
@@ -25,24 +25,18 @@ RooFlow enhances AI-assisted development in VS Code by providing **persistent pr
 ### Key Components
 
 ```mermaid
-graph LR
-    A[RooFlow] --> B[Memory Bank]
-    A --> C[Mode Rules]
-    A --> D[VS Code UI]
-    B --> E[Project Context]
-    B --> F[Decisions]
-    B --> G[Progress]
-    C --> H[Architect]
-    C --> I[Code]
-    C --> J[Ask]
-    C --> K[Debug]
-    C --> L[Test]
-    M[Real-time Updates] --> B
+flowchart LR
+    A["RooFlow"] --> D["Toolkit"]
+    A["RooFlow"] --> M["Real-time Updates"]
+    D --> C["Mode Rules"]
+    B["Memory Bank"] --> E["Product Context"] & N["Active Context"] & F["Decisions"] & G["Progress"]
+    C --> H["Architect"] & I["Code"] & J["Ask"] & K["Debug"] & L["Test"]
+    M["Real-time Updates"] --> B
 ```
 
 - 🧠 **Memory Bank**: Persistent storage for project knowledge (automatically managed).
-- 📋 **Mode Rules**: YAML-based configuration for each mode's behavior (`.clinerules-[mode].txt`).
-- 💻 **System Prompts**: YAML-based core instructions for each mode (`.roo/system-prompt-[mode].txt`).
+- 📋 **Mode Rules**: YAML-based configuration for each mode's behavior (`.clinerules-[mode]`).
+- 💻 **System Prompts**: YAML-based core instructions for each mode (`.roo/system-prompt-[mode]`).
 - 🔧 **VS Code Integration**: Seamless development experience within VS Code.
 - ⚡ **Real-time Updates**:  Automatic Memory Bank updates triggered by significant events.
 
@@ -52,39 +46,39 @@ graph LR
 
 1.  **Install Roo Code Extension:** Ensure you have the Roo Code extension installed in VS Code.
 2.  **Download RooFlow Files:** Download the following files from this repository:
-    *   `.clinerules-architect.txt`
-    *   `.clinerules-code.txt`
-    *   `.clinerules-debug.txt`
-    *   `.clinerules-ask.txt`
-    *   `.clinerules-test.txt`
-    *   `system-prompt-architect.txt`
-    *   `system-prompt-code.txt`
-    *   `system-prompt-debug.txt`
-    *   `system-prompt-ask.txt`
-    *  `system-prompt-test.txt`
-    *   `.roomodes.txt`
+    *   [`.clinerules-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-architect)
+    *   [`.clinerules-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-code)
+    *   [`.clinerules-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-debug)
+    *   [`.clinerules-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-ask)
+    *   [`.clinerules-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-test)
+    *   [`system-prompt-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-architect)
+    *   [`system-prompt-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-code)
+    *   [`system-prompt-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-debug)
+    *   [`system-prompt-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-ask)
+    *   [`system-prompt-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-test)
+    *   [`.roomodes`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roomodes)
 3.  **Place Files in Project:**
-    *   Place the `.clinerules-[mode].txt` files in your project's **root** directory.
+    *   Place the `.clinerules-[mode]` files in your project's **root** directory.
     *   Create a directory named `.roo` in your project's root directory.
-    *   Place the `system-prompt-[mode].txt` files inside the `.roo` directory.
-    * Place the `.roomodes.txt` file in the project's root directory.
+    *   Place the `system-prompt-[mode]` files inside the `.roo` directory.
+    * Place the `.roomodes` file in the project's root directory.
 
 Your project structure should look like this:
 
 ```
 project-root/
-├── .clinerules-architect.txt
-├── .clinerules-code.txt
-├── .clinerules-debug.txt
-├── .clinerules-ask.txt
-├── .clinerules-test.txt
-├── .roomodes.txt
+├── .clinerules-architect
+├── .clinerules-code
+├── .clinerules-debug
+├── .clinerules-ask
+├── .clinerules-test
+├── .roomodes
 ├── .roo/
-│   ├── system-prompt-architect.txt
-│   ├── system-prompt-code.txt
-│   ├── system-prompt-debug.txt
-│   ├── system-prompt-ask.txt
-│   └── system-prompt-test.txt
+│   ├── system-prompt-architect
+│   ├── system-prompt-code
+│   ├── system-prompt-debug
+│   ├── system-prompt-ask
+│   └── system-prompt-test
 └── memory-bank/  (This directory will be created automatically)
     ├── activeContext.md
     ├── productContext.md
@@ -133,7 +127,7 @@ The five modes (Architect, Code, Test, Debug, Ask) are designed to work together
 
 ### 🛠️ Customizable Behavior
 
-The `.clinerules-[mode].txt` files allow you to customize the behavior of each mode, tailoring it to your specific project needs and workflow.
+The `.clinerules-[mode]` files allow you to customize the behavior of each mode, tailoring it to your specific project needs and workflow.
 
 ### ⬇️ Reduced Token Consumption
 
@@ -145,7 +139,7 @@ The command "Update Memory Bank" or "UMB" can be given at any time to update the
 ## ℹ️ Troubleshooting
 
 *   **Memory Bank Not Found:** If Roo doesn't seem to be using the Memory Bank, make sure the `memory-bank/` directory exists in your project root and that the core files are present. You can try switching to Architect mode and saying "hello" to trigger the initialization process.
-*   **Unexpected Behavior:** If Roo is behaving unexpectedly, check the `.clinerules-[mode].txt` files for any errors or unintended instructions.
+*   **Unexpected Behavior:** If Roo is behaving unexpectedly, check the `.clinerules-[mode]` files for any errors or unintended instructions.
 * **First Tool Call Display**: The system is set up to show the first tool use, this cannot be prevented.
 
 ## Contributing
@@ -153,8 +147,7 @@ The command "Update Memory Bank" or "UMB" can be given at any time to update the
 Contributions to RooFlow are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file (you'll need to create this) for guidelines.
 
 ## License
-
-[Choose a License - e.g., MIT, Apache 2.0, GPL] (Add a LICENSE file to your repository)
+  [Apache 2.0](LICENSE)
 
 ---
 ```
