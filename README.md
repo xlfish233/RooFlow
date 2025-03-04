@@ -8,7 +8,7 @@ These productivity-enhancing templates can be added to your projects to modify h
 
 ## Available Resources
 
-### [Handoff System](handoff-system/docs/handoff-system.md)
+### [Handoff System](handoff-manager/docs/handoff-system.md)
 **Solve the context window overload problem once and for all.**
 
 The Handoff System provides a streamlined approach to manage LLM context across extended development sessions. This innovative system tackles a fundamental issue in extended LLM interactions - as sessions progress, LLMs accumulate context that becomes increasingly bloated with irrelevant information, consuming valuable tokens and degrading performance.
@@ -25,14 +25,14 @@ The Handoff System provides a streamlined approach to manage LLM context across 
 During extended debugging sessions, it may feel frustrating to start over with a fresh LLM, but it's often better than continuing down a deteriorating path. The "fresh eyes" of a new session with focused context can break through obstacles that an overloaded session might struggle with.
 
 **Getting Started with the Handoff System:**
-1. For a **comprehensive explanation** of the system architecture and concepts, read the [detailed guide](handoff-system/docs/handoff-system.md)
+1. For a **comprehensive explanation** of the system architecture and concepts, read the [detailed guide](handoff-manager/docs/handoff-system.md)
 2. Choose your implementation approach:
-   - For a **simple installation** using the automated installer script, follow the [basic installation guide](handoff-system/docs/basic-installation.md)
-   - For a **manual installation** with full customization, follow the [advanced installation guide](handoff-system/docs/advanced-installation.md)
-3. For **usage instructions** after installation, refer to the [usage guide](handoff-system/docs/usage-guide.md)
+   - For a **simple installation** using the automated installer script, follow the [basic installation guide](handoff-manager/docs/basic-installation.md)
+   - For a **manual installation** with full customization, follow the [advanced installation guide](handoff-manager/docs/advanced-installation.md)
+3. For **usage instructions** after installation, refer to the [usage guide](handoff-manager/docs/usage-guide.md)
 4. For **custom mode integration**, refer to [custom modes documentation](cheatsheets/custom-modes-llm-instruction.md)
 
-**Compatibility Note:** Optimized for Claude 3.7 models with thinking enabled
+**Compatibility Note:** Optimized for Claude 3 models with thinking enabled
 
 ### [Large File Handling Cheatsheet](cheatsheets/llm-large-file-cheatsheet.md)
 A practical cheatsheet of one-liners and code snippets in Python, Bash, Node.js, and PowerShell for handling large files that would normally exceed LLM context windows. Extract exactly what you need without overwhelming your LLM. This file is designed to be given to the LLM as a reference and to remind it how to do some things.
@@ -52,14 +52,14 @@ A comprehensive collection of documentation resources for Roo Code, organized by
 Each resource includes detailed implementation instructions within its files. Simply clone this repository, copy the desired files into your project, and follow the specific setup instructions within each resource.
 
 **Recommended Learning Path:**
-1. Start with the [Handoff System architecture overview](handoff-system/docs/handoff-system.md) to understand the concepts
+1. Start with the [Handoff System architecture overview](handoff-manager/docs/handoff-system.md) to understand the concepts
 2. Choose your implementation path:
-   - For simple installation, follow the [basic installation guide](handoff-system/docs/basic-installation.md)
-   - For manual installation, follow the [advanced installation guide](handoff-system/docs/advanced-installation.md)
-3. Refer to the [usage guide](handoff-system/docs/usage-guide.md) to learn how to use the system
+   - For simple installation, follow the [basic installation guide](handoff-manager/docs/basic-installation.md)
+   - For manual installation, follow the [advanced installation guide](handoff-manager/docs/advanced-installation.md)
+3. Refer to the [usage guide](handoff-manager/docs/usage-guide.md) to learn how to use the system
 4. Explore the [custom modes documentation](cheatsheets/custom-modes-llm-instruction.md) for advanced integration
 5. Reference the [Large File Handling Cheatsheet](cheatsheets/llm-large-file-cheatsheet.md) for complementary techniques
-6. Review the [Roo Code documentation](personal_roo_docs/) for general usage guidance
+6. Check out the [Roo Code documentation](personal_roo_docs/) for general usage guidance
 
 ## Project Structure
 
@@ -68,20 +68,23 @@ The project is organized into these main directories:
 ```
 RooCode-Tips-Tricks/
 ├── README.md                         # This file - project overview
-├── handoff-system/                   # New handoff system implementation
+├── handoff-manager/                  # Production-ready packaged version
 │   ├── docs/                         # Comprehensive documentation
 │   │   ├── handoff-system.md         # System architecture and concepts
 │   │   ├── basic-installation.md     # Automated installation guide
 │   │   ├── advanced-installation.md  # Manual installation guide
 │   │   └── usage-guide.md            # Usage instructions
-│   ├── handoff-publisher/            # Publisher for generating the installer
-│   ├── 0-instructions/               # Documentation templates
-│   ├── 1-handoff-custom-mode/        # Custom mode components
-│   └── 2-scripts/                    # Utility scripts
-├── handoff-manager/                  # Production-ready packaged version
 │   ├── single-script/                # Self-contained installer
-│   └── handoffs/                     # Template handoff directory
-├── handoffs/                         # Legacy handoff files (for reference)
+│   │   ├── handoff-installer-readme.md  # Installation instructions
+│   │   └── handoff-manager-installer.js # The installer script
+│   ├── handoffs/                     # Template handoff directory with examples
+│   ├── .roomodes                     # Custom mode definition
+│   └── .clinerules                   # Custom rules
+├── handoffs/                         # Legacy documentation (for reference)
+│   ├── handoff-system.md             # Original system documentation
+│   ├── handoff-system-basic.md       # Original basic guide
+│   ├── handoff-system-advanced.md    # Original advanced guide
+│   └── 0-instructions/               # Original templates
 ├── cheatsheets/                      # Supplementary resources
 └── personal_roo_docs/                # Roo Code documentation
 ```
