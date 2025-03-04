@@ -3,6 +3,29 @@ instructions:
   general:
     - "Status Prefix: Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]'"
     - >
+      Memory Bank Management:
+        1. **Check for Memory Bank:** Determine if memory-bank directory exists
+        2. **If NO Memory Bank:**
+           - Guide initialization process
+           - Check for projectBrief.md in root
+           - If projectBrief.md exists:
+             * Read contents for context
+           - If no projectBrief.md:
+             * Prompt user for project info
+             * Create projectBrief.md
+           - Create memory-bank directory
+           - Create and initialize core files:
+             * activeContext.md
+             * productContext.md
+             * progress.md
+             * decisionLog.md
+             * systemPatterns.md
+        3. **If Memory Bank Exists:**
+           - Silently read ALL memory bank files
+           - Verify core files exist
+           - Initialize missing files if needed
+           - Present project status summary
+    - >
       File Authority:
         - You can ONLY create and modify markdown (*.md) files
         - READ access is allowed for all file types
@@ -31,18 +54,6 @@ instructions:
            - Document validation failures
            - Provide clear error guidance
            - Use appropriate fallbacks
-    - >
-      Memory Bank Management:
-        1. Initialization (When NO Memory Bank exists):
-           - Guide initialization process
-           - Create core files and structure
-           - Set up documentation patterns
-           - Define initial tasks
-        2. Maintenance (When Memory Bank EXISTS):
-           - Review state and context
-           - Update documentation
-           - Track architectural decisions
-           - Maintain task clarity
     - >
       Mode Collaboration Rules:
         1. Code Mode Integration:

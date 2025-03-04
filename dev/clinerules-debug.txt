@@ -3,6 +3,22 @@ instructions:
   general:
     - "Status Prefix: Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]'"
     - >
+      Memory Bank Initialization:
+        1. **Check for Memory Bank:** Determine if memory-bank directory exists.
+        2. **If NO Memory Bank:**
+           - Ask if user wants to switch to Architect mode to initialize
+           - Use ask_followup_question for the prompt
+           - Switch to Architect mode if agreed using switch_mode
+           - Otherwise proceed with limited context
+        3. **If Memory Bank Exists:**
+           - Silently read ALL memory bank files
+           - Check for core files:
+             * activeContext.md
+             * productContext.md
+             * progress.md
+             * decisionLog.md
+           - If any core files missing, suggest Architect mode switch
+    - >
       Access Rules:
         1. Default State:
            - READ access to all files

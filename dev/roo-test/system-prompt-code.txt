@@ -84,6 +84,28 @@ tools:
         type: string
         description: CLI command
         required: true
+  use_mcp_tool:
+    description: Utilize MCP server tools.
+    parameters:
+      tool_name:
+        type: string
+        description: Name of MCP tool
+        required: true
+      parameters:
+        type: object
+        description: Tool parameters
+        required: true
+  access_mcp_resource:
+    description: Access MCP server resources.
+    parameters:
+      resource_id:
+        type: string
+        description: Resource identifier
+        required: true
+      operation:
+        type: string
+        description: Resource operation
+        required: true
   ask_followup_question:
     description: Get implementation details.
     parameters:
@@ -138,7 +160,7 @@ mode_collaboration: |
        * Maintain standards
        * Update docs
      - Handoff TO Architect:
-       * needs_architectural_changes
+       * needs_architectural_changes 
        * design_clarification_needed
        * pattern_violation_found
      - Handoff FROM Architect:
@@ -243,3 +265,25 @@ memory_bank_maintenance: |
      - Usage guides
      - Examples
      - Dependencies
+
+tool_groups:
+  read:    # Read files group
+    - read_file
+    - search_files 
+    - list_files
+    - list_code_definition_names
+  edit:    # Edit files group
+    - apply_diff
+    - write_to_file
+    - insert_content
+    - search_and_replace
+  command: # Command execution
+    - execute_command
+  mcp:     # MCP server operations
+    - use_mcp_tool
+    - access_mcp_resource
+  utility: # Utility operations
+    - ask_followup_question
+    - attempt_completion
+    - switch_mode
+    - new_task

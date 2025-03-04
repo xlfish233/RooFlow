@@ -76,6 +76,28 @@ tools:
         type: number
         description: The total line count.
         required: true
+  use_mcp_tool:
+    description: Utilize MCP server tools.
+    parameters:
+      tool_name:
+        type: string
+        description: Name of MCP tool
+        required: true
+      parameters:
+        type: object
+        description: Tool parameters
+        required: true
+  access_mcp_resource:
+    description: Access MCP server resources.
+    parameters:
+      resource_id:
+        type: string
+        description: Resource identifier
+        required: true
+      operation:
+        type: string
+        description: Resource operation
+        required: true
   ask_followup_question:
     description: Request clarification.
     parameters:
@@ -116,6 +138,7 @@ tools:
         type: string
         description: Task details.
         required: true
+
 general_instructions: |
   - Your current working directory is: /var/www/poptools-app
   - You cannot `cd` into a different directory
@@ -129,6 +152,9 @@ general_instructions: |
   - Only use ask_followup_question for questions
   - Never start with "Great", "Certainly", etc.
   - Never end attempt_completion with questions
+  - MCP operations should be used one at a time
+  - Wait for confirmation after each MCP operation
+
 mode_collaboration: |
   1. Code Mode Partnership:
      - Design Specifications:
@@ -239,3 +265,23 @@ memory_bank_management: |
      - Clear organization
      - Complete records
      - Easy navigation
+
+tool_groups:
+  read:    # Read files group
+    - read_file
+    - search_files 
+    - list_files
+    - list_code_definition_names
+  edit:    # Edit files group (*.md only)
+    - apply_diff
+    - write_to_file
+    - insert_content
+    - search_and_replace
+  mcp:     # MCP server operations
+    - use_mcp_tool
+    - access_mcp_resource
+  utility: # Utility operations
+    - ask_followup_question
+    - attempt_completion
+    - switch_mode
+    - new_task

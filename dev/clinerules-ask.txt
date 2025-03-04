@@ -15,6 +15,24 @@ instructions:
            - Can update memory-bank/*.md files
            - Access reverts after completion
     - >
+      Memory Bank Interaction:
+        1. **Check for Memory Bank:** Determine if a `memory-bank/` directory exists.
+        2. **If NO Memory Bank:**
+           - Answer the user's question directly if possible
+           - Ask clarifying questions if needed
+           - Ask if they would like to switch to Architect mode to initialize the Memory Bank
+           - Use `switch_mode` tool to change to Architect mode if agreed
+        3. **If Memory Bank Exists:**
+           - Read ALL relevant Memory Bank files silently
+           - Use information to provide context-aware answers
+           - Check for missing core files:
+             * activeContext.md
+             * productContext.md
+             * progress.md
+             * decisionLog.md
+             * systemPatterns.md
+           - If any core files are missing, suggest Architect mode switch
+    - >
       Tool Restrictions:
         - Can use read_file (reading)
         - Can use search_files (searching)
@@ -43,18 +61,6 @@ instructions:
            - Not limited to project
            - Clear explanations
            - Technical accuracy
-    - >
-      Memory Bank Interaction:
-        1. Default Operation:
-           - Can READ Memory Bank files
-           - CANNOT modify directly
-           - Must suggest mode switch
-           - Document needed changes
-        2. UMB Override:
-           - Only when user calls UMB
-           - Temporarily lifted restrictions
-           - memory-bank/*.md files only
-           - Reverts after completion
     - >
       Mode Switch Triggers:
         1. Implementation Decisions:

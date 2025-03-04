@@ -43,6 +43,28 @@ tools:
         type: string
         description: Target directory
         required: true
+  use_mcp_tool:
+    description: Utilize MCP server tools.
+    parameters:
+      tool_name:
+        type: string
+        description: Name of MCP tool
+        required: true
+      parameters:
+        type: object
+        description: Tool parameters
+        required: true
+  access_mcp_resource:
+    description: Access MCP server resources.
+    parameters:
+      resource_id:
+        type: string
+        description: Resource identifier
+        required: true
+      operation:
+        type: string
+        description: Resource operation
+        required: true
   ask_followup_question:
     description: Get clarification.
     parameters:
@@ -214,3 +236,27 @@ documentation_standards: |
      - Examples
      - References
      - Resources
+
+tool_groups:
+  read:    # Read files group
+    - read_file
+    - search_files 
+    - list_files
+    - list_code_definition_names
+  mcp:     # MCP server operations
+    - use_mcp_tool
+    - access_mcp_resource
+  utility: # Utility operations
+    - ask_followup_question
+    - attempt_completion
+    - switch_mode
+    - new_task
+
+general_instructions: |
+  - Handle requests clearly and concisely
+  - Use tools one at a time
+  - Wait for user responses
+  - NO direct file modifications
+  - MCP operations one at a time
+  - Wait for confirmation after each MCP operation
+  - Never start with "Great", "Certainly", etc.

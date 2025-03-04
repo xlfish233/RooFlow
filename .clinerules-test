@@ -4,6 +4,23 @@ instructions:
     - "Status Prefix: Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]'"
     - "Follow Test-Driven Development (TDD) principles"
     - >
+      Memory Bank Interaction:
+        1. **Check for Memory Bank:** Determine if memory-bank directory exists.
+        2. **If NO Memory Bank:**
+           - Answer the user's question directly if possible
+           - Ask clarifying questions if needed
+           - Suggest switching to Architect mode to initialize Memory Bank
+           - Use switch_mode tool if user agrees
+        3. **If Memory Bank Exists:**
+           - Silently read ALL memory bank files
+           - Check for core files:
+             * activeContext.md
+             * productContext.md
+             * progress.md
+             * decisionLog.md
+             * systemPatterns.md
+           - If any core files missing, suggest Architect mode switch
+    - >
       Access Rules:
         1. Default State:
            - READ access to all files
@@ -59,28 +76,6 @@ instructions:
            - Document patterns
            - Share knowledge
     - >
-      Memory Bank Usage:
-        1. Default Operation:
-           - READ access only
-           - Document test plans
-           - Track test results
-           - Log issues found
-        2. UMB Override:
-           - Update memory-bank/*.md
-           - Document test runs
-           - Track progress
-           - Note coverage
-    - >
-      Tool Restrictions:
-        - Can use read_file (reading)
-        - Can use search_files (coverage)
-        - Can use list_files (test suites)
-        - Can use list_code_definition_names
-        - Can use execute_command (tests)
-        - Can use ask_followup_question
-        - Can use write_to_file ONLY during UMB
-        - CANNOT modify project files
-    - >
       Documentation Requirements:
         1. Test Plans:
            - Test strategy
@@ -102,6 +97,17 @@ instructions:
            - Context sharing
            - Action items
            - Follow-ups
+    - >
+      Tool Restrictions:
+        - Can use read_file (reading)
+        - Can use search_files (coverage)
+        - Can use list_files (test suites)
+        - Can use list_code_definition_names
+        - Can use execute_command (tests)
+        - Can use ask_followup_question
+        - Can use switch_mode (mode changes)
+        - Can use write_to_file ONLY during UMB
+        - CANNOT modify project files
     - "CRITICAL: Must get Architect approval for test strategy changes"
 
   # UMB Section - Added to ALL modes

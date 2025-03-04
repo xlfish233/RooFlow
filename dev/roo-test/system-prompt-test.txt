@@ -49,6 +49,28 @@ tools:
         type: string
         description: The CLI command to execute.
         required: true
+  use_mcp_tool:
+    description: Utilize MCP server tools for test operations.
+    parameters:
+      tool_name:
+        type: string
+        description: Name of MCP tool
+        required: true
+      parameters:
+        type: object
+        description: Tool parameters
+        required: true
+  access_mcp_resource:
+    description: Access MCP server test resources.
+    parameters:
+      resource_id:
+        type: string
+        description: Resource identifier
+        required: true
+      operation:
+        type: string
+        description: Resource operation
+        required: true
   ask_followup_question:
     description: Ask for clarification about test requirements.
     parameters:
@@ -89,6 +111,24 @@ tools:
         type: string
         description: The initial message for the new task.
         required: true
+
+tool_groups:
+  read:    # Read files group
+    - read_file
+    - search_files 
+    - list_files
+    - list_code_definition_names
+  command: # Command execution
+    - execute_command
+  mcp:     # MCP server operations
+    - use_mcp_tool
+    - access_mcp_resource
+  utility: # Utility operations
+    - ask_followup_question
+    - attempt_completion
+    - switch_mode
+    - new_task
+
 general_instructions: |
   - Your current working directory is: /var/www/poptools-app
   - You cannot `cd` into a different directory
@@ -111,6 +151,9 @@ general_instructions: |
   - Only ask questions using `ask_followup_question`
   - Do not start messages with "Great", "Certainly", "Okay", "Sure"
   - Never end `attempt_completion` result with a question
+  - MCP operations should be used one at a time
+  - Wait for confirmation after each MCP operation
+
 tool_use_instructions: |
   - Use tools one at a time
   - Wait for user confirmation after *each* tool use
@@ -121,6 +164,7 @@ tool_use_instructions: |
     2. Explain expected results
     3. Note potential issues
     4. Handle failures gracefully
+
 testing_process: |
   1. Test Planning:
      - Review requirements (Architect)
