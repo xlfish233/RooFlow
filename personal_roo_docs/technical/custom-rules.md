@@ -177,6 +177,129 @@ Example workflow:
 3. Define a custom mode in `.roomodes` with the same slug
 4. The resulting prompt will use your custom system prompt with your custom rules appended
 
+## Creating Effective Custom Modes
+
+### Custom Mode Definition
+
+A properly structured custom mode definition in `.roomodes` is crucial for proper operation:
+
+```json
+{
+  "customModes": [
+    {
+      "slug": "mode-name",
+      "name": "Display Name",
+      "roleDefinition": "You are Roo, a specialized assistant who...",
+      "groups": [
+        "read",
+        ["edit", { 
+          "fileRegex": "\\.(md|txt)$", 
+          "description": "Documentation files only" 
+        }],
+        "command"
+      ],
+      "customInstructions": "# Mode Guidelines\n\n1. Process:\n   - Step one\n   - Step two"
+    }
+  ]
+}
+```
+
+### Critical Requirements for Custom Modes
+
+For custom modes to work properly, these requirements must be met:
+
+1. **File location**: The `.roomodes` file must be in the workspace root directory
+2. **VSCode workspace**: VSCode must be opened directly in the directory containing `.roomodes`
+3. **JSON format**: The file must contain valid JSON with all required fields
+4. **Slug format**: The mode slug must be lowercase letters, numbers, and hyphens only
+5. **Role definition**: Must be a non-empty string describing the mode's purpose
+6. **Groups**: Must be an array (can be empty) of valid tool groups
+
+### Group Restrictions
+
+For more controlled access, use file pattern restrictions:
+
+```json
+["edit", { 
+  "fileRegex": "\\.(md|txt)$", 
+  "description": "Documentation files only" 
+}]
+```
+
+This pattern is more effective than using simple string groups as it provides precise control over which files the mode can modify.
+
+### Custom Instructions Formatting
+
+For optimal integration with the system prompt, format custom instructions using Markdown:
+
+```markdown
+# Category Title
+
+1. Process Step:
+   - Specific guideline
+   - Another guideline
+   - Implementation requirement
+
+2. Another Process Step:
+   - Guideline one
+   - Guideline two
+```
+
+This hierarchical approach makes the instructions more readable for both humans and the AI.
+
+## Troubleshooting Custom Modes
+
+If your custom modes aren't appearing in the mode dropdown, try these steps:
+
+### 1. Verify File Locations
+
+- Ensure `.roomodes` is in the workspace root directory
+- Open VSCode directly in this directory (not a parent directory)
+- Make sure the directory is recognized as the workspace root
+
+### 2. Check JSON Syntax
+
+- Validate your JSON syntax (use a JSON validator if needed)
+- Ensure all required fields are present and properly formatted
+- Check for missing commas, quotes, or braces
+
+### 3. Restart VSCode
+
+Sometimes VSCode needs to be restarted to recognize new custom modes:
+1. Close VSCode completely
+2. Reopen VSCode in the directory containing the `.roomodes` file
+3. Check if the mode appears now
+
+### 4. Try a Simplified Version
+
+If your complex mode definition isn't working, try a minimal version:
+
+```json
+{
+  "customModes": [
+    {
+      "slug": "simple",
+      "name": "Simple Mode",
+      "roleDefinition": "You are Roo, a simplified assistant.",
+      "groups": ["read", "edit", "command"]
+    }
+  ]
+}
+```
+
+### 5. Check File Permissions and Encoding
+
+- Ensure the `.roomodes` file has appropriate read permissions
+- Save the file with UTF-8 encoding to avoid character issues
+
+### 6. Create a Global Mode
+
+If workspace-specific modes aren't working, try a global mode:
+1. Create a mode in your global settings directory:
+   - Windows: `%APPDATA%\Code\User\globalStorage\rooveterinaryinc.roo-cline\settings\cline_custom_modes.json`
+   - Mac: `~/Library/Application Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_custom_modes.json`
+   - Linux: `~/.config/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_custom_modes.json`
+
 ## Rule Format and Structure
 
 ### Markdown-Based Format

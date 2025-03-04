@@ -1,10 +1,28 @@
-# Session Restoration Prompt Template
+# Session Restoration Guide
 
-When returning to a project after breaks or context resets, use this prompt to efficiently restore context from handoffs and milestones.
+Use this prompt when returning to a project after breaks or context resets to efficiently restore project context.
 
-**For best results, you need to customize this prompt!**
+## Workflow-Guided Prompt
 
-## Template
+```
+I need to restore context for this project. Please follow the session restoration workflow.
+```
+
+## Standard Prompt Template
+
+```
+I need to restore context for this project. Please:
+
+1. Follow the session restoration workflow to:
+   - Scan the project directory for handoffs
+   - Check if handoffs exist in the root directory
+   - Read milestone summaries in sequential order
+   - Read handoff documents if they exist
+   - Process conversation extracts if available
+   - Summarize the current project state
+```
+
+## Enhanced Restoration Workflow
 
 ```
 Before we begin, please:
@@ -31,8 +49,6 @@ After reading, please verify your understanding by:
 1. Listing all milestone directories in numerical order
 2. Listing all handoff documents you've read (if any)
 3. Summarizing the current project state and next steps
-
-This will ensure you have the right context while optimizing token usage.
 ```
 
 ## Project-Specific Customization
@@ -68,3 +84,29 @@ After restoring context, please focus on:
 - [specific feature or component to work on]
 - [particular problem that needs solving]
 - [next steps in the project roadmap]
+```
+
+## Conversation Extract Integration
+
+To incorporate conversation extract insights:
+
+```
+I need to restore context for this project with conversation history insights. Please:
+
+1. Follow the session restoration workflow
+2. After reading handoffs and milestones, also review the extracted_conversation.md file
+3. Incorporate insights from the conversation history into your understanding
+4. Identify any recent decisions or discoveries from the conversation that might affect current work
+```
+
+## Context Loading Optimization
+
+For efficient token usage, the handoff-manager prioritizes information as follows:
+
+| Context Type | Loading Strategy |
+|--------------|------------------|
+| Older Milestones | Summary documents only |
+| Recent Milestones | Full details from summary docs |
+| Handoffs in Root | All details (complete read) |
+| Latest Handoff | Maximum attention (primary context) |
+| Conversation Extract | Process if available (optional) |
