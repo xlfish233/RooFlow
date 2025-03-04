@@ -3,3 +3,4 @@ old/
 dev/
 package-tools/
 var-inject/
+.roo/
