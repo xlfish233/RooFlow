@@ -1,9 +1,3 @@
-In Progress:
-* Refining system-prompt-[mode] files<br>
-* Addressing the frequency of real-time memory bank updates
-
-<br>
-
 <div align="center">
   
 ☢️☢️☢️ Footgun in Use ☢️☢️☢️
