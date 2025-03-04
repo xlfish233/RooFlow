@@ -1,4 +1,5 @@
 In Progress:
+* Issue with memory bank initialization 
 * Addressing the frequency of real-time memory bank updates
 
 <br>
