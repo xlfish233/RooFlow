@@ -1,17 +1,4 @@
 <div align="center">
-
-### 🚧In Progress🚧
-
-<div style="text-align: left; display: inline-block;">
-
-Implementing a [variable injection system](https://github.com/jtalborough/rools/tree/script-variable-population) and [npm package tools](https://github.com/jtalborough/rools/tree/package-tools/package-tools) inspired by [jtalborough](@jtalborough).
-<br>
-This project will most likely be merged into [Roo Code Memory Bank](https://github.com/GreatScottyMac/roo-code-memory-bank) as a major update.
-
-</div>
-
-<br>
-<br>
   
 ☢️☢️☢️ Footgun in Use ☢️☢️☢️
 
@@ -19,8 +6,8 @@ This project will most likely be merged into [Roo Code Memory Bank](https://gith
 
 **Persistent Project Context and Streamlined AI-Assisted Development**
 
-[![VS Code Extension](https://img.shields.io/badge/VS%20Code-Extension-blue.svg)](https://github.com/RooVetGit/Roo-Code)
-[![GitHub](https://img.shields.io/badge/View%20on-GitHub-lightgrey.svg)]([INSERT_YOUR_ROOFLOW_REPO_LINK_HERE])
+[![Roo Code](https://img.shields.io/badge/VS%20Code-Extension-blue.svg)](https://github.com/RooVetGit/Roo-Code)
+[![RooFlow](https://img.shields.io/badge/View%20on-GitHub-lightgrey.svg)](https://github.com/GreatScottyMac/RooFlow)
 
 </div>
 
@@ -49,7 +36,6 @@ flowchart LR
 ```
 
 - 🧠 **Memory Bank**: Persistent storage for project knowledge (automatically managed).
-- 📋 **Mode Rules**: YAML-based configuration for each mode's behavior (`.clinerules-[mode]`).
 - 💻 **System Prompts**: YAML-based core instructions for each mode (`.roo/system-prompt-[mode]`).
 - 🔧 **VS Code Integration**: Seamless development experience within VS Code.
 - ⚡ **Real-time Updates**:  Automatic Memory Bank updates triggered by significant events.
@@ -60,11 +46,6 @@ flowchart LR
 
 1.  **Install Roo Code Extension:** Ensure you have the Roo Code extension installed in VS Code.
 2.  **Download RooFlow Files:** Download the following files from this repository:
-    *   [`.clinerules-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-architect)
-    *   [`.clinerules-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-ask)
-    *   [`.clinerules-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-code)
-    *   [`.clinerules-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-debug)
-    *   [`.clinerules-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/.clinerules-test)
     *   [`system-prompt-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-architect)
     *   [`system-prompt-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-ask)
     *   [`system-prompt-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-code)
@@ -72,7 +53,6 @@ flowchart LR
     *   [`system-prompt-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-test)
     *   [`.roomodes`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roomodes)
 3.  **Place Files in Project:**
-    *   Place the `.clinerules-[mode]` files in your project's **root** directory.
     *   Create a directory named `.roo` in your project's root directory.
     *   Place the `system-prompt-[mode]` files inside the `.roo` directory.
     * Place the `.roomodes` file in the project's root directory.
@@ -81,18 +61,13 @@ Your project structure should look like this:
 
 ```
 project-root/
-├── .clinerules-architect
-├── .clinerules-ask
-├── .clinerules-code
-├── .clinerules-debug
-├── .clinerules-test
-├── .roomodes
 ├── .roo/
-│   ├── system-prompt-architect
-│   ├── system-prompt-ask
-│   ├── system-prompt-code
-│   ├── system-prompt-debug
-│   └── system-prompt-test
+|    ├── system-prompt-architect
+|    ├── system-prompt-ask
+|    ├── system-prompt-code
+|    ├── system-prompt-debug
+|    └── system-prompt-test
+├── .roomodes
 └── memory-bank/  (This directory will be created automatically)
     ├── activeContext.md
     ├── productContext.md
@@ -139,10 +114,6 @@ The Memory Bank is updated automatically based on significant events within each
 
 The five modes (Architect, Code, Test, Debug, Ask) are designed to work together seamlessly.  They can switch between each other as needed, and they share information through the Memory Bank.
 
-### 🛠️ Customizable Behavior
-
-The `.clinerules-[mode]` files allow you to customize the behavior of each mode, tailoring it to your specific project needs and workflow.
-
 ### ⬇️ Reduced Token Consumption
 
 RooFlow is designed to use fewer tokens than previous systems, making it more efficient and cost-effective.
@@ -150,18 +121,9 @@ RooFlow is designed to use fewer tokens than previous systems, making it more ef
 ## 📝 UMB Command
 The command "Update Memory Bank" or "UMB" can be given at any time to update the memory bank with information from the current chat session.
 
-## ℹ️ Troubleshooting
-
-*   **Memory Bank Not Found:** If Roo doesn't seem to be using the Memory Bank, make sure the `memory-bank/` directory exists in your project root and that the core files are present. You can try switching to Architect mode and saying "hello" to trigger the initialization process.
-*   **Unexpected Behavior:** If Roo is behaving unexpectedly, check the `.clinerules-[mode]` files for any errors or unintended instructions.
-* **First Tool Call Display**: The system is set up to show the first tool use, this cannot be prevented.
-
 ## Contributing
 
 Contributions to RooFlow are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file (you'll need to create this) for guidelines.
 
 ## License
   [Apache 2.0](LICENSE)
-
----
-```
