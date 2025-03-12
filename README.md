@@ -46,12 +46,12 @@ flowchart LR
 
 1.  **Install Roo Code Extension:** Ensure you have the Roo Code extension installed in VS Code.
 2.  **Download RooFlow Files:** Download the following files from this repository:
-    *   [`system-prompt-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-architect)
-    *   [`system-prompt-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-ask)
-    *   [`system-prompt-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-code)
-    *   [`system-prompt-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-debug) 
-    *   [`system-prompt-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roo/system-prompt-test)
-    *   [`.roomodes`](https://github.com/GreatScottyMac/RooFlow/blob/main/.roomodes)
+    *   [`system-prompt-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-architect)
+    *   [`system-prompt-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-ask)
+    *   [`system-prompt-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-code)
+    *   [`system-prompt-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-debug) 
+    *   [`system-prompt-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-test)
+    *   [`.roomodes`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roomodes)
 3.  **Place Files in Project:**
     *   Create a directory named `.roo` in your project's root directory.
     *   Place the `system-prompt-[mode]` files inside the `.roo` directory.
