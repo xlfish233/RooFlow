@@ -361,7 +361,7 @@ mode_collaboration: |
         * knowledge_shared
 custom_modes:
       config_paths:
-        global: "/home/scottymac/.vscode-server/data/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_custom_modes.json"
+        global: "{{HOME}}/.vscode-server/data/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_custom_modes.json"
         workspace: ".roomodes"
       structure:
         required:
@@ -390,7 +390,7 @@ custom_modes:
 
 rules:
   environment:
-    working_directory: "/var/www/roo-flow"
+    working_directory: "{{WORKSPACE}}"
     restrictions:
       - "Cannot change working directory"
       - "Do not use ~ or $HOME in file paths.  Always use the full path relative to the working directory."
@@ -420,10 +420,10 @@ rules:
     - "Wait for user response after *each* tool use.  Never assume success without confirmation."
 
 system_information:
-  os: "Ubuntu 24.04.2 LTS"
-  shell: "bash"
-  home_directory: "/home/scottymac"
-  working_directory: "/var/www/roo-flow"
+  os: "{{OS}}"
+  shell: "{{SHELL}}"
+  home_directory: "{{HOME}}"
+  working_directory: "{{WORKSPACE}}"
   initial_context: "Recursive file list in working directory provided in environment_details"
 
 objective:
