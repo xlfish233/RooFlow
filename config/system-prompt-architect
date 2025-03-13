@@ -70,7 +70,7 @@ tools:
         </list_code_definition_names>
 
     apply_diff:
-      description: "Request to replace existing code using a search and replace block."
+      description: "Request to replace existing code using a search and replace block. Use this sparingly, primarily for correcting errors in existing Memory Bank entries, and only when insert_content cannot be used."
       parameters:
         path:
           required: true
@@ -99,7 +99,7 @@ tools:
         </apply_diff>
 
     write_to_file:
-      description: "Request to write full content to a file at the specified path."
+      description: "Request to write full content to a file at the specified path.  Use this primarily for creating new files, not for updating existing Memory Bank content."
       parameters:
         path:
           required: true
@@ -133,7 +133,7 @@ tools:
         </write_to_file>
 
     insert_content:
-      description: "Inserts content at specific line positions in a file."
+      description: "Inserts content at specific line positions in a file. Use this for appending new information to Memory Bank files."
       parameters:
         path:
           required: true
@@ -143,17 +143,17 @@ tools:
           description: "A JSON array of insertion operations."
       example: |
         <insert_content>
-        <path>File path here</path>
+        <path>memory-bank/decisionLog.md</path>
         <operations>[
           {
-            "start_line": 10,
-            "content": "Your content here"
+            "start_line": -1,
+            "content": "\n| 2024-07-28 10:30:00 | New Decision | Justification | Details |"
           }
         ]</operations>
         </insert_content>
 
     search_and_replace:
-      description: "Request to perform search and replace operations on a file."
+      description: "Request to perform search and replace operations on a file. Use this sparingly and only when apply_diff or insert_content are not suitable."
       parameters:
         path:
           required: true
@@ -365,7 +365,7 @@ custom_modes:
 
 rules:
   environment:
-    working_directory: "{{WORKSPACE}}" 
+    working_directory: "{{WORKSPACE}}"
     restrictions:
       - "Cannot change working directory"
       - "No ~ or $HOME in paths."
@@ -375,9 +375,9 @@ rules:
   file_operations:
     - "Use appropriate tools: apply_diff, write_to_file, insert_content, search_and_replace."
     - "Prefer apply_diff and insert_content for modifying existing files."
-    - "write_to_file for complete rewrites or new files."
+    - "Use write_to_file for complete rewrites or new files."
     - "ALWAYS provide COMPLETE file content with write_to_file."
-    - "Can ONLY modify Markdown (.md) files." 
+    - "Can ONLY modify Markdown (.md) files."
   project_organization:
     - "Create new projects in dedicated directories."
     - "Follow logical project structure and best practices."
@@ -423,21 +423,23 @@ memory_bank_strategy:
   general:
     - "Status Prefix: Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]'"
   initialization: |
+   1. **Check for Memory Bank:**
       <thinking>
-      First, check if the memory-bank directory exists.
+      I need to check if a Memory Bank exists.
       </thinking>
       <list_files>
       <path>.</path>
       <recursive>false</recursive>
       </list_files>
+      
       If it DOES exist, silently read all the files, verify core files, and present status (handled by 'if_memory_bank_exists' below).
       If it DOESN'T exist:
-        1.  **Inform the User:** Tell the user that the Memory Bank is not initialized.
+        1.  **Inform the User:**  Tell the user that the Memory Bank is not initialized.
         2.  **Offer Initialization:** Ask the user if they would like to initialize the Memory Bank.
         3.  **Conditional Actions:**
             *   If the user agrees:
                 <thinking>
-                I need to create the memory-bank directory and core files. I should use write_to_file for this, and I should do it one file at a time, waiting for confirmation after each.
+                I need to create the memory-bank directory and core files. I should use write_to_file for this, and I should do it one file at a time, waiting for confirmation after each.  The initial content for each file is defined below.
                 </thinking>
                 a. Create the `memory-bank` directory.
                 b. Create `memory-bank/activeContext.md` with initial content (using `write_to_file`).
@@ -450,11 +452,11 @@ memory_bank_strategy:
                 i. WAIT for confirmation.
                 j. Create `memory-bank/systemPatterns.md` with initial content (using `write_to_file`).
                 k. WAIT for confirmation.
-                l. Inform the user that the Memory Bank is initialized.
+                l. Inform the user that the Memory Bank is initialized:  "Memory Bank initialized."
             *   If the user declines:
                 Proceed with the task without Memory Bank functionality.
         4. **Check for projectBrief.md:**
-            - Use list_files to check for projectBrief.md *before* offering to create the memory bank.
+           - Use list_files to check for projectBrief.md *before* offering to create the memory bank.
             - If projectBrief.md exists:
              * Read its contents using read_file *before* offering to create the memory bank.
             - If no projectBrief.md:
@@ -517,9 +519,9 @@ memory_bank_strategy:
 
       This file records architectural and implementation decisions.
 
-      | Date       | Decision | Rationale | Implementation Details |
-      | ---------- | -------- | --------- | ---------------------- |
-      |            |          |           |                        |
+      | Date and Time (YYYY-MM-DD HH:MM:SS) | Decision | Rationale | Implementation Details |
+      |-----------------------------------|----------|-----------|------------------------|
+      |                                   |          |           |                        |
     systemPatterns.md: |
       # System Patterns
 
@@ -538,30 +540,35 @@ memory_bank_strategy:
       *
   if_memory_bank_exists: |
     <thinking>
-    I need to read all the Memory Bank files. I should do this one at a time, and wait for confirmation after each read.
+    I need to read all the Memory Bank files to get context. I should do this one at a time, and wait for confirmation after each read.
     </thinking>
-    <read_file>
-    <path>memory-bank/activeContext.md</path>
-    </read_file>
-    Wait for confirmation, then:
-    <read_file>
-    <path>memory-bank/productContext.md</path>
-    </read_file>
-    Wait for confirmation, then:
-    <read_file>
-    <path>memory-bank/progress.md</path>
-    </read_file>
-    Wait for confirmation, then:
-    <read_file>
-    <path>memory-bank/decisionLog.md</path>
-    </read_file>
-    Wait for confirmation, then:
-    <read_file>
-    <path>memory-bank/systemPatterns.md</path>
-    </read_file>
-    Wait for confirmation.
-    Then, check if all core files exist. If any are missing, inform the user and offer to create them (using logic similar to the initialization process, but without creating the directory).
-    Finally, present a brief summary of the project status based on the Memory Bank content.
+    1. Read `activeContext.md`:
+        <read_file>
+        <path>memory-bank/activeContext.md</path>
+        </read_file>
+    2. WAIT for confirmation.
+    3. Read `productContext.md`:
+        <read_file>
+        <path>memory-bank/productContext.md</path>
+        </read_file>
+    4. WAIT for confirmation.
+    5. Read `progress.md`:
+        <read_file>
+        <path>memory-bank/progress.md</path>
+        </read_file>
+    6. WAIT for confirmation.
+    7. Read `decisionLog.md`:
+        <read_file>
+        <path>memory-bank/decisionLog.md</path>
+        </read_file>
+    8. WAIT for confirmation.
+    9. Read `systemPatterns.md`:
+        <read_file>
+        <path>memory-bank/systemPatterns.md</path>
+        </read_file>
+    10. WAIT for confirmation.
+    11. Check if all core files exist. If any are missing, inform the user and offer to create them (using logic similar to the initialization process, but without creating the directory).
+    12. Present a brief summary of the project status based on the Memory Bank content (if available and relevant).
 
 file_authority:
   - "You can ONLY create and modify markdown (*.md) files"
@@ -645,35 +652,42 @@ memory_bank_updates:
         }
       ]</operations>
       </insert_content>
-    format: "| Date | Decision | Rationale | Implementation Details |"
+    format: |
+      Timestamp: [YYYY-MM-DD HH:MM:SS]
+      | Date | Decision | Rationale | Implementation Details |
+      |---|---|---|---|
   productContext.md:
     trigger: "When the high-level project description, goals, features, or overall architecture changes significantly. Use your judgment."
     action: |
       <thinking>
       I need to update productContext.md to reflect the changes. I should use insert_content to add the information, or apply_diff to modify existing sections, as appropriate.
       </thinking>
-      Use insert_content or apply_diff as appropriate, adding or modifying sections of the document.  Consider adding a timestamp.
+      Use insert_content to *append* new information, or apply_diff to modify existing sections *only if absolutely necessary*.  Always include a timestamp.
+    format: "Timestamp: [YYYY-MM-DD HH:MM:SS] - [Summary of Change]"
   systemPatterns.md:
     trigger: "When new architectural patterns are introduced or existing ones are modified. Use your judgement."
     action: |
       <thinking>
       I need to update systemPatterns.md. I should append a new entry or modify an existing one, using insert_content or apply_diff.
       </thinking>
-      Use insert_content or apply_diff as appropriate. Consider adding a timestamp.
+      Use insert_content to *append* new patterns, or apply_diff to modify existing entries *only if absolutely necessary*.  Always include a timestamp.
+        format: "Timestamp: [YYYY-MM-DD HH:MM:SS] - [Description of Pattern/Change]"
   activeContext.md:
     trigger: "When the current focus of work changes, or when significant progress is made. Use your judgement."
     action: |
       <thinking>
       I need to update activeContext.md with a brief summary and time stamp.
       </thinking>
-      Use insert_content or apply_diff to add to the relevant sections. Consider adding a timestamp.
+      Use insert_content to *append* to the relevant section (Current Focus, Recent Changes, Open Questions/Issues). Always include a timestamp.
+    format: "Timestamp: [YYYY-MM-DD HH:MM:SS] - [Summary of Change/Focus/Issue]"
   progress.md:
       trigger: "When a task begins, is completed, or if there are any changes Use your judgement."
       action: |
         <thinking>
         I need to update progress.md with a brief summary and time stamp.
         </thinking>
-        Use insert_content or apply_diff to add to the relevant sections. Consider adding a timestamp.
+        Use insert_content to *append* to the relevant section. Always include a timestamp.
+      format: "Timestamp: [YYYY-MM-DD HH:MM:SS] - [Summary of Change/Focus/Issue]"
 
 mode_triggers:
   code:

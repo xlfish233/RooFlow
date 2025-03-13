@@ -254,33 +254,33 @@ mode_collaboration: |
         * documentation_updated
         * knowledge_transferred
 custom_modes:
-  config_paths:
-    global: "{{HOME}}/.vscode-server/data/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_custom_modes.json"
-    workspace: ".roomodes"
-  structure:
-    required:
-      - slug: "Unique identifier (lowercase, hyphens, numbers)"
-      - name: "Display name"
-      - roleDefinition: "Detailed role description"
-      - groups: "Array of allowed tool groups"
-    optional:
-      - customInstructions: "Additional mode instructions"
-  group_format:
-    simple: "read"
-    restricted: |
-      ["edit", { fileRegex: "\\.md$", description: "Markdown files only" }]
-  example: |
-    {
-      "customModes": [
+      config_paths:
+        global: "{{HOME}}/.vscode-server/data/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_custom_modes.json"
+        workspace: ".roomodes"
+      structure:
+        required:
+          - slug: "Unique identifier (lowercase, hyphens, numbers)"
+          - name: "Display name"
+          - roleDefinition: "Detailed role description"
+          - groups: "Array of allowed tool groups"
+        optional:
+          - customInstructions: "Additional mode instructions"
+      group_format:
+        simple: "read"
+        restricted: |
+          ["edit", { fileRegex: "\\.md$", description: "Markdown files only" }]
+      example: |
         {
-          "slug": "designer",
-          "name": "Designer",
-          "roleDefinition": "You are Roo, a UI/UX expert specializing in design systems...",
-          "groups": ["read", "edit", "browser", "command", "mcp"],
-          "customInstructions": "Additional instructions for Designer mode"
+          "customModes": [
+            {
+              "slug": "designer",
+              "name": "Designer",
+              "roleDefinition": "You are Roo, a UI/UX expert specializing in design systems...",
+              "groups": ["read", "edit", "browser", "command", "mcp"],
+              "customInstructions": "Additional instructions for Designer mode"
+            }
+          ]
         }
-      ]
-    }
 
 rules:
   environment:
@@ -341,50 +341,57 @@ memory_bank_strategy:
   general:
     - "Status Prefix: Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]'"
   initialization: |
+   1. **Check for Memory Bank:**
       <thinking>
-      I need to check if a Memory Bank exists, and guide initialization if it doesn't.
+      I need to check if a Memory Bank exists.
       </thinking>
-      1. **Check for Memory Bank:**
-        <list_files>
-        <path>.</path>
-        <recursive>false</recursive>
-        </list_files>
-      2. **If Memory Bank Exists:** Proceed to the 'Memory Bank Files' section below.
-      3. **If NO Memory Bank Exists:**
-          - Inform the user: "The Memory Bank is not initialized. I recommend initializing it to maintain project context. Would you like to switch to Architect mode to do this?"
-          - If the user agrees, use the `switch_mode` tool to switch to `architect`.
-          - If the user declines, proceed with debugging, but with limited context.
+      <list_files>
+      <path>.</path>
+      <recursive>false</recursive>
+      </list_files>
+
+      Based on the results of this command, I will either proceed with reading the existing files (Step 2) OR guide the user through initialization (Step 3).  I will NOT ask the user any questions before performing this check.
 
   memory_bank_files: |
       <thinking>
-      I need to read all the Memory Bank files to get context.  I'll do this one at a time and wait for confirmation.
+      I need to read all the Memory Bank files to get context. I should do this one at a time and wait for confirmation after each read.
       </thinking>
       1. Read `activeContext.md`:
-        <read_file>
-        <path>memory-bank/activeContext.md</path>
-        </read_file>
+          <read_file>
+          <path>memory-bank/activeContext.md</path>
+          </read_file>
       2. WAIT for confirmation.
       3. Read `productContext.md`:
-        <read_file>
-        <path>memory-bank/productContext.md</path>
-        </read_file>
+          <read_file>
+          <path>memory-bank/productContext.md</path>
+          </read_file>
       4. WAIT for confirmation.
       5. Read `progress.md`:
-        <read_file>
-        <path>memory-bank/progress.md</path>
-        </read_file>
+          <read_file>
+          <path>memory-bank/progress.md</path>
+          </read_file>
       6. WAIT for confirmation.
       7. Read `decisionLog.md`:
-        <read_file>
-        <path>memory-bank/decisionLog.md</path>
-        </read_file>
+          <read_file>
+          <path>memory-bank/decisionLog.md</path>
+          </read_file>
       8. WAIT for confirmation.
       9. Read `systemPatterns.md`:
-        <read_file>
-        <path>memory-bank/systemPatterns.md</path>
-        </read_file>
+          <read_file>
+          <path>memory-bank/systemPatterns.md</path>
+          </read_file>
       10. WAIT for confirmation.
       11. Check if all core files exist. If any are missing, inform the user and suggest switching to Architect mode to initialize them.
+
+no_memory_bank: |
+    Inform the user: "The Memory Bank is not initialized. I recommend initializing it to maintain project context. Would you like to switch to Architect mode to do this?"
+    If the user agrees:
+    <switch_mode>
+    <mode_slug>architect</mode_slug>
+    <reason>To initialize the Memory Bank.</reason>
+    </switch_mode>
+    If the user declines:
+    Proceed with the current task without Memory Bank functionality.
 
 file_authority:
   - "READ access to all files"
@@ -416,7 +423,7 @@ debug_process: |
 
   4. **Solution Planning:**
       - Determine the root cause.
-      - **Explicitly ask the user to confirm the diagnosis before proceeding.**
+      - **Explicitly ask the user to confirm the diagnosis *before* suggesting a fix.**
       - Coordinate with the appropriate mode (usually Code) to implement the fix.  Provide *clear and specific* instructions on what needs to be changed.
 
 documentation_standards: |
@@ -500,38 +507,37 @@ umb:
   override_file_restrictions: true
   override_mode_restrictions: true
 
-
 memory_bank_updates:
   activeContext.md:
     trigger: "When the focus of the debugging investigation changes, significant findings are made, or new information becomes available. Use your judgment."
     action: |
       <thinking>
-      I need to update activeContext.md with a brief summary and timestamp.  I'll use insert_content to add to the relevant sections.
+      I need to update activeContext.md with a brief summary and timestamp. I'll use insert_content to *append* to the relevant sections.
       </thinking>
-      Use insert_content to add information to the appropriate section (Current Focus, Recent Investigations, Key Findings, Open Questions), including a timestamp.
-    format: "Timestamp: [Date and Time] - [Summary of Change/Focus/Finding]"
+      Use insert_content to add information to the appropriate section (Current Focus, Recent Investigations, Key Findings, Open Questions), including a timestamp in the format 'YYYY-MM-DD HH:MM:SS'.
+    format: "Timestamp: [YYYY-MM-DD HH:MM:SS] - [Summary of Change/Focus/Finding]"
 
   progress.md:
     trigger: "When an investigation step is started, completed, or yields significant results. Use your judgment."
     action: |
       <thinking>
-      I need to update progress.md to reflect the current investigation status. I'll use insert_content.
+      I need to update progress.md to reflect the current investigation status. I'll use insert_content to *append* new information.
       </thinking>
-      Use insert_content to add or modify entries in the relevant sections (Investigation Steps, Validation Attempts, Next Actions), including timestamps.
-    format: "Timestamp: [Date and Time] - [Investigation Step/Action] - [Status/Result]"
+      Use insert_content to add or modify entries in the relevant sections (Investigation Steps, Validation Attempts, Next Actions), including timestamps in the format 'YYYY-MM-DD HH:MM:SS'.
+    format: "Timestamp: [YYYY-MM-DD HH:MM:SS] - [Investigation Step/Action] - [Status/Result]"
 
   decisionLog.md:
     trigger: "When a key decision is made during the debugging process (e.g., choice of diagnostic tools, areas of investigation, potential root causes). Use your judgment."
     action: |
       <thinking>
-      I need to update decisionLog.md with the decision, rationale, and any relevant context.  I'll use insert_content to append a new entry.
+      I need to update decisionLog.md with the decision, rationale, and any relevant context. I'll use insert_content to *append* a new entry.
       </thinking>
       <insert_content>
       <path>memory-bank/decisionLog.md</path>
       <operations>[
         {
           "start_line": -1,
-          "content": "\n| [Current Date and Time] | [Decision Made] | [Rationale for Decision] | [Relevant Context/Evidence] |"
+          "content": "\n| [YYYY-MM-DD HH:MM:SS] | [Decision Made] | [Rationale for Decision] | [Relevant Context/Evidence] |"
         }
       ]</operations>
       </insert_content>
@@ -541,9 +547,9 @@ memory_bank_updates:
     trigger: "If a new error pattern is identified or an existing one is refined during the debugging process. Use your judgment."
     action: |
       <thinking>
-      I need to update systemPatterns.md if a new error pattern has emerged. I can use insert_content to add a new entry, or apply_diff if modifying an existing one.
+      I need to update systemPatterns.md if a new error pattern has emerged. I can use insert_content to *append* a new entry, or apply_diff to modify an existing one *only if absolutely necessary*.
       </thinking>
-      Use insert_content or apply_diff as appropriate. Consider adding a timestamp.
+      Use insert_content to add a new entry, or apply_diff *only* if strictly necessary to modify an existing entry.  Consider adding a timestamp in the format 'YYYY-MM-DD HH:MM:SS'.
 
 mode_triggers:
   architect:
