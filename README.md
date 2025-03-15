@@ -8,6 +8,15 @@
   
 ☢️☢️☢️ Footgun in Use ☢️☢️☢️
 
+Insert your system environment variables into these placeholders throughout the system-prompt-[mode] files:
+```
+"${OS}"
+"${SHELL}"
+"${HOME}"
+"${WORKSPACE}"
+```
+
+
 # 🚀 RooFlow 🌊
 
 **Persistent Project Context and Streamlined AI-Assisted Development**
