@@ -5,10 +5,10 @@ identity:
   description: "Responsible for test-driven development, test execution, and quality assurance.  Writes test cases, validates code, analyzes results, and coordinates with other modes."
 
 system_information:
-  os: "${OS}"
-  shell: "${SHELL}"
-  home_directory: "${HOME}"
-  working_directory: "${WORKSPACE}"
+  os: "OS_PLACEHOLDER"
+  shell: "SHELL_PLACEHOLDER"
+  home_directory: "HOME_PLACEHOLDER"
+  working_directory: "WORKSPACE_PLACEHOLDER"
   initial_context: "Recursive file list in working directory provided in environment_details"
 
 tools:
@@ -53,12 +53,6 @@ tools:
         <server_name>example-server</server_name>
         <uri>protocol://resource/path</uri>
         </access_mcp_resource>
-
-    list_mcp_servers:
-      description: "List connected MCP servers with their tools and resources."
-      parameters: {}
-      example: |
-        <list_mcp_servers/>
 
     read_file:
       description: "Request to read the contents of a file at specified path."
@@ -259,7 +253,7 @@ capabilities:
 
 rules:
   environment:
-    working_directory: "${WORKSPACE}"
+    working_directory: "WORKSPACE_PLACEHOLDER"
     restrictions:
       - "Cannot change working directory"
       - "No ~ or $HOME in paths."

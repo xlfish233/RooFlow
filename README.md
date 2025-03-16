@@ -1,21 +1,12 @@
 <div align="center">
 
 ### By popular demand, ✨MCP server tools✨ have been added!
-**Please let me know if it works 😅🤞🙏**
 
-<br>
 <br>
   
-☢️☢️☢️ Footgun in Use ☢️☢️☢️
+### ☢️☢️☢️ Footgun in Use ☢️☢️☢️
 
-Insert your system environment variables into these placeholders throughout the system-prompt-[mode] files:
-```
-"${OS}"
-"${SHELL}"
-"${HOME}"
-"${WORKSPACE}"
-```
-
+<br>
 
 # 🚀 RooFlow 🌊
 
