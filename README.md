@@ -48,20 +48,23 @@ flowchart LR
 
 ## 🚀 Quick Start
 
-### 1. Installation
+###  1. Installation
 
 1.  **Install Roo Code Extension:** Ensure you have the Roo Code extension installed in VS Code.
 2.  **Download RooFlow Files:** Download the following files from this repository:
-    *   [`system-prompt-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-architect)
-    *   [`system-prompt-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-ask)
-    *   [`system-prompt-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-code)
-    *   [`system-prompt-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-debug) 
+    *   [`system-prompt-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-architect)
+    *   [`system-prompt-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-ask)
+    *   [`system-prompt-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-code)
+    *   [`system-prompt-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-debug) 
     *   [`system-prompt-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-test)
-    *   [`.roomodes`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roomodes)
+    *   [`.roomodes`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-test)
+    *   [`insert-variables.cmd`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/insert-variables.cmd) For Windows OS
+    *   [`insert-variables.sh`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/insert-variables.sh) For Unix/Linux/macOS
 3.  **Place Files in Project:**
     *   Create a directory named `.roo` in your project's root directory.
     *   Place the `system-prompt-[mode]` files inside the `.roo` directory.
     * Place the `.roomodes` file in the project's root directory.
+    * Place the appropriate `insert-variables.[sh/cmd]` script for your platform in the project's root directory.
 
 Your project structure should look like this:
 
@@ -74,22 +77,95 @@ project-root/
 |    ├── system-prompt-debug
 |    └── system-prompt-test
 ├── .roomodes
-└── memory-bank/  (This directory will be created automatically)
+├──insert-variables.[sh/cmd]
+└── memory-bank/  (This directory will be created automatically by Roo after your first prompt)
     ├── activeContext.md
     ├── productContext.md
     ├── progress.md
     └── decisionLog.md
 ```
+4. **Run insert-variables script**
 
-4. **Configure VS Code Settings:**
-   *  Leave the "Custom Instructions" text boxes **empty** in the Roo Code Prompts section of your VS Code settings. RooFlow uses file-based configuration.
+    #### For Windows: 
+    1. Open Command Prompt or PowerShell
+    2. Navigate to your project:
+       ```cmd
+        cd path\to\your\project
+       ```
+    3. Run the script:
+       ##### From Command Prompt:
+       ```cmd
+        insert-variables.cmd
+       ```
+       ##### From PowerShell:
+       ```powershell
+        .\insert-variables.cmd
+       ```
+    #### Troubleshooting (Windows)
+    * **If you get "access denied" or execution policy errors:**
+    1. Open PowerShell as Administrator
+    2. Run this command once:
+       ```powershell
+        Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+       ```
+    3. Close Administrator PowerShell
+    4. Try running the script again from your project directory
+    * **If you see "Error: .roo directory not found", verify your directory structure.**
+    * **If using PowerShell 7+, run as:**
+       ```powershell
+        cmd /c insert-variables.cmd
+       ```
+    #### For Unix/Linux/macOS
+    1. Open Terminal
+    2. Navigate to your project:
+       ```bash
+        cd path/to/your/project
+       ```
+    3. Make the script executable:
+       ```bash
+        chmod +x insert-variables.sh
+       ```
+    4. Run the script:
+       ```bash
+        ./insert-variables.sh
+       ```
+
+    #### Troubleshooting (Unix/Linux/macOS)
+       
+    * **If you see "Permission denied", run `chmod +x insert-variables.sh`**
+    * **If you see "Error: .roo directory not found", verify your directory structure**
+
+    
+    #### Expected Output
+    The script will:
+    1. Detect your system configuration
+    2. Process each system prompt file
+    3. Show "Processing" and "Completed" messages for each file
+    4. Display "Done" when finished
+
+
+    #### Variables Being Replaced
+    The script replaces these placeholders with your system-specific values:
+    - OS_PLACEHOLDER (e.g., "Windows 10 Pro" or "Ubuntu 22.04")
+    - SHELL_PLACEHOLDER (e.g., "cmd" or "bash")
+    - HOME_PLACEHOLDER (your home directory)
+    - WORKSPACE_PLACEHOLDER (your project directory)
+    - GLOBAL_SETTINGS_PLACEHOLDER (VS Code settings path)
+    - MCP_LOCATION_PLACEHOLDER (Roo Code MCP path)
+    - MCP_SETTINGS_PLACEHOLDER (Roo Code settings path)
+
+    #### Next Steps
+    After running the script:
+    1. Verify that `.roo/system-prompt-*` files contain your system paths
+    2. Start using VS Code with the Roo Code extension
+    3. The Memory Bank will be initialized on first use
 
 ### 2. Using RooFlow
 
 1.  **Start a Chat:** Open a new Roo Code chat in your project.
 2.  **Select a Mode:** Choose the appropriate mode (Architect, Code, Test, Debug, Ask) for your task.
 3.  **Interact with Roo:**  Give Roo instructions and ask questions. Roo will automatically use the Memory Bank to maintain context.
-4.  **Memory Bank Initialization:**  If you start a chat in a project *without* a `memory-bank/` directory, Roo (in Architect or Code mode) will guide you through the initialization process.
+4.  **Memory Bank Initialization:**  If you start a chat in a project *without* a `memory-bank/` directory, Roo will suggest switching to Architect mode and guide you through the initialization process.
 5. **"Update Memory Bank" Command:** At any time, you can type "Update Memory Bank" or "UMB" to force a synchronization of the chat session's information into the Memory Bank. This is useful for ensuring continuity across sessions or before switching modes.
 
 ## 📚 Memory Bank Structure
