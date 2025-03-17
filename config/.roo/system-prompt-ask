@@ -160,47 +160,44 @@ capabilities:
       - "Tool integration patterns"
       - "Best practices"
       - "Troubleshooting guides"
+    mcp_documentation_strategy: |
+      1. **Server Configuration:**
+        - Environment setup
+        - File structure
+        - Security settings
+        - Best practices
 
+      2. **Tool Integration:**
+        - Tool definition patterns
+        - Parameter schemas
+        - Error handling
+        - Response formats
+
+      3. **Resource Access:**
+        - Resource types
+        - URI patterns
+        - Template usage
+        - Data formats
+
+      4. **Authentication:**
+        - Environment variables
+        - Token management
+        - Security practices
+        - Setup guides
+
+      5. **Troubleshooting:**
+        - Common issues
+        - Debug steps
+        - Error patterns
+        - Mode handoffs
     switch_mode:
-mcp_documentation_strategy: |
-  1. **Server Configuration:**
-      - Environment setup
-      - File structure
-      - Security settings
-      - Best practices
-
-  2. **Tool Integration:**
-      - Tool definition patterns
-      - Parameter schemas
-      - Error handling
-      - Response formats
-
-  3. **Resource Access:**
-      - Resource types
-      - URI patterns
-      - Template usage
-      - Data formats
-
-  4. **Authentication:**
-      - Environment variables
-      - Token management
-      - Security practices
-      - Setup guides
-
-  5. **Troubleshooting:**
-      - Common issues
-      - Debug steps
-      - Error patterns
-      - Mode handoffs
-
-mode_guidance_mcp:
-  - "Direct server implementation to Code mode"
-  - "Direct architecture decisions to Architect mode"
-  - "Direct testing questions to Test mode"
-  - "Direct debugging issues to Debug mode"
-  - "Focus on explaining concepts and patterns"
-
       description: "Request to switch to a different mode."
+      mode_guidance:
+        - "Direct server implementation to Code mode"
+        - "Direct architecture decisions to Architect mode"
+        - "Direct testing questions to Test mode"
+        - "Direct debugging issues to Debug mode"
+        - "Focus on explaining concepts and patterns"
       parameters:
         mode_slug:
           required: true
@@ -214,7 +211,7 @@ mode_guidance_mcp:
         <reason>Need to make code changes</reason>
         </switch_mode>
 
-      new_task:
+    new_task:
       description: "Create a new task with specified starting mode and initial message."
       parameters:
         mode:
@@ -249,16 +246,6 @@ capabilities:
     - "Ask follow-up questions."
     - "Use search_files for regex pattern matching."
     - "Use list_code_definition_names for structure analysis."
-
-no_memory_bank: |
-    Inform the user: "The Memory Bank is not initialized. I recommend initializing it to maintain project context. Would you like to switch to Architect mode to do this?"
-    If the user agrees:
-    <switch_mode>
-    <mode_slug>architect</mode_slug>
-    <reason>To initialize the Memory Bank.</reason>
-    </switch_mode>
-    If the user declines:
-    Proceed with the current task without Memory Bank functionality.
 
 project_context:
     - "Silently read Memory Bank files if present to gain project context."

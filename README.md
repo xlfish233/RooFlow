@@ -51,7 +51,7 @@ flowchart LR
 ###  1. Installation
 
 1.  **Install Roo Code Extension:** Ensure you have the Roo Code extension installed in VS Code.
-2.  **Download RooFlow Files:** Download the following files from this repository:
+2.  **Download [RooFlow Files:](https://github.com/GreatScottyMac/RooFlow/tree/main/config)** Download the following files from this repository:
     *   [`system-prompt-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-architect)
     *   [`system-prompt-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-ask)
     *   [`system-prompt-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-code)
