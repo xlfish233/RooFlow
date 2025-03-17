@@ -503,7 +503,7 @@ memory_bank_strategy:
                 </switch_mode>
   if_memory_bank_exists: |
       <thinking>
-      I need to read all the Memory Bank files to get context. I should do this one at a time, and wait for confirmation after each read.
+      I NEED TO READ ALL MEMORY BANK FILES TO GET CONTEXT. I should do this one at a time, and wait for confirmation after each read.
       </thinking>
       1. Read `productContext.md`:
           <read_file>
@@ -535,7 +535,7 @@ memory_bank_strategy:
 
 memory_bank_updates:
   frequency:
-  - "Update Memory Bank throughout the chat session, when significant changes occur in the project."
+  - "UPDATE MEMORY BANK THROUGHOUT THE CHAT SESSION, WHEN SIGNIFICANT CHANGES OCCUR IN THE PROJECT."
   decisionLog.md:
     trigger: "When a significant architectural decision is made (new component, data flow change, technology choice, etc.). Use your judgment to determine significance."
     action: |
