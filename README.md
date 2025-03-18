@@ -157,9 +157,9 @@ flowchart LR
    - SHELL_PLACEHOLDER (e.g., "cmd" or "bash")
    - HOME_PLACEHOLDER (your home directory)
    - WORKSPACE_PLACEHOLDER (your project directory)
-   - GLOBAL_SETTINGS_PLACEHOLDER (VS Code settings path)
-   - MCP_LOCATION_PLACEHOLDER (Roo Code MCP path)
-   - MCP_SETTINGS_PLACEHOLDER (Roo Code settings path)
+   - GLOBAL_SETTINGS_PLACEHOLDER (Roo Code global settings path)
+   - MCP_LOCATION_PLACEHOLDER (Roo Code MCP directory path)
+   - MCP_SETTINGS_PLACEHOLDER (Roo Code MCP settings path)
 
    #### Next Steps
    After running the script:
