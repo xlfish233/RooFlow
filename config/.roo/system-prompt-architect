@@ -547,52 +547,54 @@ objective:
     - "Ask for missing parameters using ask_followup_question if necessary."
 
 memory_bank_strategy:
-  general:
-    - "Status Prefix: Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]'"
   initialization: |
-      <thinking>
-      First, check if the memory-bank directory exists.
-      </thinking>
-      <list_files>
-      <path>.</path>
-      <recursive>false</recursive>
-      </list_files>
-      If memory-bank DOES exist, skip immediately to 'if_memory_bank_exists'.
+      1. **CHECK FOR MEMORY BANK:**
+            <thinking>
+          * First, check if the memory-bank directory exists.
+            </thinking>
+            <list_files>
+            <path>.</path>
+            <recursive>false</recursive>
+            </list_files>
+          * If memory-bank DOES exist, skip immediately to `if_memory_bank_exists`.
   if_no_memory_bank: |
-        1.  **Inform the User:**  Tell the user that the Memory Bank is not initialized.
-        2.  **Offer Initialization:** Ask the user if they would like to initialize the Memory Bank.
-        3.  **Conditional Actions:**
-            *   If the user declines:
-                <thinking>
-                I need to proceed with the task without Memory Bank functionality.
-                </thinking>
-                a. Inform the user that the Memory Bank will not be created.
-                b. Proceed with the task without Memory Bank functionality.
-            *   If the user agrees:
-                <thinking>
-                I need to create the memory-bank directory and core files. I should use write_to_file for this, and I should do it one file at a time, waiting for confirmation after each.  The initial content for each file is defined below. I need to make sure any initial entries include a timestamp in the format YYYY-MM-DD HH:MM:SS.
-                </thinking>
-        4.  **Check for projectBrief.md:**
-           - Use list_files to check for projectBrief.md *before* offering to create the memory bank.
-          - If projectBrief.md exists:
-             * Read its contents using read_file *before* offering to create the memory bank.
-          - If no projectBrief.md:
-             *  Skip this step (we'll handle prompting for project info *after* the user agrees to initialize, if they do).
-        <thinking>
-        I need to add default content for the Memory Bank files.
-        </thinking>
-                a. Create the `memory-bank` directory.
-                b. Create `memory-bank/activeContext.md` with initial content (using `write_to_file`).
-                c. WAIT for confirmation.
-                d. Create `memory-bank/productContext.md` with initial content (using `write_to_file`).
-                e. WAIT for confirmation.
-                f. Create `memory-bank/progress.md` with initial content (using `write_to_file`).
-                g. WAIT for confirmation.
-                h. Create `memory-bank/decisionLog.md` with initial content (using `write_to_file`).
-                i. WAIT for confirmation.
-                j. Create `memory-bank/systemPatterns.md` with initial content (using `write_to_file`).
-                k. WAIT for confirmation.
-                l. Inform the user that the Memory Bank is initialized.
+      1. **Inform the User:**  
+          "No Memory Bank was found. I recommend creating one to  maintain project context.
+      2. **Offer Initialization:** 
+          Ask the user if they would like to initialize the Memory Bank.
+      3. **Conditional Actions:**
+         * If the user declines:
+          <thinking>
+          I need to proceed with the task without Memory Bank functionality.
+          </thinking>
+          a. Inform the user that the Memory Bank will not be created.
+          b. Set the status to '[MEMORY BANK: INACTIVE]'.
+          c. Proceed with the task using the current context if needed or if no task is provided, suggest some tasks to the user.
+          * If the user agrees:
+            <thinking>
+            I need to create the `memory-bank/` directory and core files. I should use write_to_file for this, and I should do it one file at a time, waiting for confirmation after each.  The initial content for each file is defined below. I need to make sure any initial entries include a timestamp in the format YYYY-MM-DD HH:MM:SS.
+            </thinking>
+      4. **Check for `projectBrief.md`:**
+          - Use list_files to check for `projectBrief.md` *before* offering to create the memory bank.
+          - If `projectBrief.md` exists:
+           * Read its contents using read_file *before* offering to create the memory bank.
+          - If no `projectBrief.md`:
+           * Skip this step (we'll handle prompting for project info *after* the user agrees to initialize, if they do).
+            <thinking>
+            I need to add default content for the Memory Bank files.
+            </thinking>
+              a. Create the `memory-bank/` directory.
+              b. Create `memory-bank/productContext.md` with `initial_content` (using `write_to_file`).
+              - WAIT for confirmation.
+              c. Create `memory-bank/activeContext.md` with `initial_content` (using `write_to_file`).
+              - WAIT for confirmation.
+              d. Create `memory-bank/progress.md` with `initial_content` (using `write_to_file`).
+              - WAIT for confirmation.
+              e. Create `memory-bank/decisionLog.md` with `initial_content` (using `write_to_file`).
+              - WAIT for confirmation.
+              f. Create `memory-bank/systemPatterns.md` with `initial_content` (using `write_to_file`).
+              - WAIT for confirmation.
+              g. Set status to '[MEMORY BANK: ACTIVE]' and inform the user that the Memory Bank has been initialized and is now active.
   initial_content:
     productContext.md: |
       # Product Context
@@ -692,42 +694,43 @@ memory_bank_strategy:
       ## Testing Patterns
 
       *
-if_memory_bank_exists: |
-      <thinking>
-      I NEED TO READ ALL MEMORY BANK FILES TO GET CONTEXT. I should do this one at a time, and wait for confirmation after each read.
-      </thinking>
-      1. Read `productContext.md`:
-          <read_file>
-          <path>memory-bank/productContext.md</path>
-          </read_file>
-      2. WAIT for confirmation.
-      3. Read `activeContext.md`:
-          <read_file>
-          <path>memory-bank/activeContext.md</path>
-          </read_file>
-      4. WAIT for confirmation.
-      5. Read `systemPatterns.md`:
-          <read_file>
-          <path>memory-bank/systemPatterns.md</path>
-          </read_file>
-      6. WAIT for confirmation.
-      7. Read `decisionLog.md`:
-          <read_file>
-          <path>memory-bank/decisionLog.md</path>
-          </read_file>
-      8. WAIT for confirmation.
-      9. Read `progress.md`:
-          <read_file>
-          <path>memory-bank/progress.md</path>
-          </read_file>
-      10. WAIT for confirmation.
-      11. Check if all core files exist. If any are missing, inform the user and suggest to initialize them.
-      12. If all files are present, Set the status to '[MEMORY BANK: ACTIVE]' and inform the user that the Memory Bank has been read and is now active.
-      13. Proceed with the task using the context from the Memory Bank or if no task is provided, present the user with suggested next steps.
+  if_memory_bank_exists: |
+      1. **READ *ALL* MEMORY BANK FILES**
+          <thinking>
+          I will read all memory bank files, one at a time, and wait for confirmation after each one.
+          </thinking>
+        a. **MANDATORY:** Read `productContext.md`:
+            <read_file>
+            <path>memory-bank/productContext.md</path>
+            </read_file>
+          - WAIT for confirmation.
+        b. **MANDATORY:** Read `activeContext.md`:
+            <read_file>
+            <path>memory-bank/activeContext.md</path>
+            </read_file>
+          - WAIT for confirmation.
+        c. **MANDATORY:** Read `systemPatterns.md`:
+            <read_file>
+            <path>memory-bank/systemPatterns.md</path>
+            </read_file>
+          - WAIT for confirmation.
+        d. **MANDATORY:** Read `decisionLog.md`:
+            <read_file>
+            <path>memory-bank/decisionLog.md</path>
+            </read_file>
+          - WAIT for confirmation.
+        e. **MANDATORY:** Read `progress.md`:
+            <read_file>
+            <path>memory-bank/progress.md</path>
+            </read_file>
+          - WAIT for confirmation.
+      2. Set the status to '[MEMORY BANK: ACTIVE]' and inform the user that the Memory Bank has been read and is now active.
+      3. Proceed with the task using the context from the Memory Bank or if no task is provided, suggest some tasks to the user.
+  general:
+    status_prefix: "Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]', according to the current state of the Memory Bank."
 
 memory_bank_updates:
-  frequency:
-  - "UPDATE MEMORY BANK THROUGHOUT THE CHAT SESSION, WHEN SIGNIFICANT CHANGES OCCUR IN THE PROJECT."
+  frequency: "UPDATE MEMORY BANK THROUGHOUT THE CHAT SESSION, WHEN SIGNIFICANT CHANGES OCCUR IN THE PROJECT."
   decisionLog.md:
     trigger: "When a significant architectural decision is made (new component, data flow change, technology choice, etc.). Use your judgment to determine significance."
     action: |
@@ -776,52 +779,39 @@ umb:
     - "Halt Current Task: Stop current activity"
     - "Acknowledge Command: '[MEMORY BANK: UPDATING]'"
     - "Review Chat History"
-    - >
-        Temporary God Mode Activation:
-          1. Access Level Override:
-              - Full tool access granted
-              - All mode capabilities enabled
-              - Markdown file restrictions temporarily lifted for Memory Bank updates.
-          2. Cross-Mode Analysis:
-              - Review all mode activities
-              - Identify inter-mode actions
-              - Collect all relevant updates
-              - Track dependency chains
-    - >
-        Core Update Process:
-          1. Current Session Review:
-              - Analyze complete chat history
-              - Extract cross-mode information
-              - Track mode transitions
-              - Map activity relationships
-          2. Comprehensive Updates:
-              - Update from all mode perspectives
-              - Preserve context across modes
-              - Maintain activity threads
-              - Document mode interactions
-          3. Memory Bank Synchronization:
-              - Update all affected *.md files
-              - Ensure cross-mode consistency
-              - Preserve activity context
-              - Document continuation points
-    - >
-        Current Mode Focus (Architect):
-          - Design decisions
-          - System patterns
-          - Documentation structure
-          - Implementation guidance
-    - >
-        Cross-Mode Updates:
-          - Implementation details (from Code mode)
-          - Test coverage/results (from Test mode)
-          - Debug findings (from Debug mode)
-          - Knowledge base updates (from Ask mode)
-    - >
-        Session Handoff:
-          - "Memory Bank fully synchronized"
-          - "All mode contexts preserved"
-          - "Session can be safely closed"
-          - "Next assistant will have complete context"
+  temporary_god-mode_activation: |
+      1. Access Level Override:
+          - Full tool access granted
+          - All mode capabilities enabled
+          - All file restrictions temporarily lifted for Memory Bank updates.
+      2. Cross-Mode Analysis:
+          - Review all mode activities
+          - Identify inter-mode actions
+          - Collect all relevant updates
+          - Track dependency chains
+  core_update_process: |
+      1. Current Session Review:
+          - Analyze complete chat history
+          - Extract cross-mode information
+          - Track mode transitions
+          - Map activity relationships
+      2. Comprehensive Updates:
+          - Update from all mode perspectives
+          - Preserve context across modes
+          - Maintain activity threads
+          - Document mode interactions
+      3. Memory Bank Synchronization:
+          - Update all affected *.md files
+          - Ensure cross-mode consistency
+          - Preserve activity context
+          - Document continuation points
+  task_focus: "During a UMB update, focus on capturing any clarifications, questions answered, or context provided *during the chat session*. This information should be added to the appropriate Memory Bank files (likely `activeContext.md` or `decisionLog.md`), using the other modes' update formats as a guide.  *Do not* attempt to summarize the entire project or perform actions outside the scope of the current chat."
+  cross-mode_updates: "During a UMB update, ensure that all relevant information from the chat session is captured and added to the Memory Bank. This includes any clarifications, questions answered, or context provided during the chat. Use the other modes' update formats as a guide for adding this information to the appropriate Memory Bank files."
+  post_umb_actions:
+    - "Memory Bank fully synchronized"
+    - "All mode contexts preserved"
+    - "Session can be safely closed"
+    - "Next assistant will have complete context"
     - "Note: God Mode override is TEMPORARY"
   override_file_restrictions: true
   override_mode_restrictions: true
