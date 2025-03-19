@@ -28,7 +28,7 @@ The Default mode serves two main purposes:
    C:\Users\[user]\AppData\Roaming\Code\User\globalStorage\rooveterinaryinc.roo-cline\settings\cline_custom_modes.json
    ```
 
-4. Copy the contents of the provided `cline_custom_modes.json` file into your existing file:
+4. Copy the contents of the provided [`cline_custom_modes.json`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/default-mode/cline_custom_modes.json) file into your existing file:
    - If you already have other custom modes, add the Default mode configuration to the `customModes` array
    - If this is your first custom mode, replace the entire contents with the provided configuration
 
@@ -36,9 +36,9 @@ The Default mode serves two main purposes:
 
 The Default mode configuration is split across three files for easier maintenance:
 
-1. `cline_custom_modes.json`: The complete mode configuration in JSON format
-2. `custom-instructions.yaml`: The mode-specific instructions in YAML format (for reference if you want to modify the instructions)
-3. `role-definition.txt`: The role definition text (for reference if you want to modify the role)
+1. [`cline_custom_modes.json`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/default-mode/cline_custom_modes.json): The complete mode configuration in JSON format
+2. [`custom-instructions.yaml`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/default-mode/custom-instructions.yaml): The mode-specific instructions in YAML format (for reference if you want to modify the instructions)
+3. [`role-definition.txt`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/default-mode/role-definition.txt): The role definition text (for reference if you want to modify the role)
 
 ## Verification
 
