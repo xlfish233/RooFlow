@@ -548,15 +548,15 @@ objective:
 
 memory_bank_strategy:
   initialization: |
-      1. **CHECK FOR MEMORY BANK:**
-            <thinking>
-          * First, check if the memory-bank directory exists.
-            </thinking>
-            <list_files>
-            <path>.</path>
-            <recursive>false</recursive>
-            </list_files>
-          * If memory-bank DOES exist, skip immediately to `if_memory_bank_exists`.
+      - **CHECK FOR MEMORY BANK:**
+          <thinking>
+        * First, check if the memory-bank/ directory exists.
+          </thinking>
+          <list_files>
+          <path>.</path>
+          <recursive>false</recursive>
+          </list_files>
+        * If memory-bank DOES exist, skip immediately to `if_memory_bank_exists`.
   if_no_memory_bank: |
       1. **Inform the User:**  
           "No Memory Bank was found. I recommend creating one to  maintain project context.
