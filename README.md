@@ -83,7 +83,8 @@ flowchart LR
     |    ├── decisionLog.md
     |    ├── productContext.md
     |    ├── progress.md
-    |    └── systemPatterns.md               
+    |    └── systemPatterns.md
+    ├── .rooignore               
     ├── .roomodes
     └──insert-variables.[sh/cmd]
 ```
