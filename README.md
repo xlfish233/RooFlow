@@ -131,7 +131,7 @@ flowchart LR
       ```
    3. Make the script executable:
       ```bash
-      chmod +x insert-variables.sh
+      sudo chmod +x insert-variables.sh
       ```
    4. Run the script:
       ```bash
@@ -141,7 +141,7 @@ flowchart LR
       Troubleshooting (Unix/Linux/macOS)
    * **If you see "Permission denied", run:** 
       ```bash
-      chmod +x insert-variables.sh
+      sudo chmod +x insert-variables.sh
       ```
    * **If you see "Error: .roo directory not found", verify your directory structure**
 
