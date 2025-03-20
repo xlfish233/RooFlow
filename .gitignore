@@ -6,4 +6,6 @@ dev/
 node_modules/
 package-lock.json
 package.json
-!config/.roo/
+!config/
+.rooignore
+!config/.rooignore
