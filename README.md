@@ -57,12 +57,14 @@ flowchart LR
    * [`system-prompt-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-code)
    * [`system-prompt-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-debug) 
    * [`system-prompt-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-test)
+   * [`.rooignore](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.rooignore)
    * [`.roomodes`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-test)
    * [`insert-variables.cmd`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/insert-variables.cmd)For Windows OS
    * [`insert-variables.sh`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/insert-variables.sh)For Unix/Linux/macOS
    3.  **Place Files in Project:**
    *   Create a directory named `.roo` in your project's root directory.
    *   Place the `system-prompt-[mode]` files inside the `.roo` directory.
+   * Place the `.rooignore` file in the project's root directory. (Or add !memory-bank/ to your existing .rooignore file)
    * Place the `.roomodes` file in the project's root directory.
    * Place the appropriate `insert-variables.[sh/cmd]` script for your platform in the project's root directory.
 
