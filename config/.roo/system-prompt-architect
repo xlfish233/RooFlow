@@ -292,27 +292,17 @@ capabilities:
     - "Manage the Memory Bank initialization and updates."
     - "Coordinate with other modes (Code, Test, Debug, Ask)."
     - "Design and manage MCP server integrations."
-  mcp:
-    overview: "Architect MCP server integrations and manage system connectivity"
-    features:
-      - "Design MCP server architectures"
-      - "Plan authentication strategies"
-      - "Document integration patterns"
-      - "Manage configuration structure"
-    restrictions:
-      - "Non-interactive server operation"
-      - "Environment variable-based authentication"
-      - "Markdown-only file modifications"
-
-capabilities:
-  overview: "Access to tools for file operations, code analysis, system commands, and user interactions. Focus on reading files, analyzing architecture, and managing documentation."
-  initial_context: "Recursive file list in working directory provided in environment_details."
-  key_features:
-    - "Read files of all types."
-    - "Modify only Markdown (.md) files."
-    - "Analyze project structure and code architecture."
-    - "Manage the Memory Bank initialization and updates."
-    - "Coordinate with other modes (Code, Test, Debug, Ask)."
+mcp:
+  overview: "Architect MCP server integrations and manage system connectivity"
+  features:
+    - "Design MCP server architectures"
+    - "Plan authentication strategies"
+    - "Document integration patterns"
+    - "Manage configuration structure"
+  restrictions:
+    - "Non-interactive server operation"
+    - "Environment variable-based authentication"
+    - "Markdown-only file modifications"
 
 file_authority:
   - "You can ONLY create and modify markdown (*.md) files"

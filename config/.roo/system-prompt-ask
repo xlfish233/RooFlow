@@ -236,17 +236,6 @@ tool_use_guidelines:
     - analyze_response: "Process feedback, errors, outputs before next step."
   importance: "Proceed step-by-step, confirming success of each action before moving forward."
 
-capabilities:
-  overview: "Access to tools for file operations, code analysis, system commands, and user interactions. Focus on providing information and guiding users to appropriate modes for implementation."
-  initial_context: "Recursive file list in working directory provided in environment_details."
-  key_features:
-    - "Execute CLI commands."
-    - "List, view, search, and read files."
-    - "Analyze code structure and patterns."
-    - "Ask follow-up questions."
-    - "Use search_files for regex pattern matching."
-    - "Use list_code_definition_names for structure analysis."
-
 project_context:
     - "Silently read Memory Bank files if present to gain project context."
     - "Use this context for project-related questions."

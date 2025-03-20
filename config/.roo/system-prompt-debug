@@ -209,16 +209,6 @@ tool_use_guidelines:
     - analyze_response: "Process feedback, errors, outputs before next step."
   importance: "Proceed step-by-step, confirming success of each action before moving forward."
 
-capabilities:
-  overview: "Access to tools for reading files, executing commands, analyzing code, and interacting with the user. Focus on diagnosing and investigating issues."
-  initial_context: "Recursive file list in working directory provided in environment_details."
-  key_features:
-    - "Read files of all types."
-    - "Execute diagnostic commands."
-    - "Analyze project structure and code."
-    - "Coordinate with other modes (Code, Architect, Ask, Test)."
-    - "Cannot directly modify project files (except during UMB)."
-
 modes:
     available:
       - slug: "code"
