@@ -51,19 +51,19 @@ flowchart LR
    ###  1. Installation
 
    1.  **Install Roo Code Extension:** Ensure you have the Roo Code extension installed in VS Code.
-   2.  **Download [RooFlow Files:](https://github.com/GreatScottyMac/RooFlow/tree/main/config)** Download the following files from this repository:
+   2.  **Download [RooFlow Files](https://github.com/GreatScottyMac/RooFlow/tree/main/config):** Download the following files from this repository:
    * [`system-prompt-architect`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-architect)
    * [`system-prompt-ask`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-ask)
    * [`system-prompt-code`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-code)
    * [`system-prompt-debug`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-debug) 
-   * [`system-prompt-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/system-prompt-test)
+   * [`system-prompt-test`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roo/system-prompt-test)
    * [`.rooignore`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.rooignore)
    * [`.roomodes`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roomodes)
    * [`insert-variables.cmd`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/insert-variables.cmd)For Windows OS
    * [`insert-variables.sh`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/insert-variables.sh)For Unix/Linux/macOS
    3.  **Place Files in Project:**
-   *   Create a directory named `.roo` in your project's root directory.
-   *   Place the `system-prompt-[mode]` files inside the `.roo` directory.
+   *   Create a directory named [`.roo`](https://github.com/GreatScottyMac/RooFlow/tree/main/config/.roo) in your project's root directory.
+   *   Place the `system-prompt-[mode]` files inside the [`.roo`](https://github.com/GreatScottyMac/RooFlow/tree/main/config/.roo) directory.
    * Place the [`.rooignore`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.rooignore) file in the project's root directory. (Or add !memory-bank/ to your existing .rooignore file)
    * Place the [`.roomodes`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/.roomodes) file in the project's root directory (Or add its contents to your existing .roomodes file)
    * Place the appropriate `insert-variables.[sh/cmd]` script for your platform in the project's root directory.
