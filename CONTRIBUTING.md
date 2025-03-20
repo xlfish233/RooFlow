@@ -55,7 +55,7 @@ The `memory-bank/` directory is created automatically by RooFlow.  Do *not* crea
 
 ## Coding Style
 
-*   **YAML:**  The `.clinerules-[mode]` and `system-prompt-[mode]` files use YAML format.  Use consistent indentation (2 spaces) and follow YAML best practices.
+*   **YAML:**  The `system-prompt-[mode]` files use YAML format.  Use consistent indentation (2 spaces) and follow YAML best practices.
 *   **Markdown:** The Memory Bank files (`.md`) use Markdown format.
 *   **Clarity:**  Write clear, concise, and unambiguous instructions.
 * **Comments**: Use comments within the YAML files to explain complex logic.
