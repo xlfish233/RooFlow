@@ -29,19 +29,16 @@ To develop RooFlow, you'll need:
 
 The RooFlow project consists of the following files, which you should place in your project's root directory:
 
-*   `.clinerules-architect`:  Defines the behavior of Architect mode.
-*   `.clinerules-code`:  Defines the behavior of Code mode.
-*   `.clinerules-debug`:  Defines the behavior of Debug mode.
-*   `.clinerules-ask`:  Defines the behavior of Ask mode.
-*   `.clinerules-test`: Defines the behavior of Test mode.
-*   `.roo/`: A directory containing the system prompts.
-    *   `system-prompt-architect`: System prompt for Architect mode.
-    *   `system-prompt-code`: System prompt for Code mode.
-    *   `system-prompt-debug`: System prompt for Debug mode.
-    *   `system-prompt-ask`: System prompt for Ask mode.
-    *  `system-prompt-test`: System prompt for Test mode.
-*  `.roomodes`: Defines custom modes.
-*   `README.md`:  This file.
+* `.roo/`: A directory containing the system prompts.
+* `system-prompt-architect`: System prompt for Architect mode.
+* `system-prompt-code`: System prompt for Code mode.
+* `system-prompt-debug`: System prompt for Debug mode.
+* `system-prompt-ask`: System prompt for Ask mode.
+* `system-prompt-test`: System prompt for Test mode.
+* `cline_custom_modes.json`: Defines an optional global Default mode.
+* `.rooignore`: So Roo doesn't ignore memory-bank/ if it's gitignored.
+* `.roomodes`: Defines the custom Test mode.
+* `README.md`:  This file.
 * `projectBrief.md`: Optional project brief.
 
 **Memory Bank:**
