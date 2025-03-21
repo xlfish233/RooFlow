@@ -1,6 +1,8 @@
 <div align="center">
 
-### By popular demand, ✨MCP server tools✨ have been added!
+### ✨MCP server tools✨ 
+
+#### Still working on full MCP functionality in RooFlow modes. If you have issues, there is a global [Default mode](https://github.com/GreatScottyMac/RooFlow/blob/main/config/default-mode/README.md) available which runs with the Roo Code default system prompt. 
 
 <br>
   
