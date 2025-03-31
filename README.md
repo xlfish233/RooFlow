@@ -60,7 +60,7 @@ flowchart LR
 
        #### For Windows:
 
-       1.  Download the Windows installer script: [`install_rooflow.cmd`](https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/install_rooflow.cmd)
+       1.  Download the Windows installer script: [`install_rooflow.cmd`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/install_rooflow.cmd)
            *(Right-click the link -> Save Link As...)*
        2.  Save the `install_rooflow.cmd` file to the **root directory** of your project.
        3.  Open Command Prompt (`cmd.exe`).
@@ -77,11 +77,11 @@ flowchart LR
 
        #### For Linux/macOS:
 
-       1.  Download the Linux/macOS installer script: [`install_rooflow.sh`](https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/install_rooflow.sh)
+       1.  Download the Linux/macOS installer script: [`install_rooflow.sh`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/install_rooflow.sh)
            *(You can use `curl` or `wget` in the terminal, or right-click the link -> Save Link As...)*
            ```bash
            # Example using curl:
-           curl -o install_rooflow.sh https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/install_rooflow.sh
+           curl -o install_rooflow.sh https://github.com/GreatScottyMac/RooFlow/blob/main/config/install_rooflow.sh
            ```
        2.  Save/move the `install_rooflow.sh` file to the **root directory** of your project.
        3.  Open your Terminal.
@@ -109,12 +109,12 @@ flowchart LR
    The installer script places the necessary rule file (`.clinerules-default`) in your project root. To make the "Default" mode available globally in Roo Code, follow these manual steps using the Roo Code UI:
 
    1.  **Open Roo Code Settings:** Click the Roo Code icon in the VS Code Activity Bar, then click the "Prompts" icon (looks like a book/document - Step 1 in image below).
-       ![Prompt Settings Icon](config/default-mode/prompt-settings.png)
+       ![Prompt Settings Icon](https://github.com/GreatScottyMac/RooFlow/blob/main/config/default-mode/prompt-settings.png)
 
    2.  **Add New Mode:** Scroll down to the "Modes" section and click the "+" icon (Step 2).
 
    3.  **Enter Name:** In the "Create New Mode" view, enter `Default` in the "Name" field (Step 3).
-       ![Create Mode View](config/default-mode/create-global-mode.png)
+       ![Create Mode View](https://github.com/GreatScottyMac/RooFlow/blob/main/config/default-mode/create-global-mode.png)
 
    4.  **Slug:** The "Slug" field should automatically populate with `default` (Step 4).
 
@@ -492,7 +492,7 @@ The command "Update Memory Bank" or "UMB" can be given at any time to update the
 
 ## Contributing
 
-Contributions to RooFlow are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file (you'll need to create this) for guidelines.
+Contributions to RooFlow are welcome! Please see the [CONTRIBUTING.md](https://github.com/GreatScottyMac/RooFlow/blob/main/CONTRIBUTING.md) file (you'll need to create this) for guidelines.
 
 ## License
   [Apache 2.0](LICENSE)]]>
