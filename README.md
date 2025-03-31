@@ -1,6 +1,8 @@
 <div align="center">
 
-#### If you are using ✨MCP server tools✨ be sure to have the 🌐Global Default Mode🌐 installed.
+#### Now with install scripts for [Windows](https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/install_rooflow.cmd) and [Linux/macOS](https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/install_rooflow.sh)!
+
+#### If you are using ✨MCP server tools✨ be sure to have the 🌐[Global Default Mode](https://github.com/GreatScottyMac/RooFlow#optional-install-global-default-mode)🌐 installed.
 
 ##### The custom RooFlow modes may not play well with MCP servers yet.  
 
