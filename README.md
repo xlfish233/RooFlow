@@ -10,7 +10,8 @@
 
 <br>
 
-# 🚀 RooFlow 🌊 (rooflow_logo.png)
+# RooFlow 
+<img src="https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/rooflow_logo.png" alt="RooFlow Logo" width="300"/>
 
 **Persistent Project Context and Streamlined AI-Assisted Development**
 
@@ -53,7 +54,7 @@ flowchart LR
    ###  1. Installation
 
    1.  **Install Roo Code Extension:** Ensure you have the [Roo Code extension](https://github.com/RooVetGit/Roo-Code) installed in VS Code.
-   2.  **Prerequisite: Install Git:** The installation script requires `git` to be installed and accessible in your system's PATH. Download Git from [https://git-scm.com/download/](https://git-scm.com/download/).
+   2.  **Prerequisite: Install Git:** The installation script requires `git` to be installed and accessible in your system's PATH. Download Git from [https://git-scm.com/downloads](https://git-scm.com/downloads).
    3.  **Run the RooFlow Installer Script:**
 
        This script will clone the necessary configuration files from the RooFlow repository, place them in your current project directory, and run a setup script to inject your system-specific paths into the configuration files. It also copies the `.clinerules-default` file needed for the optional Default mode setup below.
@@ -81,7 +82,7 @@ flowchart LR
            *(You can use `curl` or `wget` in the terminal, or right-click the link -> Save Link As...)*
            ```bash
            # Example using curl:
-           curl -o install_rooflow.sh https://github.com/GreatScottyMac/RooFlow/blob/main/config/install_rooflow.sh
+           curl -Lo install_rooflow.sh https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/install_rooflow.sh
            ```
        2.  Save/move the `install_rooflow.sh` file to the **root directory** of your project.
        3.  Open your Terminal.
@@ -109,12 +110,14 @@ flowchart LR
    The installer script places the necessary rule file (`.clinerules-default`) in your project root. To make the "Default" mode available globally in Roo Code, follow these manual steps using the Roo Code UI:
 
    1.  **Open Roo Code Settings:** Click the Roo Code icon in the VS Code Activity Bar, then click the "Prompts" icon (looks like a book/document - Step 1 in image below).
-       ![Prompt Settings Icon](https://github.com/GreatScottyMac/RooFlow/blob/main/config/default-mode/prompt-settings.png)
+    <br>
+    <img src="config/default-mode/prompt-settings.png" alt="Prompt Settings Icon" width="200"/>
 
-   2.  **Add New Mode:** Scroll down to the "Modes" section and click the "+" icon (Step 2).
+   2.  **Add New Mode:** Scroll down to the "Modes" section and click the "+" icon (Step 
 
    3.  **Enter Name:** In the "Create New Mode" view, enter `Default` in the "Name" field (Step 3).
-       ![Create Mode View](https://github.com/GreatScottyMac/RooFlow/blob/main/config/default-mode/create-global-mode.png)
+    <br>
+    <img src="config/default-mode/create-global-mode.png" alt="Create Mode View" width="200"/>
 
    4.  **Slug:** The "Slug" field should automatically populate with `default` (Step 4).
 
@@ -495,4 +498,4 @@ The command "Update Memory Bank" or "UMB" can be given at any time to update the
 Contributions to RooFlow are welcome! Please see the [CONTRIBUTING.md](https://github.com/GreatScottyMac/RooFlow/blob/main/CONTRIBUTING.md) file (you'll need to create this) for guidelines.
 
 ## License
-  [Apache 2.0](LICENSE)]]>
+  [Apache 2.0](https://github.com/GreatScottyMac/RooFlow/blob/main/LICENSE>)
