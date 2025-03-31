@@ -61,7 +61,7 @@ flowchart LR
 
        #### For Windows:
 
-       1.  Download the Windows installer script: [`install_rooflow.cmd`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/install_rooflow.cmd)
+       1.  Download the Windows installer script: [`install_rooflow.cmd`](https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/install_rooflow.cmd)
            *(Right-click the link -> Save Link As...)*
        2.  Save the `install_rooflow.cmd` file to the **root directory** of your project.
        3.  Open Command Prompt (`cmd.exe`).
@@ -78,7 +78,7 @@ flowchart LR
 
        #### For Linux/macOS:
 
-       1.  Download the Linux/macOS installer script: [`install_rooflow.sh`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/install_rooflow.sh)
+       1.  Download the Linux/macOS installer script: [`install_rooflow.sh`](https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/install_rooflow.sh)
            *(You can use `curl` or `wget` in the terminal, or right-click the link -> Save Link As...)*
            ```bash
            # Example using curl:
@@ -110,14 +110,14 @@ flowchart LR
    The installer script places the necessary rule file (`.clinerules-default`) in your project root. To make the "Default" mode available globally in Roo Code, follow these manual steps using the Roo Code UI:
 
    1.  **Open Roo Code Settings:** Click the Roo Code icon in the VS Code Activity Bar, then click the "Prompts" icon (looks like a book/document - Step 1 in image below).
-    <br>
-    <img src="config/default-mode/prompt-settings.png" alt="Prompt Settings Icon" width="200"/>
+    <br> 
+    <img src="https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/default-mode/prompt-settings.png" alt="Prompt Settings Icon" width="200"/>
 
    2.  **Add New Mode:** Scroll down to the "Modes" section and click the "+" icon (Step 
 
    3.  **Enter Name:** In the "Create New Mode" view, enter `Default` in the "Name" field (Step 3).
-    <br>
-    <img src="config/default-mode/create-global-mode.png" alt="Create Mode View" width="200"/>
+    <br> <!-- Optional: Add a line break for spacing -->
+    <img src="https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/default-mode/create-global-mode.png" alt="Create Mode View" width="200"/>
 
    4.  **Slug:** The "Slug" field should automatically populate with `default` (Step 4).
 
