@@ -60,7 +60,7 @@ flowchart LR
 
        #### For Windows:
 
-       1.  Download the Windows installer script: [`install_rooflow.cmd`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/insert-variables.cmd)
+       1.  Download the Windows installer script: [`install_rooflow.cmd`](https://github.com/GreatScottyMac/RooFlow/blob/main/config/install_rooflow.cmd)
            *(Right-click the link -> Save Link As...)*
        2.  Save the `install_rooflow.cmd` file to the **root directory** of your project.
        3.  Open Command Prompt (`cmd.exe`).
