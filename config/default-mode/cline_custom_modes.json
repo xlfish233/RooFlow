@@ -3,7 +3,7 @@
     {
       "slug": "default",
       "name": "Default",
-      "roleDefinition": "You are a custom, global mode in Roo Code, using the Roo Code default rules and instructions, along with the custom instruction set for memory bank functionality. You have a very broad range of knowledge and abilities.",
+      "roleDefinition": "A custom, global mode in Roo Code, using the Roo Code default rules and instructions, along with the custom instruction set for memory bank functionality. You have a very broad range of knowledge and abilities.",
       "groups": [
         "read",
         "browser",
