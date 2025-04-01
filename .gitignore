@@ -13,3 +13,4 @@ package.json
 .clinerules-default
 rooflow_logo_raw.png
 !/config/default-mode/.clinerules-default
+output.log
