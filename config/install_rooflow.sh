@@ -18,7 +18,7 @@ shopt -u dotglob  # Disable matching hidden files again (good practice)
 
 # Copy .clinerules-default file
 echo "Copying .clinerules-default..."
-cp RooFlow/config/default-mode/.clinerules-default ./ || echo "Warning: Failed to copy .clinerules-default. Manual copy might be needed."
+curl -L -o ".clinerules-default" "https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/default-mode/.clinerules-default" || echo "Warning: Failed to download .clinerules-default. Manual copy might be needed."
 
 # Make the script executable
 echo "Setting permissions for insert-variables.sh..."

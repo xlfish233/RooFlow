@@ -44,8 +44,8 @@ if %errorlevel% gtr 7 (
 
 :: Copy .clinerules-default file
 echo Copying .clinerules-default...
-robocopy "%TEMP_CLONE_DIR%\config\default-mode" "%CD%" ".clinerules-default" /NFL /NDL /NJH /NJS /nc /ns /np
-if %errorlevel% gtr 1 (
+curl -L -o ".clinerules-default" "https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/default-mode/.clinerules-default"
+if %errorlevel% neq 0 (
     echo Warning: Failed to copy .clinerules-default. Robocopy Errorlevel: %errorlevel%. Manual copy might be needed.
     rem Continue script even if this fails, as it's less critical than main config
 )
