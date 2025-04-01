@@ -31,8 +31,7 @@ echo "Copying .roo directory..."
 cp -r "$CLONE_DIR/config/.roo" ./
 
 # 2. Copy specific config files
-echo "Copying .rooignore, .roomodes, insert-variables.sh..."
-cp "$CLONE_DIR/config/.rooignore" ./
+echo "Copying .roomodes, insert-variables.sh..."
 cp "$CLONE_DIR/config/.roomodes" ./
 cp "$CLONE_DIR/config/insert-variables.sh" ./
 
