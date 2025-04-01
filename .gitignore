@@ -10,7 +10,6 @@ package.json
 .rooignore
 !config/.rooignore
 .windsurfrules
-insert-variables.sh
 .clinerules-default
 rooflow_logo_raw.png
 !/config/default-mode/.clinerules-default
