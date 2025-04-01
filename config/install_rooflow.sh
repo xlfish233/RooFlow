@@ -1,41 +1,85 @@
 #!/usr/bin/env bash
 
 # Exit immediately if a command exits with a non-zero status.
-# This mimics the behavior of using && between commands.
 set -e
 
 echo "--- Starting RooFlow config setup ---"
 
-# Clone the repository
-echo "Cloning RooFlow repository..."
-git clone https://github.com/GreatScottyMac/RooFlow
+# Check for Git command
+if ! command -v git &> /dev/null; then
+    echo "Error: git is not found in your PATH."
+    echo "Please install Git using your distribution's package manager (e.g., sudo apt install git, sudo yum install git)."
+    exit 1
+else
+    echo "Found git executable."
+fi
 
-# Move config files (including hidden ones)
-echo "Moving config files..."
-shopt -s dotglob  # Enable matching hidden files (like .gitignore)
-mv RooFlow/config/* ./
-shopt -u dotglob  # Disable matching hidden files again (good practice)
+# Define a temporary directory name for clarity
+CLONE_DIR="RooFlow_temp_$$" # Using $$ for process ID to add uniqueness
 
-# Copy .clinerules-default file
-echo "Copying .clinerules-default..."
+# Clone the repository (shallow clone for efficiency)
+echo "Cloning RooFlow repository into $CLONE_DIR..."
+git clone --depth 1 https://github.com/GreatScottyMac/RooFlow "$CLONE_DIR"
+
+# --- MODIFIED COPY SECTION START ---
+echo "Copying specific configuration items..."
+
+# 1. Copy .roo directory (recursively)
+echo "Copying .roo directory..."
+# Use -T with cp to copy contents *into* the destination if it exists,
+# but here we expect ./ to exist and ./.roo not to, so standard -r is fine.
+cp -r "$CLONE_DIR/config/.roo" ./
+
+# 2. Copy specific config files
+echo "Copying .rooignore, .roomodes, insert-variables.sh..."
+cp "$CLONE_DIR/config/.rooignore" ./
+cp "$CLONE_DIR/config/.roomodes" ./
+cp "$CLONE_DIR/config/insert-variables.sh" ./
+
+# 3. Copy .clinerules-default file (using existing curl method)
+echo "Copying .clinerules-default via curl..."
+# Use || true to prevent script exit via 'set -e' if curl fails, but still show warning
 curl -L -o ".clinerules-default" "https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/default-mode/.clinerules-default" || echo "Warning: Failed to download .clinerules-default. Manual copy might be needed."
 
-# Make the script executable
+# --- MODIFIED COPY SECTION END ---
+
+
+# Make the setup script executable
 echo "Setting permissions for insert-variables.sh..."
 chmod +x insert-variables.sh
 
-# Clean up unnecessary files and directories
-echo "Cleaning up..."
-rm -f insert-variables.cmd   # -f ignores error if file doesn't exist
-rm -rf default-mode          # -rf removes directories recursively and ignores errors
-rm -rf RooFlow               # Remove the cloned repo directory
+
+# --- MODIFIED CLEANUP SECTION START ---
+echo "Cleaning up temporary clone directory ($CLONE_DIR)..."
+rm -rf "$CLONE_DIR" # Remove the cloned repo directory
+
+# Removed rm -f insert-variables.cmd   (never copied)
+# Removed rm -rf default-mode          (never copied)
+# --- MODIFIED CLEANUP SECTION END ---
+
+
+# Check if essential files exist before running
+if [ ! -d ".roo" ]; then
+    echo "Error: .roo directory not found after specific copy. Setup failed."
+    exit 1
+fi
+if [ ! -f "insert-variables.sh" ]; then
+     echo "Error: insert-variables.sh not found after specific copy. Setup failed."
+     exit 1
+fi
+
 
 # Run the setup script
 echo "Running insert-variables.sh..."
 ./insert-variables.sh
+
 echo "insert-variables.sh completed successfully. Removing it..."
 rm -f insert-variables.sh
 
+
 echo "Scheduling self-deletion of install_rooflow.sh..."
-( sleep 1 && rm -f "$0" ) &
+# Use nohup for more robust background execution, redirect output
+nohup bash -c "sleep 1 && rm -f '$0'" > /dev/null 2>&1 &
+
 echo "--- RooFlow config setup complete ---"
+exit 0 # Explicitly exit with success code
