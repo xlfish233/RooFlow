@@ -53,55 +53,34 @@ flowchart LR
 
 ## 🚀 Quick Start
 
-   ###  1. Installation
+   ### Installation
 
    1.  **Install Roo Code Extension:** Ensure you have the [Roo Code extension](https://github.com/RooVetGit/Roo-Code) installed in VS Code.
    2.  **Prerequisite: Install Git:** The installation script requires `git` to be installed and accessible in your system's PATH. Download Git from [https://git-scm.com/downloads](https://git-scm.com/downloads).
-   3.  **Run the RooFlow Installer Script:**
 
-       This script will clone the necessary configuration files from the RooFlow repository, place them in your current project directory, and run a setup script to inject your system-specific paths into the configuration files. It also copies the `.clinerules-default` file needed for the optional Default mode setup below.
+   3.  **Open your terminal** and navigate (`cd`) to your project's **root directory**.
+   4.  **Download the appropriate script** for your operating system:
+       * **Windows (Command Prompt or PowerShell):**
+        ```bash
+        curl -L -o install_rooflow.cmd https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/install_rooflow.cmd
+        ```   
+       *   **Linux / macOS (bash/zsh):**
+        ```bash 
+        curl -Lo install_rooflow.sh https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/install_rooflow.sh
+        ```
 
-       #### For Windows:
-
-       1.  Download the Windows installer script: [`install_rooflow.cmd`](https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/install_rooflow.cmd)
-           *(Right-click the link -> Save Link As...)*
-       2.  Save the `install_rooflow.cmd` file to the **root directory** of your project.
-       3.  Open Command Prompt (`cmd.exe`).
-       4.  Navigate to your project's root directory:
-           ```cmd
-           cd path\to\your\project
-           ```
-       5.  Run the installer script:
-           ```cmd
-           .\install_rooflow.cmd
-           ```
-       6.  The script will check for `git`, clone the repository, copy files using a temporary directory, clean up, and run `insert-variables.cmd`. Follow any on-screen prompts or error messages.
-       7.  **Note:** Upon successful completion, `install_rooflow.cmd` and `insert-variables.cmd` will be automatically removed.
-
-       #### For Linux/macOS:
-
-       1.  Download the Linux/macOS installer script: [`install_rooflow.sh`](https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/install_rooflow.sh)
-           *(You can use `curl` or `wget` in the terminal, or right-click the link -> Save Link As...)*
-           ```bash
-           # Example using curl:
-           curl -Lo install_rooflow.sh https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/install_rooflow.sh
-           ```
-       2.  Save/move the `install_rooflow.sh` file to the **root directory** of your project.
-       3.  Open your Terminal.
-       4.  Navigate to your project's root directory:
-           ```bash
-           cd path/to/your/project
-           ```
-       5.  Make the script executable:
-           ```bash
-           chmod +x install_rooflow.sh
-           ```
-       6.  Run the installer script:
-           ```bash
-           ./install_rooflow.sh
-           ```
-       7.  The script will check for `git`, clone the repository, move files, clean up, and run `insert-variables.sh`. Follow any on-screen prompts or error messages.
-       8.  **Note:** Upon successful completion, `install_rooflow.sh` and `insert-variables.sh` will be automatically removed.
+   5.  **Run the downloaded script:**
+       * **Windows:**
+        ```cmd
+        .\install_rooflow.cmd
+        ```
+       *   **Linux / macOS:**
+        ```bash
+        chmod +x install_rooflow.sh
+        ./install_rooflow.sh
+        ```
+   6.  The script will check for `git`, clone the repository, move files, clean up, and run `insert-variables.sh`. Follow any on-screen prompts or error messages.
+   7.  **Note:** Upon successful completion, `install_rooflow.sh` and `insert-variables.sh` will be automatically removed.
 
    4.  **Verify Installation:** After the script runs successfully:
        *   Check that the `.roo/` directory, `.roomodes` file, and `.clinerules-default` file exist in your project root.

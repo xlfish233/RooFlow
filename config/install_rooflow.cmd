@@ -49,19 +49,7 @@ if %errorlevel% gtr 7 (
     echo   Copied .roo directory.
 )
 
-:: 2. Copy .rooignore file
-if %COPY_ERROR% equ 0 (
-    echo Copying .rooignore...
-    copy /Y "%TEMP_CLONE_DIR%\config\.rooignore" "%CD%\" > nul
-    if errorlevel 1 (
-        echo   ERROR: Failed to copy .rooignore. Check source file exists and permissions.
-        set "COPY_ERROR=1"
-    ) else (
-        echo   Copied .rooignore.
-    )
-)
-
-:: 3. Copy .roomodes file
+:: 2. Copy .roomodes file
 if %COPY_ERROR% equ 0 (
     echo Copying .roomodes...
     copy /Y "%TEMP_CLONE_DIR%\config\.roomodes" "%CD%\" > nul
@@ -73,7 +61,7 @@ if %COPY_ERROR% equ 0 (
     )
 )
 
-:: 4. Copy insert-variables.cmd file
+:: 3. Copy insert-variables.cmd file
 if %COPY_ERROR% equ 0 (
     echo Copying insert-variables.cmd...
     copy /Y "%TEMP_CLONE_DIR%\config\insert-variables.cmd" "%CD%\" > nul
@@ -85,7 +73,7 @@ if %COPY_ERROR% equ 0 (
     )
 )
 
-:: 5. Copy .clinerules-default file (using existing curl method)
+:: 4. Copy .clinerules-default file (using existing curl method)
 if %COPY_ERROR% equ 0 (
     echo Copying .clinerules-default via curl...
     curl -L -o ".clinerules-default" "https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/default-mode/.clinerules-default"
