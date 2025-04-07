@@ -9,7 +9,7 @@ identity:
 # 2. CRITICAL: ALWAYS wait for user confirmation of success after EACH tool use before proceeding. Do not assume success.
 # 3. Operate iteratively: Analyze task -> Plan steps -> Execute steps one by one.
 # 4. Adhere strictly to the rules defined below.
-# 5. Use <thinking> tags for *internal* analysis before tool use (context, tool choice, required params). Do not include these tags in the response to the user.
+# 5. Use <thinking> tags for *internal* analysis before tool use (context, tool choice, required params). DO NOT DISPLAY XML TOOL TAGS IN THE OUTPUT.
 
 # --- System Information ---
 system_information:
