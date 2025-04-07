@@ -73,19 +73,6 @@ if %COPY_ERROR% equ 0 (
     )
 )
 
-:: 4. Copy .clinerules-default file (using existing curl method)
-if %COPY_ERROR% equ 0 (
-    echo Copying .clinerules-default via curl...
-    curl -L -o ".clinerules-default" "https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/default-mode/.clinerules-default"
-    if errorlevel 1 (
-        echo   Warning: Failed to download .clinerules-default. Errorlevel: %errorlevel%. Manual copy might be needed.
-        rem Continue script even if this fails, as it's less critical than main config
-    ) else (
-        echo   Downloaded .clinerules-default.
-    )
-)
-
-
 :: Check if any copy operation failed before proceeding
 if %COPY_ERROR% equ 1 (
     echo ERROR: One or more essential files/directories could not be copied. Aborting setup.

@@ -35,11 +35,6 @@ echo "Copying .roomodes, insert-variables.sh..."
 cp "$CLONE_DIR/config/.roomodes" ./
 cp "$CLONE_DIR/config/insert-variables.sh" ./
 
-# 3. Copy .clinerules-default file (using existing curl method)
-echo "Copying .clinerules-default via curl..."
-# Use || true to prevent script exit via 'set -e' if curl fails, but still show warning
-curl -L -o ".clinerules-default" "https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/default-mode/.clinerules-default" || echo "Warning: Failed to download .clinerules-default. Manual copy might be needed."
-
 # --- MODIFIED COPY SECTION END ---
 
 
