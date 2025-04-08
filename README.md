@@ -13,7 +13,7 @@
 <br>
 
 # RooFlow 
-<img src="https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/rooflow_logo.png" alt="RooFlow Logo" width="300"/>
+<img src="https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/images/rooflow_logo.png" alt="RooFlow Logo" width="300"/>
 
 **Persistent Project Context and Streamlined AI-Assisted Development**
 
@@ -81,13 +81,13 @@ flowchart LR
 
    1.  **Open Roo Code Settings:** Click the Roo Code icon in the VS Code Activity Bar, then click the "Prompts" icon (looks like a book/document - Step 1 in image below).
     <br> 
-    <img src="https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/default-mode/prompt-settings.png" alt="Prompt Settings Icon" width="200"/>
+    <img src="https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/images/prompt-settings.png" alt="Prompt Settings Icon" width="200"/>
 
    2.  **Add New Mode:** Scroll down to the "Modes" section and click the "+" icon (Step 2)
 
    3.  **Enter Name:** In the "Create New Mode" view, enter the mode name (`Default` or `Boomerang`) in the "Name" field (Step 3).
     <br> <!-- Optional: Add a line break for spacing -->
-    <img src="https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/config/default-mode/create-global-mode.png" alt="Create Mode View" width="200"/>
+    <img src="https://raw.githubusercontent.com/GreatScottyMac/RooFlow/main/images/create-global-mode.png" alt="Create Mode View" width="200"/>
 
    4.  **Slug:** The "Slug" field should automatically populate with `default` or `boomerang` (Step 4).
 
