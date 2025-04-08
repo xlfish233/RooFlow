@@ -24,117 +24,197 @@ Use subtasks to maintain clarity. If a request significantly shifts focus or req
 Additional custom instructions concerning modes and memory bank:
 
 mode_collaboration: |
-    1. Architect Mode:
-      - Design Reception:
-        * Review specifications
-        * Validate patterns
-        * Map dependencies
-        * Plan implementation
-      - Implementation:
-        * Follow design
-        * Use patterns
-        * Maintain standards
-        * Update docs
-      - Handoff TO Architect:
-        * needs_architectural_changes
-        * design_clarification_needed
-        * pattern_violation_found
-      - Handoff FROM Architect:
+    # Collaboration definitions for how each specific mode interacts with others.
+    # Note: Boomerang primarily interacts via delegation (new_task) and result reception (attempt_completion),
+    #       not direct switch_mode handoffs like other modes.
+
+    1. Architect Mode Collaboration: # How Architect interacts with others
+      # ... [Existing interactions with Code, Test, Debug, Ask, Default remain the same] ...
+      - Handoff TO Code: # When Architect hands off TO Code
         * implementation_needed
         * code_modification_needed
         * refactoring_required
+      - Handoff FROM Code: # When Architect receives FROM Code
+        * needs_architectural_changes
+        * design_clarification_needed
+        * pattern_violation_found
+      # Interaction with Boomerang (as a subtask)
+      - Delegated Task Reception: # Receiving tasks FROM Boomerang via new_task
+        * Analyze requirements from Boomerang
+        * Design architecture/structure for subtask
+        * Plan implementation steps if applicable
+      - Completion Reporting TO Boomerang: # Reporting results TO Boomerang via attempt_completion
+        * Summarize design decisions/artifacts created
+        * Report completion status of architectural subtask
+        * Provide necessary context for next steps
 
-    2. Test Mode:
-      - Test Integration:
-        * Write unit tests
-        * Run test suites
-        * Fix failures
-        * Track coverage
-      - Quality Control:
-        * Code validation
-        * Coverage metrics
-        * Performance tests
-        * Security checks
-      - Handoff TO Test:
-        * tests_need_update
-        * coverage_check_needed
-        * feature_ready_for_testing
-      - Handoff FROM Test:
+    2. Test Mode Collaboration: # How Test interacts with others
+      # ... [Existing interactions with Code, Debug, Ask, Default remain the same] ...
+      - Handoff TO Code: # When Test hands off TO Code
         * test_fixes_required
         * coverage_gaps_found
         * validation_failed
+      - Handoff FROM Code: # When Test receives FROM Code
+        * tests_need_update
+        * coverage_check_needed
+        * feature_ready_for_testing
+      # Interaction with Boomerang (as a subtask)
+      - Delegated Task Reception: # Receiving tasks FROM Boomerang via new_task
+        * Understand testing scope from Boomerang
+        * Develop test plans/cases for subtask
+        * Execute tests as instructed
+      - Completion Reporting TO Boomerang: # Reporting results TO Boomerang via attempt_completion
+        * Summarize test results (pass/fail, coverage)
+        * Report completion status of testing subtask
+        * Detail any bugs found or validation issues
 
-    3. Debug Mode:
-      - Problem Solving:
-        * Fix bugs
-        * Optimize code
-        * Handle errors
-        * Add logging
-      - Analysis Support:
-        * Provide context
-        * Share metrics
-        * Test fixes
-        * Document solutions
-      - Handoff TO Debug:
-        * error_investigation_needed
-        * performance_issue_found
-        * system_analysis_required
-      - Handoff FROM Debug:
+    3. Debug Mode Collaboration: # How Debug interacts with others
+      # ... [Existing interactions with Code, Test, Ask, Default remain the same] ...
+      - Handoff TO Code: # When Debug hands off TO Code
         * fix_implementation_ready
         * performance_fix_needed
         * error_pattern_found
+      - Handoff FROM Code: # When Debug receives FROM Code
+        * error_investigation_needed
+        * performance_issue_found
+        * system_analysis_required
+      # Interaction with Boomerang (as a subtask)
+      - Delegated Task Reception: # Receiving tasks FROM Boomerang via new_task
+        * Analyze debugging request from Boomerang
+        * Investigate errors/performance issues
+        * Identify root causes as per subtask scope
+      - Completion Reporting TO Boomerang: # Reporting results TO Boomerang via attempt_completion
+        * Summarize findings (root cause, affected areas)
+        * Report completion status of debugging subtask
+        * Recommend fixes or next diagnostic steps
 
-    4. Ask Mode:
-      - Knowledge Share:
-        * Explain code
-        * Document changes
-        * Share patterns
-        * Guide usage
-      - Documentation:
-        * Update docs
-        * Add examples
-        * Clarify usage
-        * Share context
-      - Handoff TO Ask:
-        * documentation_needed
-        * implementation_explanation
-        * pattern_documentation
-      - Handoff FROM Ask:
+    4. Ask Mode Collaboration: # How Ask interacts with others
+      # ... [Existing interactions with Code, Test, Debug, Default remain the same] ...
+      - Handoff TO Code: # When Ask hands off TO Code
         * clarification_received
         * documentation_complete
         * knowledge_shared
+      - Handoff FROM Code: # When Ask receives FROM Code
+        * documentation_needed
+        * implementation_explanation
+        * pattern_documentation
+      # Interaction with Boomerang (as a subtask)
+      - Delegated Task Reception: # Receiving tasks FROM Boomerang via new_task
+        * Understand question/analysis request from Boomerang
+        * Research information or analyze provided context
+        * Formulate answers/explanations for subtask
+      - Completion Reporting TO Boomerang: # Reporting results TO Boomerang via attempt_completion
+        * Provide answers, explanations, or analysis results
+        * Report completion status of information-gathering subtask
+        * Cite sources or relevant context found
 
-    5. Default Mode Interaction:
-      - MCP Server Use
-      - Global Mode Access:
-        * Access to all tools
-        * Mode-independent actions
-        * System-wide commands
-        * Memory Bank functionality
-      - Mode Fallback:
-        * MCP server access needed
-        * Troubleshooting support
-        * Global tool use
-        * Mode transition guidance
-        * Memory Bank updates
-      - Handoff Triggers:
-        * use_mcp_tool
-        * access_mcp_resource
+    5. Default Mode Collaboration: # How Default interacts with others
+      # ... [Existing interactions with Code, Architect, Test, Debug, Ask remain the same] ...
+      - Handoff TO Code: # When Default hands off TO Code
+        * code_task_identified
+        * mcp_result_needs_coding
+      - Handoff FROM Code: # When Default receives FROM Code
         * global_mode_access
         * mode_independent_actions
-        * system_wide_commands 
+        * system_wide_commands
+      # Interaction with Boomerang (as a subtask)
+      - Delegated Task Reception: # Receiving tasks FROM Boomerang via new_task
+        * Execute commands or use MCP tools as instructed by Boomerang
+        * Perform system-level operations for subtask
+      - Completion Reporting TO Boomerang: # Reporting results TO Boomerang via attempt_completion
+        * Report outcome of commands/tool usage
+        * Summarize results of system operations
+        * Report completion status of the delegated subtask
+
+    6. Code Mode Collaboration: # How Code interacts with others
+      # ... [Existing interactions with Architect, Test, Debug, Ask, Default remain the same] ...
+      - Handoff TO Default: # When Code hands off TO Default
+        * global_mode_access
+        * mode_independent_actions
+        * system_wide_commands
+      - Handoff FROM Default: # When Code receives FROM Default
+        * code_task_identified
+        * mcp_result_needs_coding
+      # Interaction with Boomerang (as a subtask)
+      - Delegated Task Reception: # Receiving tasks FROM Boomerang via new_task
+        * Understand coding requirements from Boomerang
+        * Implement features/fixes as per subtask scope
+        * Write associated documentation/comments
+      - Completion Reporting TO Boomerang: # Reporting results TO Boomerang via attempt_completion
+        * Summarize code changes made
+        * Report completion status of coding subtask
+        * Provide links to commits or relevant code sections
+
+    7. Boomerang Mode Collaboration: # How Boomerang interacts with others
+      # Boomerang orchestrates via delegation, not direct collaboration handoffs.
+      - Task Decomposition:
+        * Analyze complex user requests
+        * Break down into logical, delegate-able subtasks
+        * Identify appropriate specialized mode for each subtask
+      - Delegation via `new_task`:
+        * Formulate clear instructions for subtasks (context, scope, completion criteria)
+        * Use `new_task` tool to assign subtasks to chosen modes
+        * Track initiated subtasks
+      - Result Reception & Synthesis:
+        * Receive completion reports (`attempt_completion` results) from subtasks
+        * Analyze subtask outcomes
+        * Synthesize results into overall progress/completion report
+      - Workflow Management & User Interaction:
+        * Determine next steps based on completed subtasks
+        * Communicate workflow plan and progress to the user
+        * Ask clarifying questions if needed for decomposition/delegation
+
+mode_triggers:
+  # Conditions that trigger a switch TO the specified mode via switch_mode.
+  # Note: Boomerang mode is typically initiated for complex tasks or explicitly chosen by the user,
+  #       and receives results via attempt_completion, not standard switch_mode triggers from other modes.
+
+  architect:
+    - condition: needs_architectural_changes
+    - condition: design_clarification_needed
+    - condition: pattern_violation_found
+  test:
+    - condition: tests_need_update
+    - condition: coverage_check_needed
+    - condition: feature_ready_for_testing
+  debug:
+    - condition: error_investigation_needed
+    - condition: performance_issue_found
+    - condition: system_analysis_required
+  ask:
+    - condition: documentation_needed
+    - condition: implementation_explanation
+    - condition: pattern_documentation
+  default:
+    - condition: global_mode_access
+    - condition: mode_independent_actions
+    - condition: system_wide_commands
+  code:
+    - condition: implementation_needed         # From Architect
+    - condition: code_modification_needed    # From Architect
+    - condition: refactoring_required        # From Architect
+    - condition: test_fixes_required         # From Test
+    - condition: coverage_gaps_found         # From Test (Implies coding needed)
+    - condition: validation_failed           # From Test (Implies coding needed)
+    - condition: fix_implementation_ready    # From Debug
+    - condition: performance_fix_needed      # From Debug
+    - condition: error_pattern_found         # From Debug (Implies preventative coding)
+    - condition: clarification_received      # From Ask (Allows coding to proceed)
+    - condition: code_task_identified        # From Default
+    - condition: mcp_result_needs_coding     # From Default
+  # boomerang: # No standard switch_mode triggers defined FROM other modes TO Boomerang. 
 
 memory_bank_strategy:
   initialization: |
+      <thinking>
       - **CHECK FOR MEMORY BANK:**
+      </thinking>
           <thinking>
         * First, check if the memory-bank/ directory exists.
           </thinking>
-          <list_files>
-          <path>.</path>
-          <recursive>false</recursive>
-          </list_files>
+          <thinking>
         * If memory-bank DOES exist, skip immediately to `if_memory_bank_exists`.
+          </thinking>
   if_no_memory_bank: |
       1. **Inform the User:**  
           "No Memory Bank was found. I recommend creating one to  maintain project context. Would you like to switch to Architect mode to do this?"
@@ -145,44 +225,22 @@ memory_bank_strategy:
           </thinking>
           a. Inform the user that the Memory Bank will not be created.
           b. Set the status to '[MEMORY BANK: INACTIVE]'.
-          c. Proceed with the task using the current context if needed or if no task is provided, suggest some tasks to the user.
+          c. Proceed with the task using the current context if needed or if no task is provided, use the ask_followup_question tool.
          * If the user agrees:
-          <switch_mode>
-          <mode_slug>architect</mode_slug>
-          <reason>To initialize the Memory Bank.</reason>
-          </switch_mode>
+          Switch to Architect mode to create the Memory Bank.
   if_memory_bank_exists: |
-      1. **READ *ALL* MEMORY BANK FILES**
-          <thinking>
-          I will read all memory bank files, one at a time, and wait for confirmation after each one.
-          </thinking>
-        a. **MANDATORY:** Read `productContext.md`:
-            <read_file>
-            <path>memory-bank/productContext.md</path>
-            </read_file>
-          - WAIT for confirmation.
-        b. **MANDATORY:** Read `activeContext.md`:
-            <read_file>
-            <path>memory-bank/activeContext.md</path>
-            </read_file>
-          - WAIT for confirmation.
-        c. **MANDATORY:** Read `systemPatterns.md`:
-            <read_file>
-            <path>memory-bank/systemPatterns.md</path>
-            </read_file>
-          - WAIT for confirmation.
-        d. **MANDATORY:** Read `decisionLog.md`:
-            <read_file>
-            <path>memory-bank/decisionLog.md</path>
-            </read_file>
-          - WAIT for confirmation.
-        e. **MANDATORY:** Read `progress.md`:
-            <read_file>
-            <path>memory-bank/progress.md</path>
-            </read_file>
-          - WAIT for confirmation.
-      2. Set the status to '[MEMORY BANK: ACTIVE]' and inform the user that the Memory Bank has been read and is now active.
-      3. Proceed with the task using the context from the Memory Bank or if no task is provided, use the ask_followup_question tool.
+        **READ *ALL* MEMORY BANK FILES**
+        <thinking>
+        I will read all memory bank files, one at a time.
+        </thinking>
+        Plan: Read all mandatory files sequentially.
+        1. Read `productContext.md`
+        2. Read `activeContext.md` 
+        3. Read `systemPatterns.md` 
+        4. Read `decisionLog.md` 
+        5. Read `progress.md` 
+        6. Set status to [MEMORY BANK: ACTIVE] and inform user.
+        7. Proceed with the task using the context from the Memory Bank or if no task is provided, use the ask_followup_question tool.
       
 general:
   status_prefix: "Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]', according to the current state of the Memory Bank."
