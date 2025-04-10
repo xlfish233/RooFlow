@@ -297,81 +297,122 @@ tools:
   # --- File Modification ---
   - name: apply_diff
     description: |
-      Request to replace existing code using a search and replace block.
-      This tool allows for precise, surgical replaces to files by specifying exactly what content to search for and what to replace it with.
-      The tool will maintain proper indentation and formatting while making changes.
-      Only a single operation is allowed per tool use.
-      The SEARCH section must exactly match existing content including whitespace and indentation.
-      If you're not confident in the exact content to search for, use the read_file tool first to get the exact content.
-      When applying the diffs, be extra careful to remember to change any closing brackets or other syntax that may be affected by the diff farther down in the file.
-      ALWAYS make as many changes in a single 'apply_diff' request as possible using multiple SEARCH/REPLACE blocks
+      Applies precise, surgical modifications to a file using one or more SEARCH/REPLACE blocks provided within a single 'diff' parameter.
+      This is the primary tool for editing existing files while maintaining correct indentation and formatting.
+      The content in the SEARCH section MUST exactly match the existing content in the file, including all whitespace, indentation, and line breaks. Use 'read_file' first if unsure of the exact content.
+      Crucially, consolidate multiple intended changes to the *same file* into a *single* 'apply_diff' call by concatenating multiple SEARCH/REPLACE blocks within the 'diff' parameter string.
+      Be mindful that changes might require syntax adjustments outside the modified blocks.
+      Base path for files is '/var/www/poptools-app'. # Updated base path from error context
+      CRITICAL ESCAPING RULE: If the literal text '<<<<<<< SEARCH', '=======', or '>>>>>>> REPLACE' appears within the content you need to put inside the SEARCH or REPLACE sections, it MUST be escaped to avoid confusing the diff parser. See the 'diff' parameter description for exact escaping rules.
     parameters:
-      - name: path
-        required: true
-        description: The path of the file to modify (relative to the current working directory WORKSPACE_PLACEHOLDER)
-      - name: diff
-        required: true
-        description: The search/replace block defining the changes.
-    usage_format: |
-      apply_diff:
-        path: <path>
-        diff: |
-          <<<<<<< SEARCH
-          :start_line: <start_line_num>
-          :end_line: <end_line_num>
-          -------
-          [exact content to find including whitespace]
-          =======
-          [new content to replace with]
-          >>>>>>> REPLACE
-          # You can use multi search/replace block in one diff block, but make sure to include the line numbers for each block.
-          # Only use a single line of '=======' between search and replacement content, because multiple '=======' will corrupt the file.
-    examples:
-      - description: Single edit example
-        yaml_usage: |
-          apply_diff:
-            path: my_file.py
-            diff: |
-              <<<<<<< SEARCH
-              :start_line:1
-              :end_line:5
-              -------
-              def calculate_total(items):
-                  total = 0
-                  for item in items:
-                      total += item
-                  return total
-              =======
-              def calculate_total(items):
-                  """Calculate total with 10% markup"""
-                  return sum(item * 1.1 for item in items)
-              >>>>>>> REPLACE
-      - description: Multi-edit example
-        yaml_usage: |
-          apply_diff:
-            path: another_file.py
-            diff: |
-              <<<<<<< SEARCH
-              :start_line:1
-              :end_line:2
-              -------
-              def calculate_sum(items):
-                  sum = 0
-              =======
-              def calculate_sum(items):
-                  sum = 0
-              >>>>>>> REPLACE
+    - name: path
+      required: true
+      description: The path of the file to modify (relative to '/var/www/poptools-app').
+    - name: diff
+      required: true
+      description: |
+        A string containing one or more concatenated SEARCH/REPLACE blocks.
+        Each block MUST adhere to the following format exactly:
+        <<<<<<< SEARCH
+        :start_line:[start_line_number]
+        :end_line:[end_line_number]
+        -------
+        [Exact content to find, including whitespace and line breaks]
+        =======
+        [New content to replace the found content with]
+        >>>>>>> REPLACE
 
-              <<<<<<< SEARCH
-              :start_line:4
-              :end_line:5
-              -------
-                      total += item
-                  return total
-              =======
-                      sum += item
-                  return sum
-              >>>>>>> REPLACE
+        - ':start_line:' and ':end_line:' are required and specify the line numbers (1-based, inclusive) of the original content block being targeted.
+        - Use exactly one '=======' separator between the SEARCH and REPLACE content *within each block's structure*.
+
+        *** IMPORTANT ESCAPING RULE ***
+        If the literal text of any of the diff markers themselves needs to be part of the [Exact content to find] or [New content to replace with], you MUST escape it by prepending a backslash (\) at the beginning of the line where the marker appears *within the content*. This applies ONLY to these specific markers when found inside the content blocks:
+          \<<<<<<< SEARCH
+          \=======
+          \>>>>>>> REPLACE
+        Failure to escape these markers when they appear *as content* will cause the diff application to fail. The structural markers (the ones defining the block) should NOT be escaped.
+    usage_format: |
+      <apply_diff>
+      <path>File path here</path>
+      <diff>
+      <<<<<<< SEARCH
+      :start_line:start_line_num
+      :end_line:end_line_num
+      -------
+      [Exact content to find - escape internal markers if necessary]
+      =======
+      [New content to replace with - escape internal markers if necessary]
+      >>>>>>> REPLACE
+      (Optional: Concatenate additional SEARCH/REPLACE blocks here)
+      </diff>
+      </apply_diff>
+    example:
+    - description: Replace an entire function definition (standard case)
+      usage: |
+        <apply_diff>
+        <path>src/utils.py</path>
+        <diff>
+        <<<<<<< SEARCH
+        :start_line:1
+        :end_line:5
+        -------
+        def calculate_total(items):
+            total = 0
+            for item in items:
+                total += item
+            return total
+        =======
+        def calculate_total(items):
+            """Calculate total with 10% markup"""
+            return sum(item * 1.1 for item in items)
+        >>>>>>> REPLACE
+        </diff>
+        </apply_diff>
+    - description: Apply multiple edits (standard case)
+      usage: |
+        <apply_diff>
+        <path>calculator.py</path>
+        <diff>
+        <<<<<<< SEARCH
+        :start_line:2
+        :end_line:2
+        -------
+            sum = 0
+        =======
+            total = 0 # Renamed variable initialization
+        >>>>>>> REPLACE
+        <<<<<<< SEARCH
+        :start_line:4
+        :end_line:5
+        -------
+                sum += item
+            return sum
+        =======
+                total += item # Use renamed variable
+            return total  # Return renamed variable
+        >>>>>>> REPLACE
+        </diff>
+        </apply_diff>
+    - description: Remove merge conflict markers where '=======' is part of the content to find
+      usage: |
+        <apply_diff>
+        <path>src/conflicted_file.js</path>
+        <diff>
+        <<<<<<< SEARCH
+        :start_line:15
+        :end_line:19
+        -------
+        <<<<<<< HEAD
+        const version = '1.2.0';
+        \=======
+        const version = '1.3.0-beta';
+        >>>>>>> feature/new-version
+        =======
+        // Keep the version from the feature branch
+        const version = '1.3.0-beta';
+        >>>>>>> REPLACE
+        </diff>
+        </apply_diff> # Added example demonstrating escaping
 
   - name: write_to_file
     description: |
