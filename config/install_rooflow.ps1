@@ -191,4 +191,24 @@ try {
 }
 
 Write-Host "--- RooFlow config setup complete ---"
+# --- Add Self-Deletion Logic ---
+try {
+    $scriptPath = $MyInvocation.MyCommand.Path
+    Write-Host "Scheduling self-deletion of '$scriptPath'..."
+    # Escape single quotes within the command string for PowerShell (though EncodedCommand avoids this need mostly)
+    $escapedPath = $scriptPath -replace "'", "''"
+    # Use -EncodedCommand to avoid complex quoting issues, especially with paths containing spaces or special characters.
+    $commandToEncode = "Start-Sleep -Seconds 1; Remove-Item -Path '$escapedPath' -Force -ErrorAction SilentlyContinue"
+    $encodedCommand = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($commandToEncode))
+
+    # Start the process without requesting elevation by default.
+    # If the script itself is run elevated, the child process should inherit sufficient permissions.
+    # Using -WindowStyle Hidden to avoid flashing a console window.
+    Start-Process powershell.exe -ArgumentList "-NoProfile -NonInteractive -WindowStyle Hidden -EncodedCommand $encodedCommand"
+    Write-Host "  Self-deletion scheduled. The script file will be removed shortly after this window closes."
+} catch {
+    Write-Warning "Failed to schedule self-deletion. You may need to delete '$scriptPath' manually. Error: $($_.Exception.Message)"
+}
+
+
 exit 0
