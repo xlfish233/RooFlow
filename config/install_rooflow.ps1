@@ -192,34 +192,7 @@ try {
 
 Write-Host "--- RooFlow config setup complete ---"
 
-if ($MyInvocation.MyCommand) { # Check if MyCommand object exists first
-    $scriptPath = $null # Initialize scriptPath to ensure it's defined
-# --- Add Self-Deletion Logic ---
-    if (-not [string]::IsNullOrEmpty($MyInvocation.MyCommand.Path)) { # Then check if Path property is valid
-    $scriptPath = $MyInvocation.MyCommand.Path # Define before try block
-try {
-    Write-Host "Scheduling self-deletion of '$scriptPath'..."
-    # Escape single quotes within the command string for PowerShell (though EncodedCommand avoids this need mostly)
-    $escapedPath = $scriptPath -replace "'", "''"
-    # Use -EncodedCommand to avoid complex quoting issues, especially with paths containing spaces or special characters.
-    $commandToEncode = "Start-Sleep -Seconds 1; Remove-Item -Path '$escapedPath' -Force -ErrorAction SilentlyContinue"
-    $encodedCommand = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($commandToEncode))
-
-    # Start the process without requesting elevation by default.
-    # If the script itself is run elevated, the child process should inherit sufficient permissions.
-    # Using -WindowStyle Hidden to avoid flashing a console window.
-    Start-Process powershell.exe -ArgumentList "-NoProfile -NonInteractive -WindowStyle Hidden -EncodedCommand $encodedCommand"
-    Write-Host "  Self-deletion scheduled. The script file will be removed shortly after this window closes."
-} catch {
-    if (-not [string]::IsNullOrEmpty($scriptPath)) {
-        Write-Warning "Failed to schedule self-deletion. You may need to delete '$scriptPath' manually. Error: $($_.Exception.Message)"
-    } else {
-        # In iex context, $scriptPath might be null or empty, so provide a generic message
-        Write-Warning "Failed to schedule self-deletion. You may need to delete the script manually if it was saved. Error: $($_.Exception.Message)"
-    }
-}
-} # End of inner if Path check
-} # End of outer if MyCommand check
+# Self-deletion logic removed to avoid issues with iex execution context
 
 
 exit 0
