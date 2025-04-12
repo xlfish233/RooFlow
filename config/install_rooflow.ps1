@@ -29,11 +29,11 @@ $itemsToCopy = @(
     @{ Source = '.roomodes'; Destination = '.roomodes'; IsDirectory = $false }
     @{ Source = 'insert-variables.ps1'; Destination = 'insert-variables.ps1'; IsDirectory = $false } # Add insert-variables.ps1 to copy list
 )
+# Current working directory where files will be copied
+$targetWorkspace = (Get-Location).Path
 # Path to the variable insertion script in the target workspace (after copying)
 # This avoids issues with $PSScriptRoot when using irm | iex
 $insertScriptPath = Join-Path $targetWorkspace 'insert-variables.ps1'
-# Current working directory where files will be copied
-$targetWorkspace = (Get-Location).Path
 
 # --- Check for Git ---
 Write-Host "Checking for Git..."
