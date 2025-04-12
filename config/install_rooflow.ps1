@@ -27,10 +27,11 @@ $repoUrl = "https://github.com/xlfish233/RooFlow"
 $itemsToCopy = @(
     @{ Source = '.roo'; Destination = '.roo'; IsDirectory = $true }
     @{ Source = '.roomodes'; Destination = '.roomodes'; IsDirectory = $false }
+    @{ Source = 'insert-variables.ps1'; Destination = 'insert-variables.ps1'; IsDirectory = $false } # Add insert-variables.ps1 to copy list
 )
-# Path to the variable insertion script relative to this script's location
-# Assuming both scripts are in the same directory (config/)
-$insertScriptPath = Join-Path $PSScriptRoot 'insert-variables.ps1'
+# Path to the variable insertion script in the target workspace (after copying)
+# This avoids issues with $PSScriptRoot when using irm | iex
+$insertScriptPath = Join-Path $targetWorkspace 'insert-variables.ps1'
 # Current working directory where files will be copied
 $targetWorkspace = (Get-Location).Path
 
