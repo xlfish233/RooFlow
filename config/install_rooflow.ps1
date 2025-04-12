@@ -194,8 +194,8 @@ Write-Host "--- RooFlow config setup complete ---"
 
 if ($MyInvocation.MyCommand.Path) { # Only attempt self-deletion if running from a file
 # --- Add Self-Deletion Logic ---
+    $scriptPath = $MyInvocation.MyCommand.Path # Define before try block
 try {
-    $scriptPath = $MyInvocation.MyCommand.Path
     Write-Host "Scheduling self-deletion of '$scriptPath'..."
     # Escape single quotes within the command string for PowerShell (though EncodedCommand avoids this need mostly)
     $escapedPath = $scriptPath -replace "'", "''"
