@@ -185,6 +185,21 @@ try {
     } else {
         Write-Host "'$script:insertScriptPath' completed successfully."
     }
+
+# --- Clean up insert-variables.ps1 ---
+Write-Host "Removing '$($script:insertScriptPath)'..."
+try {
+    if (Test-Path $script:insertScriptPath -PathType Leaf) {
+        Remove-Item -Path $script:insertScriptPath -Force -ErrorAction Stop
+        Write-Host "  Successfully removed '$($script:insertScriptPath)'."
+    } else {
+        # This case shouldn't happen if the script just ran successfully, but good to handle.
+        Write-Warning "  '$($script:insertScriptPath)' was not found for removal, though it should have just executed."
+    }
+} catch {
+    Write-Warning "Failed to remove '$($script:insertScriptPath)'. You may need to delete it manually. Error: $($_.Exception.Message)"
+}
+
 } catch {
     Write-Error "An error occurred while trying to execute '$script:insertScriptPath': $($_.Exception.Message)"
     exit 1
