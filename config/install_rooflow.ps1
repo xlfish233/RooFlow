@@ -22,7 +22,7 @@ Set-StrictMode -Version Latest
 Write-Host "--- Starting RooFlow config setup (PowerShell Version) ---"
 
 # Define repository URL
-$repoUrl = "https://github.com/xlfish233/RooFlow"
+$repoUrl = "https://github.com/GreatScottyMac/RooFlow"
 # Define items to copy from the cloned repo's config directory
 $itemsToCopy = @(
     @{ Source = '.roo'; Destination = '.roo'; IsDirectory = $true }
