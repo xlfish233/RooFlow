@@ -193,6 +193,7 @@ try {
 Write-Host "--- RooFlow config setup complete ---"
 
 if ($MyInvocation.MyCommand) { # Check if MyCommand object exists first
+    $scriptPath = $null # Initialize scriptPath to ensure it's defined
 # --- Add Self-Deletion Logic ---
     if (-not [string]::IsNullOrEmpty($MyInvocation.MyCommand.Path)) { # Then check if Path property is valid
     $scriptPath = $MyInvocation.MyCommand.Path # Define before try block
