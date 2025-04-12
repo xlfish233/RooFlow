@@ -211,7 +211,12 @@ try {
     Start-Process powershell.exe -ArgumentList "-NoProfile -NonInteractive -WindowStyle Hidden -EncodedCommand $encodedCommand"
     Write-Host "  Self-deletion scheduled. The script file will be removed shortly after this window closes."
 } catch {
-    Write-Warning "Failed to schedule self-deletion. You may need to delete '$scriptPath' manually. Error: $($_.Exception.Message)"
+    if (-not [string]::IsNullOrEmpty($scriptPath)) {
+        Write-Warning "Failed to schedule self-deletion. You may need to delete '$scriptPath' manually. Error: $($_.Exception.Message)"
+    } else {
+        # In iex context, $scriptPath might be null or empty, so provide a generic message
+        Write-Warning "Failed to schedule self-deletion. You may need to delete the script manually if it was saved. Error: $($_.Exception.Message)"
+    }
 }
 } # End of inner if Path check
 } # End of outer if MyCommand check
