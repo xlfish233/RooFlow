@@ -195,4 +195,5 @@ Write-Host "--- RooFlow config setup complete ---"
 # Self-deletion logic removed to avoid issues with iex execution context
 
 
+$null # Attempt to clear final state for iex
 exit 0
