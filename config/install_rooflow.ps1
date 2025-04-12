@@ -191,6 +191,8 @@ try {
 }
 
 Write-Host "--- RooFlow config setup complete ---"
+
+if ($MyInvocation.MyCommand.Path) { # Only attempt self-deletion if running from a file
 # --- Add Self-Deletion Logic ---
 try {
     $scriptPath = $MyInvocation.MyCommand.Path
@@ -209,6 +211,7 @@ try {
 } catch {
     Write-Warning "Failed to schedule self-deletion. You may need to delete '$scriptPath' manually. Error: $($_.Exception.Message)"
 }
+} # End of if ($MyInvocation.MyCommand.Path)
 
 
 exit 0
