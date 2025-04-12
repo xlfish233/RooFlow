@@ -32,8 +32,6 @@ $itemsToCopy = @(
 # Current working directory where files will be copied
 # Path to the variable insertion script in the target workspace (after copying)
 # This avoids issues with $PSScriptRoot when using irm | iex
-$targetWorkspace = (Get-Location).Path # Define CWD just before use
-$insertScriptPath = Join-Path $targetWorkspace 'insert-variables.ps1'
 
 # --- Check for Git ---
 Write-Host "Checking for Git..."
@@ -97,6 +95,7 @@ if (-not (Test-Path $clonedConfigDir -PathType Container)) {
     exit 1
 }
 Write-Host "  Clone integrity check passed (config directory found)."
+$targetWorkspace = (Get-Location).Path # Define CWD just before copy
 
 # --- Copy Configuration Items ---
 Write-Host "Copying specific configuration items to '$targetWorkspace'..."
@@ -165,6 +164,7 @@ if ($verificationFailed) {
     exit 1
 }
 Write-Host "  Copied items verified successfully."
+$insertScriptPath = Join-Path $targetWorkspace 'insert-variables.ps1' # Define script path just before run
 
 # --- Run Insert Variables Script ---
 Write-Host "Running insert-variables.ps1 script..."
