@@ -14,7 +14,6 @@
   Does not self-delete. The insert-variables.ps1 script is also preserved.
 #>
 param()
-$targetWorkspace = $PWD.Path # Current working directory where files will be copied
 
 # Strict mode and error handling
 $ErrorActionPreference = 'Stop'
@@ -33,6 +32,7 @@ $itemsToCopy = @(
 # Current working directory where files will be copied
 # Path to the variable insertion script in the target workspace (after copying)
 # This avoids issues with $PSScriptRoot when using irm | iex
+$targetWorkspace = (Get-Location).Path # Define CWD just before use
 $insertScriptPath = Join-Path $targetWorkspace 'insert-variables.ps1'
 
 # --- Check for Git ---
