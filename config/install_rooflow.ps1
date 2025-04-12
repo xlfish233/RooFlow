@@ -95,14 +95,14 @@ if (-not (Test-Path $clonedConfigDir -PathType Container)) {
     exit 1
 }
 Write-Host "  Clone integrity check passed (config directory found)."
-$targetWorkspace = (Get-Location).Path # Define CWD just before copy
+$script:targetWorkspace = (Get-Location).Path # Define CWD just before copy, using script scope
 
 # --- Copy Configuration Items ---
-Write-Host "Copying specific configuration items to '$targetWorkspace'..."
+Write-Host "Copying specific configuration items to '$script:targetWorkspace'..."
 $copyError = $false
 foreach ($item in $itemsToCopy) {
     $sourcePath = Join-Path $clonedConfigDir $item.Source
-    $destinationPath = Join-Path $targetWorkspace $item.Destination
+    $destinationPath = Join-Path $script:targetWorkspace $item.Destination
     Write-Host "  Copying '$($item.Source)' to '$($item.Destination)'..."
 
     if (-not (Test-Path $sourcePath)) {
@@ -150,12 +150,12 @@ if (Test-Path $tempCloneDir) {
 }
 
 # --- Check Essential Copied Items ---
-Write-Host "Verifying copied items in '$targetWorkspace'..."
+Write-Host "Verifying copied items in '$script:targetWorkspace'..."
 $verificationFailed = $false
 foreach ($item in $itemsToCopy) {
-    $destinationPath = Join-Path $targetWorkspace $item.Destination
+    $destinationPath = Join-Path $script:targetWorkspace $item.Destination
     if (-not (Test-Path $destinationPath)) {
-        Write-Error "Verification failed: '$($item.Destination)' not found in '$targetWorkspace' after copy."
+        Write-Error "Verification failed: '$($item.Destination)' not found in '$script:targetWorkspace' after copy."
         $verificationFailed = $true
     }
 }
@@ -164,12 +164,12 @@ if ($verificationFailed) {
     exit 1
 }
 Write-Host "  Copied items verified successfully."
-$insertScriptPath = Join-Path $targetWorkspace 'insert-variables.ps1' # Define script path just before run
+$script:insertScriptPath = Join-Path $script:targetWorkspace 'insert-variables.ps1' # Define script path just before run, using script scope
 
 # --- Run Insert Variables Script ---
 Write-Host "Running insert-variables.ps1 script..."
-if (-not (Test-Path $insertScriptPath -PathType Leaf)) {
-     Write-Error "Cannot find the script '$insertScriptPath' to run variable insertion."
+if (-not (Test-Path $script:insertScriptPath -PathType Leaf)) {
+     Write-Error "Cannot find the script '$script:insertScriptPath' to run variable insertion."
      exit 1
 }
 
@@ -177,16 +177,16 @@ try {
     # Execute the script. Use -File parameter for safety.
     # Use Invoke-Command or call operator & if needed, but direct execution should work if in PATH or using full path.
     # Using Call operator & for robustness
-    & $insertScriptPath
+    & $script:insertScriptPath
     if ($LASTEXITCODE -ne 0) {
         # Error message should be printed by insert-variables.ps1 itself
-        Write-Error "'$insertScriptPath' script reported an error (Exit Code: $LASTEXITCODE)."
+        Write-Error "'$script:insertScriptPath' script reported an error (Exit Code: $LASTEXITCODE)."
         exit 1 # Propagate the error
     } else {
-        Write-Host "'$insertScriptPath' completed successfully."
+        Write-Host "'$script:insertScriptPath' completed successfully."
     }
 } catch {
-    Write-Error "An error occurred while trying to execute '$insertScriptPath': $($_.Exception.Message)"
+    Write-Error "An error occurred while trying to execute '$script:insertScriptPath': $($_.Exception.Message)"
     exit 1
 }
 
